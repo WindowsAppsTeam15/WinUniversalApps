@@ -30,7 +30,7 @@ namespace YamAndRateApp
 
         public void GoToSearchResultsBtn(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(AllRestaurantsView));
         }
 
         public void GoToLogInBtn(object sender, RoutedEventArgs e)
@@ -40,17 +40,17 @@ namespace YamAndRateApp
 
         public void GoToNearbyRestaurantsBtn(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(NearbyRestaurantsView));
         }
 
         public void GoToAddNewRestaurantBtn(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(AddEditRestaurantView));
         }
 
         public void GoToAllRestaurantsBtn(object sender, RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(AllRestaurantsView));
         }
     }
 }

@@ -20,26 +20,11 @@ namespace YamAndRateApp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class LogInView : Page
+    public sealed partial class RestaurantDetailsView : Page
     {
-        public LogInView()
+        public RestaurantDetailsView()
         {
             this.InitializeComponent();
-        }
-
-        public void RegisterBtnClick(object sender, RoutedEventArgs e)
-        {
-            if (this.ReapeatPass.Visibility == Visibility.Collapsed)
-            {
-                this.ReapeatPass.Visibility = Visibility.Visible;
-                return;
-            }
-
-            // Collect data from input fields
-            // Send data and register user
-
-            // Redirect user to initial view
-            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }
