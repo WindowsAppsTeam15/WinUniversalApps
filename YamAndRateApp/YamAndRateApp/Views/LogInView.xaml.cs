@@ -27,19 +27,19 @@ namespace YamAndRateApp.Views
             this.InitializeComponent();
         }
 
-        public void RegisterBtnClick(object sender, RoutedEventArgs e)
-        {
-            if (this.ReapeatPass.Visibility == Visibility.Collapsed)
-            {
-                this.ReapeatPass.Visibility = Visibility.Visible;
-                return;
-            }
+        //public void RegisterBtnClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.ReapeatPass.Visibility == Visibility.Collapsed)
+        //    {
+        //        this.ReapeatPass.Visibility = Visibility.Visible;
+        //        return;
+        //    }
 
-            // Collect data from input fields
-            // Send data and register user
+        //    // Collect data from input fields
+        //    // Send data and register user
 
-            // Redirect user to initial view
-            this.Frame.Navigate(typeof(MainPage));
-        }
+        //    // Redirect user to initial view
+        //    this.Frame.Navigate(typeof(MainPage));
+        //}
     }
 }
