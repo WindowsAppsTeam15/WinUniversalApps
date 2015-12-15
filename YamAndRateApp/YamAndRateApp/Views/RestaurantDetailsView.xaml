@@ -5,9 +5,29 @@
     xmlns:local="using:YamAndRateApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:YamAndRateApp.ViewModels"
+    xmlns:Helpers="using:YamAndRateApp.Helpers"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <Page.Resources>
+        <ViewModels:RestaurantViewModel x:Key="RestaurantViewModel" />
+    </Page.Resources>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          DataContext="{Binding Source={StaticResource RestaurantViewModel}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0" Source="{Binding PhotoUrl}"/>
+        <TextBlock Grid.Row="1" Text="{Binding Name}"/>
+        <TextBlock Grid.Row="2" Text="{Binding Description}"/>
+        <TextBlock Grid.Row="3" Text="{Binding Rating}"/>
+        <ListBox Grid.Row="4" ItemsSource="{Binding Specialties}"/>
+        <TextBlock Grid.Row="5" Text="{Binding Category}"/>
     </Grid>
 </Page>

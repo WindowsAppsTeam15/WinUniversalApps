@@ -45,7 +45,7 @@ namespace YamAndRateApp
 
         public void GoToAddNewRestaurantBtn(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddEditRestaurantView));
+            this.Frame.Navigate(typeof(RestaurantDetailsView));
         }
 
         public void GoToAllRestaurantsBtn(object sender, RoutedEventArgs e)
