@@ -5,9 +5,43 @@
     xmlns:local="using:YamAndRateApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ViewModels="using:YamAndRateApp.ViewModels"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ViewModels:ListOFRestaurantsViewModel x:Key="RestaurantsListViewModel" />
+        <ItemsPanelTemplate x:Key="GridViewItemsPanel">
+            <ItemsWrapGrid Orientation="Vertical" />
+        </ItemsPanelTemplate>
+    </Page.Resources>
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}">
+
+        <GridView
+        
+        ItemsSource="{Binding Restaurants}"
+        IsSwipeEnabled="False"
+        SelectionMode="Single"
+        ItemsPanel="{StaticResource GridViewItemsPanel}"
+        ScrollViewer.HorizontalScrollMode="Auto"
+        ScrollViewer.VerticalScrollMode="Disabled"
+        ScrollViewer.HorizontalScrollBarVisibility="Auto"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <GridView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="150" Height="150">
+                        <Border>
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill"/>
+                            </Border.Background>
+                        </Border>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                        <TextBlock Text="{Binding Category}" VerticalAlignment="Bottom" Foreground="White"/>
+                        <TextBlock Text="{Binding Rating}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="White"/>
+                    </Grid>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
     </Grid>
 </Page>

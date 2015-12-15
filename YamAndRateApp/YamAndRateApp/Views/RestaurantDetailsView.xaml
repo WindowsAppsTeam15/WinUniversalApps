@@ -11,23 +11,46 @@
 
     <Page.Resources>
         <ViewModels:RestaurantViewModel x:Key="RestaurantViewModel" />
+        <Helpers:CategoryConverter x:Key="CategoryConverter" />
+        <Helpers:RatingConverter x:Key="RatingConverter" />
     </Page.Resources>
-    
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
           DataContext="{Binding Source={StaticResource RestaurantViewModel}}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
-        <Image Grid.Row="0" Source="{Binding PhotoUrl}"/>
-        <TextBlock Grid.Row="1" Text="{Binding Name}"/>
-        <TextBlock Grid.Row="2" Text="{Binding Description}"/>
-        <TextBlock Grid.Row="3" Text="{Binding Rating}"/>
-        <ListBox Grid.Row="4" ItemsSource="{Binding Specialties}"/>
-        <TextBlock Grid.Row="5" Text="{Binding Category}"/>
+        <Rectangle Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="{Binding Category,  Converter={StaticResource CategoryConverter}}"/>
+        <TextBlock Grid.Row="0" Text="{Binding Category}" VerticalAlignment="Center"/>
+        <Border Grid.Row="1">
+            <Border.Background>
+                <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill"/>
+            </Border.Background>
+        </Border>
+        <TextBlock Grid.Row="1" Text="{Binding Name}" FontSize="24" Foreground="White" VerticalAlignment="Bottom"/>
+        <Button Grid.Row="1" Content="Edit" Style="{StaticResource EditButtonStyle}"/>
+        <TextBlock Grid.Row="2" Text="Rating:" Style="{StaticResource LableText}"/>
+        <Slider Grid.Row="3" Value="{Binding Rating}" HorizontalAlignment="Stretch" Maximum="10"/>
+        <TextBlock Grid.Row="4" Text="Short description:" Style="{StaticResource LableText}"/>
+        <TextBlock Grid.Row="5" Text="{Binding Description}" VerticalAlignment="Top"/>
+        <TextBlock Grid.Row="6" Text="Main dishes:" Style="{StaticResource LableText}"/>
+        <ListBox Grid.Row="7" ItemsSource="{Binding Specialties}"/>
     </Grid>
 </Page>
