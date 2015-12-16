@@ -9,12 +9,13 @@ namespace YamAndRateApp.ViewModels
 {
     public class RestaurantLimitedViewModel
     {
-        public RestaurantLimitedViewModel(string name, double rating, string photoId, Category cat)
+        public RestaurantLimitedViewModel(string name, double rating, string photoId, Category cat, Coordinates coords)
         {
             this.Name = name;
             this.Rating = rating;
             this.PhotoUrl = photoId;
             this.Category = cat;
+            this.Coordinates = coords;
         }
 
         public string Name { get; set; }
@@ -24,5 +25,7 @@ namespace YamAndRateApp.ViewModels
         public string PhotoUrl { get; set; }
 
         public Category Category { get; set; }
+
+        public Coordinates Coordinates { get; set; }
     }
 }

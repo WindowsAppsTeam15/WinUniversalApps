@@ -5,9 +5,12 @@
     xmlns:local="using:YamAndRateApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d">
 
+    <!--7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw-->
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <Maps:MapControl x:Name="MapControl1"  MapServiceToken="7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw"/>
     </Grid>
 </Page>
