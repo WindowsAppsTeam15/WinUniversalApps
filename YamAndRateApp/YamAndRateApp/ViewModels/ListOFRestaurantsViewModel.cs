@@ -8,7 +8,7 @@ using YamAndRateApp.Models;
 
 namespace YamAndRateApp.ViewModels
 {
-    public class ListOFRestaurantsViewModel
+    public class ListOFRestaurantsViewModel : BaseViewModel
     {
         public ListOFRestaurantsViewModel()
         {

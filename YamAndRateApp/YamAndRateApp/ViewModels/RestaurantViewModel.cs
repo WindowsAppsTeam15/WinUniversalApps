@@ -12,7 +12,7 @@ namespace YamAndRateApp.ViewModels
     {
         public RestaurantViewModel()
         {
-            this.Name = "Mrysnoto";
+            this.Name = "Mrysnoto UI";
             this.Description = "Very cool and delicate cuisine";
             this.Rating = 4.56;
 

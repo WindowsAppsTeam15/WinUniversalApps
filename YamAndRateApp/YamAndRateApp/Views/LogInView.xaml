@@ -43,7 +43,7 @@
                  VerticalAlignment="Center" 
                  Text="{Binding Pasword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBox Grid.Row="2" 
-                 PlaceholderText="Reapeat Password" 
+                 PlaceholderText="Confirm Password" 
                  HorizontalAlignment="Stretch" 
                  VerticalAlignment="Center" 
                  Visibility="{Binding IsInRegisterMode, Converter={StaticResource RepeatePaswordConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
