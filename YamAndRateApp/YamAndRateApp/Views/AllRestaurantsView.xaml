@@ -10,8 +10,9 @@
 
     <Page.Resources>
         <ViewModels:ListOFRestaurantsViewModel x:Key="RestaurantsListViewModel" />
+
         <ItemsPanelTemplate x:Key="GridViewItemsPanel">
-            <ItemsWrapGrid Orientation="Vertical" />
+            <VariableSizedWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="2"/>
         </ItemsPanelTemplate>
     </Page.Resources>
 
@@ -24,13 +25,14 @@
         IsSwipeEnabled="False"
         SelectionMode="Single"
         ItemsPanel="{StaticResource GridViewItemsPanel}"
-        ScrollViewer.HorizontalScrollMode="Auto"
-        ScrollViewer.VerticalScrollMode="Disabled"
-        ScrollViewer.HorizontalScrollBarVisibility="Auto"
-        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+        ScrollViewer.HorizontalScrollMode="Disabled"
+        ScrollViewer.VerticalScrollMode="Enabled"
+        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+        ScrollViewer.VerticalScrollBarVisibility="Visible">
+            
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Width="150" Height="150">
+                    <Grid MinHeight="150" MinWidth="150" MaxWidth="250" MaxHeight="250">
                         <Border>
                             <Border.Background>
                                 <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill"/>
