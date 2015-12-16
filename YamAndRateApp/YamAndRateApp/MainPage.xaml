@@ -17,47 +17,54 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" TextAlignment="Center" Text="Yam&amp;Rate Logo" FontSize="36"/>
+        <TextBlock Grid.Row="0" 
+                   TextAlignment="Center" 
+                   Text="Yam&amp;Rate Logo" 
+                   FontSize="36"/>
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="3*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"></ColumnDefinition>
-                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" PlaceholderText="Serch for a Restaurant" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
-                <Button Grid.Column="1" Content="Go" Click="GoToSearchResultsBtn"/>
-            </Grid>
-
-            <Grid Grid.Row="1" >
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Content ="Nearby Restaurants" Click="GoToNearbyRestaurantsBtn"/>
+            <TextBox Grid.Row="0" 
+                     PlaceholderText="Serch for a Restaurant" 
+                     HorizontalAlignment="Stretch"
+                     VerticalAlignment="Bottom">
                 
-                <!--I will take the command parameter in order to search and navigate to specific item-->
-                <!--Put the command parameter before the comand-->
-                <!--CommandParameter="{Binding}" - when we navigate to this specific restaurant-->
-                
-                <Button Grid.Row="1" Content ="Add New Restaurant" CommandParameter="" Click="GoToAddNewRestaurantBtn"/>
-                <Button Grid.Row="2" Content ="See All Restaurants" Click="GoToAllRestaurantsBtn"/>
-                <Button Grid.Row="3" Content ="Log in / Register" Click="GoToLogInBtn"/>
+            </TextBox>
+            <Button Grid.Row="1" 
+                    Content="Go with the search" 
+                    Click="GoToSearchResultsBtn"/>
+            <Button Grid.Row="2" 
+                    Content ="Nearby Restaurants" 
+                    Click="GoToNearbyRestaurantsBtn"/>
 
-            </Grid>
+            <!--I will take the command parameter in order to search and navigate to specific item-->
+            <!--Put the command parameter before the comand-->
+            <!--CommandParameter="{Binding}" - when we navigate to this specific restaurant-->
+
+            <Button Grid.Row="3" 
+                    Content ="Add New Restaurant" 
+                    CommandParameter="" 
+                    Click="GoToAddNewRestaurantBtn"/>
+            <Button Grid.Row="4" 
+                    Content ="See All Restaurants" 
+                    Click="GoToAllRestaurantsBtn"/>
+            <Button Grid.Row="5" 
+                    Content ="Log in / Register" 
+                    Click="GoToLogInBtn"/>
         </Grid>
 
 

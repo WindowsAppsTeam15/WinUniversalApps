@@ -24,7 +24,7 @@
         </TransitionCollection>
     </Page.Transitions>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    <Grid Background="Black"
           DataContext="{Binding Source={StaticResource UserViewModel}}">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

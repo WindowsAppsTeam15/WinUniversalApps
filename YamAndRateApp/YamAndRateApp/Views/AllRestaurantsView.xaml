@@ -16,7 +16,7 @@
         </ItemsPanelTemplate>
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    <Grid Background="Black"
           DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}">
 
         <GridView

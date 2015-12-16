@@ -6,11 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
+    xmlns:ViewModels="using:YamAndRateApp.ViewModels"
+    xmlns:Helpers="using:YamAndRateApp.Helpers"
     mc:Ignorable="d">
 
     <!--7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw-->
-    
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Maps:MapControl x:Name="MapControl1"  MapServiceToken="7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw"/>
+
+    <Page.Resources>
+        <ViewModels:ListOFRestaurantsViewModel x:Key="RestaurantsListViewModel" />
+        <Helpers:CategoryConverter x:Key="CategoryConverter" />
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}">
+        <Maps:MapControl x:Name="MapControl1"  
+                         MapServiceToken="7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw">
+            <!--<maps:MapControl x:Name="MapControl" 
+                             MapTapped="MapTapped" 
+                             MapDoubleTapped="MapTapped" 
+                             MapHolding="MapTapped">-->
+            <Maps:MapItemsControl ItemsSource="{Binding Restaurants}">
+                <Maps:MapItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Height="20"
+                                Width="20"
+                                Background="{Binding Category,  Converter={StaticResource CategoryConverter}}"
+                                Maps:MapControl.Location="{Binding Coordinates}"/>
+                    </DataTemplate>
+                </Maps:MapItemsControl.ItemTemplate>
+            </Maps:MapItemsControl>
+        </Maps:MapControl>
     </Grid>
 </Page>
