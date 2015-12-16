@@ -45,8 +45,6 @@ We will develop a Windows Universal (Windows 10) app.
 
 -   **Add New Restaurant view** – It will have textboxes for Name, Category, Short description of the restaurant. It will also have five textboxes for the special dishes in the menu. It will have slider for rating and button ‘Take Photo’ that will activate the device camera. The coordinates will be send automatically according to the location of the user. When finished Add, it redirects to the ‘Nearby Restaurants’ view;
 
--   ;
-
 -   **Restaurant Details view** – similar as the above, but instead of TextBoxes, it will have TextBlocks displaying the content. We can implement the Swipe left and right to navigate to nearby restaurants. We will try to merge here the **Edit Restaurant view** – it will have the edited field converted to TextBox instead of TextBlock ready to be filled in. Edit submit will be lost focus on the specific field;
 
 -   **See All Restaurants view** – listing all the restaurants or all the results from a search. When Tapped / Clicked on a restaurant it shows the ‘Restaurant Details’ view;
