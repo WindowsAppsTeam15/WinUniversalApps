@@ -143,7 +143,7 @@ namespace YamAndRateApp.ViewModels
             {
                 await ParseUser.LogInAsync(this.Email, this.Pasword);
                 // Login was successful.
-                // TODO: Redirect 
+                // TODO: Redirect to all restaurants view?
             }
             catch (Exception e)
             {

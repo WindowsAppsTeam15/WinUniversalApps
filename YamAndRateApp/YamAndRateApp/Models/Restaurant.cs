@@ -1,25 +1,61 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YamAndRateApp.Models
+﻿namespace YamAndRateApp.Models
 {
-    public class Restaurant
+    using System.Collections.Generic;
+
+    using Parse;
+
+    [ParseClassName("Restaurant")]
+    public class Restaurant : ParseObject
     {
-        public string Name { get; set; }
+        [ParseFieldName("name")]
+        public string Name
+        {
+            get { return GetProperty<string>(); }
+            set { SetProperty<string>(value); }
+        }
 
-        public string Description { get; set; }
+        [ParseFieldName("description")]
+        public string Description
+        {
+            get { return GetProperty<string>(); }
+            set { SetProperty<string>(value); }
+        }
 
-        public IList<string> Specialties { get; set; }
+        [ParseFieldName("specialties")]
+        public IEnumerable<string> Specialties
+        {
+            get { return GetProperty<IEnumerable<string>>(); }
+            set { SetProperty<IEnumerable<string>>(value); }
+        }
 
-        public IList<Vote> Votes { get; set; }
+        [ParseFieldName("votes")]
+        public IEnumerable<Vote> Votes
+        {
+            get { return GetProperty<IEnumerable<Vote>>(); }
+            set { SetProperty<IEnumerable<Vote>>(value); }
+        }
 
-        public string PhotoUrl { get; set; }
+        /*
+        public ParseFile Photo
+        {
+            get { return GetProperty<ParseFile>(); }
+            set { SetProperty<ParseFile>(value); }
+        }
+        */
 
-        public Coordinates Coords { get; set; }
+        /*
+        public ParseGeoPoint Location
+        {
+            get { return GetProperty<ParseGeoPoint>(); }
+            set { SetProperty<ParseGeoPoint>(value); }
+        }
+        */
 
-        public Category Category { get; set; }
+        [ParseFieldName("category")]
+        public Category Category
+        {
+            get { return GetProperty<Category>(); }
+            set { SetProperty<Category>(value); }
+        }
     }
 }

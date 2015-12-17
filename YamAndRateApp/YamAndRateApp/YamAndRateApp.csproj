@@ -106,7 +106,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Coordinates.cs" />
+    <Compile Include="Models\CategoryType.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Vote.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

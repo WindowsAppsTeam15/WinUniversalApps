@@ -25,13 +25,13 @@ namespace YamAndRateApp.ViewModels
             this.Specialties.Add("Krokodil na plocha");
 
             this.Votes = new ObservableCollection<Vote>();
-            this.Votes.Add(new Vote(3, "Pesho"));
-            this.Votes.Add(new Vote(2, "Evstati"));
-            this.Votes.Add(new Vote(4, "Az"));
+            //this.Votes.Add(new Vote(3, "Pesho"));
+            //this.Votes.Add(new Vote(2, "Evstati"));
+            //this.Votes.Add(new Vote(4, "Az"));
 
             this.PhotoUrl = "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg";
-            this.Coords = new Coordinates(42.650999, 23.380356);
-            this.Category = Category.Bulgarian;
+            // this.Coords = new Coordinates(42.650999, 23.380356);
+            this.Category = CategoryType.Bulgarian;
         }
 
         public string Name { get; set; }
@@ -46,8 +46,8 @@ namespace YamAndRateApp.ViewModels
 
         public string PhotoUrl { get; set; }
 
-        public Coordinates Coords { get; set; }
+        // public Coordinates Coords { get; set; }
 
-        public Category Category { get; set; }
+        public CategoryType Category { get; set; }
     }
 }

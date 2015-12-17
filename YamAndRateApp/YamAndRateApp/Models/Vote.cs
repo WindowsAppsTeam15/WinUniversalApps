@@ -1,15 +1,23 @@
 ﻿namespace YamAndRateApp.Models
 {
-    public class Vote
+    using Parse;
+
+    [ParseClassName("Vote")]
+    public class Vote : ParseObject
     {
-        public Vote(int value, string user)
+        [ParseFieldName("value")]
+        public int Value
         {
-            this.Value = value;
-            this.User = user;
+            get { return GetProperty<int>(); }
+            set { SetProperty<int>(value); }
         }
 
-        public int Value { get; set; }
-
-        public string User { get; set; }
+        /*
+        public string User
+        {
+            get { return GetProperty<CategoryType>(); }
+            set { SetProperty<CategoryType>(value); }
+        }
+        */
     }
 }

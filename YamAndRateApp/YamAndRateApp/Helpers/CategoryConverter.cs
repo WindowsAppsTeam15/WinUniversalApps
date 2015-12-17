@@ -14,7 +14,7 @@ namespace YamAndRateApp.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var category = (Category)value;
+            var category = (CategoryType)value;
 
             switch ((int)category)
             {

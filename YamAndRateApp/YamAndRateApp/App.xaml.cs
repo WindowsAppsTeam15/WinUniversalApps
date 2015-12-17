@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using Parse;
+using YamAndRateApp.Models;
 
 namespace YamAndRateApp
 {
@@ -36,10 +37,16 @@ namespace YamAndRateApp
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
+            this.InitializeParse();          
+        }
+
+        private void InitializeParse()
+        {
+            ParseObject.RegisterSubclass<Vote>();
+            ParseObject.RegisterSubclass<Category>();
+            ParseObject.RegisterSubclass<Restaurant>();
+
             ParseClient.Initialize("PSONNOvcFcWay4nWraPDC6mqmQnbbYWXdvqVsu2u", "JEX9HSMJKrPmJxFsXKLygK6ZuDWv2xa9NNFrbCzD");
-            var testObject = new ParseObject("TestObject");
-            testObject["foo"] = "bar";
-            testObject.SaveAsync();
         }
 
         /// <summary>
