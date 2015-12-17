@@ -63,7 +63,7 @@ namespace YamAndRateApp.ViewModels
                 if (value != this.password)
                 {
                     this.password = value;
-                    NotifyPropertyChanged("Pasword");
+                    this.NotifyPropertyChanged("Pasword");
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace YamAndRateApp.ViewModels
                 if (value != this.repeatedPassword)
                 {
                     this.repeatedPassword = value;
-                    NotifyPropertyChanged("RepeatedPassword");
+                    this.NotifyPropertyChanged("RepeatedPassword");
                 }
             }
         }

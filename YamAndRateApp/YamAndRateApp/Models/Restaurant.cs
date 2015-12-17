@@ -35,21 +35,26 @@
             set { SetProperty<IEnumerable<Vote>>(value); }
         }
 
-        /*
+        [ParseFieldName("rating")]
+        public double Rating
+        {
+            get { return GetProperty<double>(); }
+            set { SetProperty<double>(value); }
+        }
+
+        [ParseFieldName("photo")]
         public ParseFile Photo
         {
             get { return GetProperty<ParseFile>(); }
             set { SetProperty<ParseFile>(value); }
         }
-        */
 
-        /*
+        [ParseFieldName("location")]
         public ParseGeoPoint Location
         {
             get { return GetProperty<ParseGeoPoint>(); }
             set { SetProperty<ParseGeoPoint>(value); }
         }
-        */
 
         [ParseFieldName("category")]
         public Category Category

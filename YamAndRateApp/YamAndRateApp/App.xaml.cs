@@ -42,6 +42,7 @@ namespace YamAndRateApp
 
         private void InitializeParse()
         {
+            ParseObject.RegisterSubclass<Specialty>();
             ParseObject.RegisterSubclass<Vote>();
             ParseObject.RegisterSubclass<Category>();
             ParseObject.RegisterSubclass<Restaurant>();

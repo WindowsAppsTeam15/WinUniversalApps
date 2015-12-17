@@ -1,15 +1,20 @@
-﻿using System;
+﻿using Parse;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using YamAndRateApp.Helpers;
 using YamAndRateApp.Models;
 
 namespace YamAndRateApp.ViewModels
 {
     public class RestaurantViewModel : BaseViewModel
     {
+        private ICommand saveRestaurant;
+
         public RestaurantViewModel()
         {
             this.Name = "Mrysnoto UI";
@@ -49,5 +54,35 @@ namespace YamAndRateApp.ViewModels
         // public Coordinates Coords { get; set; }
 
         public CategoryType Category { get; set; }
+
+        public ICommand SaveRestaurant
+        {
+            get
+            {
+                if (this.saveRestaurant == null)
+                {
+                    this.saveRestaurant = new RelayCommand(this.OnSaveRestaurantExecute);
+                }
+
+                return this.saveRestaurant;
+            }
+        }
+
+        // TODO: Test after AddRestaurantView is implemented
+        private async void OnSaveRestaurantExecute(object obj)
+        {
+            var restaurant = new Restaurant
+            {
+                Name = this.Name,
+                Description = this.Description,
+                Category = new Category { CategoryType = this.Category },
+                Specialties = this.Specialties,
+                Votes = this.Votes,
+                Rating = this.Rating,
+                Location = new ParseGeoPoint(40.0, -30.0)
+            };
+
+            await restaurant.SaveAsync();
+        }
     }
 }
