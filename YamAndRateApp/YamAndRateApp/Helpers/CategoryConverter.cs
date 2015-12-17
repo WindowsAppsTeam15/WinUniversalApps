@@ -23,12 +23,6 @@ namespace YamAndRateApp.Helpers
                 case 3: return new SolidColorBrush(Colors.Plum);
                 case 4: return new SolidColorBrush(Colors.Pink);
                 case 5: return new SolidColorBrush(Colors.HotPink);
-                case 6: return new SolidColorBrush(Colors.Purple);
-                case 7: return new SolidColorBrush(Colors.Violet);
-                case 8: return new SolidColorBrush(Colors.Turquoise);
-                case 9: return new SolidColorBrush(Colors.SeaGreen);
-                case 10: return new SolidColorBrush(Colors.PowderBlue);
-                case 11: return new SolidColorBrush(Colors.PapayaWhip);
                 default: return new SolidColorBrush(Colors.Gray);
             }
         }

@@ -12,7 +12,7 @@
         <ViewModels:ListOFRestaurantsViewModel x:Key="RestaurantsListViewModel" />
 
         <ItemsPanelTemplate x:Key="GridViewItemsPanel">
-            <VariableSizedWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="2"/>
+            <WrapGrid Orientation="Horizontal" HorizontalAlignment="Center"/>
         </ItemsPanelTemplate>
     </Page.Resources>
 
@@ -20,6 +20,8 @@
           DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}">
 
         <GridView
+            Background="Yellow"
+            HorizontalAlignment="Stretch"
         
         ItemsSource="{Binding Restaurants}"
         IsSwipeEnabled="False"
@@ -28,12 +30,18 @@
         ScrollViewer.HorizontalScrollMode="Disabled"
         ScrollViewer.VerticalScrollMode="Enabled"
         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-        ScrollViewer.VerticalScrollBarVisibility="Visible">
-            
+        ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <GridView.ItemContainerStyle>
+                <Style TargetType="GridViewItem">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                    <Setter Property="Background" Value="Purple"/>
+                </Style>
+            </GridView.ItemContainerStyle>
+
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid MinHeight="150" MinWidth="150" MaxWidth="250" MaxHeight="250">
-                        <Border>
+                    <Grid MinHeight="150" MinWidth="150"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                             <Border.Background>
                                 <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill"/>
                             </Border.Background>
