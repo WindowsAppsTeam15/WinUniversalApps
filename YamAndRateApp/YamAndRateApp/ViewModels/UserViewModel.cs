@@ -1,42 +1,49 @@
-﻿using Parse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YamAndRateApp.Helpers;
-
-namespace YamAndRateApp.ViewModels
+﻿namespace YamAndRateApp.ViewModels
 {
+    using System;
+    using System.Windows.Input;
+
+    using Parse;
+
+    using YamAndRateApp.Helpers;
+
     public class UserViewModel : BaseViewModel
     {
         private string email;
         private string password;
-        private string repeatedPassword;
+        private string confirmedPassword;
         private bool isInRegisterMode;
+        private ICommand registerUser;
+        private ICommand loginUser;
 
         public UserViewModel()
         {
-            this.LogInUser = new RelayCommand(this.OnLogInUserExecute, this.OnLogInUserCanExecute);
-            this.RegisterUser = new RelayCommand(this.OnRegisterUserExecute, this.OnRegisterUserCanExecute);
             this.isInRegisterMode = false;
         }
 
-        public RelayCommand RegisterUser { get; private set; }
-
-        public RelayCommand LogInUser { get; private set; }
-
-        public bool IsInRegisterMode
+        public ICommand RegisterUser
         {
-            get { return this.isInRegisterMode; }
-
-            set
+            get
             {
-                if (value != this.isInRegisterMode)
+                if (this.registerUser == null)
                 {
-                    this.isInRegisterMode = value;
-                    base.NotifyPropertyChanged("IsInRegisterMode");
+                    this.registerUser = new RelayCommand(this.OnRegisterUserExecute);
                 }
+
+                return this.registerUser;
+            }
+        }
+
+        public ICommand LogInUser
+        {
+            get
+            {
+                if (this.loginUser == null)
+                {
+                    this.loginUser = new RelayCommand(this.OnLogInUserExecute);
+                }
+
+                return this.loginUser;
             }
         }
 
@@ -54,7 +61,7 @@ namespace YamAndRateApp.ViewModels
             }
         }
 
-        public string Pasword
+        public string Password
         {
             get { return this.password; }
 
@@ -63,31 +70,40 @@ namespace YamAndRateApp.ViewModels
                 if (value != this.password)
                 {
                     this.password = value;
-                    this.NotifyPropertyChanged("Pasword");
+                    this.NotifyPropertyChanged("Password");
                 }
             }
         }
 
-        public string RepeatedPassword
+        public string ConfirmedPassword
         {
-            get { return this.repeatedPassword; }
+            get { return this.confirmedPassword; }
 
             set
             {
-                if (value != this.repeatedPassword)
+                if (value != this.confirmedPassword)
                 {
-                    this.repeatedPassword = value;
-                    this.NotifyPropertyChanged("RepeatedPassword");
+                    this.confirmedPassword = value;
+                    this.NotifyPropertyChanged("ConfirmedPassword");
                 }
             }
         }
 
-        private bool OnRegisterUserCanExecute(object obj)
+        public bool IsInRegisterMode
         {
-            return true;
+            get { return this.isInRegisterMode; }
+
+            set
+            {
+                if (value != this.isInRegisterMode)
+                {
+                    this.isInRegisterMode = value;
+                    base.NotifyPropertyChanged("IsInRegisterMode");
+                }
+            }
         }
 
-        private async void OnRegisterUserExecute(object obj)
+        private async void OnRegisterUserExecute()
         {
             if (!isInRegisterMode)
             {
@@ -112,19 +128,14 @@ namespace YamAndRateApp.ViewModels
             var user = new ParseUser()
             {
                 Username = this.Email,
-                Password = this.Pasword,
+                Password = this.Password,
                 Email = this.Email
             };
 
             await user.SignUpAsync();
         }
 
-        private bool OnLogInUserCanExecute(object obj)
-        {
-            return true;
-        }
-
-        private async void OnLogInUserExecute(object obj)
+        private async void OnLogInUserExecute()
         {
             // We should implement vaidations for email and pass length
             /*
@@ -141,7 +152,7 @@ namespace YamAndRateApp.ViewModels
 
             try
             {
-                await ParseUser.LogInAsync(this.Email, this.Pasword);
+                await ParseUser.LogInAsync(this.Email, this.Password);
                 // Login was successful.
                 // TODO: Redirect to all restaurants view?
             }

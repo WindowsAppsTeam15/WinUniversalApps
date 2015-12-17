@@ -41,13 +41,13 @@
                  PlaceholderText="Your Password"
                  HorizontalAlignment="Stretch" 
                  VerticalAlignment="Center" 
-                 Password="{Binding Pasword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-        <TextBox Grid.Row="2" 
+                 Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+        <PasswordBox Grid.Row="2" 
                  PlaceholderText="Confirm Password" 
                  HorizontalAlignment="Stretch" 
                  VerticalAlignment="Center" 
                  Visibility="{Binding IsInRegisterMode, Converter={StaticResource RepeatePaswordConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                 Text="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                 Password="{Binding ConfirmedPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
