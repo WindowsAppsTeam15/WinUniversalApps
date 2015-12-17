@@ -91,15 +91,27 @@
                             Padding="0"
                             VerticalAlignment="Center"/>
                 </Grid>
-                <Rectangle HorizontalAlignment="Stretch" Height="0.5" Fill="Gray" Margin="10 0"></Rectangle>
-                <TextBlock Text="Short description:" Style="{StaticResource LableText}" Padding="10 10 10 5"/>
-                <TextBlock Text="{Binding Description}" Padding="20 2 20 10" VerticalAlignment="Center"/>
-                <Rectangle HorizontalAlignment="Stretch" Height="0.5" Fill="Gray" Margin="10 0"></Rectangle>
-                <TextBlock Text="Main dishes:" Style="{StaticResource LableText}"/>
+                <Rectangle HorizontalAlignment="Stretch" 
+                           Height="0.5" 
+                           Fill="Gray" 
+                           Margin="10 0"></Rectangle>
+                <TextBlock Text="Short description:" 
+                           Style="{StaticResource LableText}" 
+                           Padding="10 10 10 5"/>
+                <TextBlock Text="{Binding Description}" 
+                           Padding="20 2 20 10" 
+                           VerticalAlignment="Center"/>
+                <Rectangle HorizontalAlignment="Stretch" 
+                           Height="0.5" 
+                           Fill="Gray" 
+                           Margin="10 0"></Rectangle>
+                <TextBlock Text="Main dishes:" 
+                           Style="{StaticResource LableText}"/>
                 <ListView ItemsSource="{Binding Specialties}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding}" Style="{StaticResource DefaultTextBlockStyle}"/>
+                            <TextBlock Text="{Binding}" 
+                                       Style="{StaticResource DefaultTextBlockStyle}"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
