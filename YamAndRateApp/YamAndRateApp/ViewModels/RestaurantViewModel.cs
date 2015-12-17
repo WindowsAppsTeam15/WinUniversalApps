@@ -14,12 +14,20 @@ namespace YamAndRateApp.ViewModels
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
+        private double yourVote;
+        private double rating;
 
         public RestaurantViewModel()
         {
             this.Name = "Mrysnoto UI";
             this.Description = "Very cool and delicate cuisine";
-            this.Rating = 4.56;
+            this.TestVotes = new ObservableCollection<double>()
+            {
+                2.0, 3.0, 4.0
+            };
+
+            this.Rating = this.TestVotes.Sum() / this.TestVotes.Count;
+            this.YourVote = this.TestVotes[0];
 
             this.Specialties = new ObservableCollection<string>();
             this.Specialties.Add("Shkembe chorba");
@@ -43,11 +51,48 @@ namespace YamAndRateApp.ViewModels
 
         public string Description { get; set; }
 
-        public double Rating { get; set; }
+        public double Rating
+        {
+            get
+            {
+                return this.rating;
+            }
+
+            set
+            {
+                if (!(this.rating == value))
+                {
+                    this.rating = value;
+                    base.NotifyPropertyChanged("Rating");
+                }
+            }
+        }
+
+        public double YourVote
+        {
+            get
+            {
+                return this.yourVote;
+            }
+
+            set
+            {
+                if (!(this.yourVote == value))
+                {
+                    this.yourVote = value;
+                    this.TestVotes[0] = value;
+                    this.Rating = this.TestVotes.Sum() / this.TestVotes.Count;
+                    base.NotifyPropertyChanged("YourVote");
+                }
+            }
+        }
+
 
         public ObservableCollection<string> Specialties { get; set; }
 
         public ObservableCollection<Vote> Votes { get; set; }
+
+        public ObservableCollection<double> TestVotes { get; set; }
 
         public string PhotoUrl { get; set; }
 
