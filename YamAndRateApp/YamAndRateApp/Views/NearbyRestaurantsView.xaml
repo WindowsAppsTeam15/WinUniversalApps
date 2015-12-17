@@ -15,26 +15,152 @@
     <Page.Resources>
         <ViewModels:ListOFRestaurantsViewModel x:Key="RestaurantsListViewModel" />
         <Helpers:CategoryConverter x:Key="CategoryConverter" />
+        <ViewModels:RestaurantViewModel x:Key="RestaurantViewModel" />
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-          DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}">
-        <Maps:MapControl x:Name="MapControl1"  
+          DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}"
+          Name="RootGrid"
+          >
+        <Maps:MapControl
+                         x:Name="MapControl1"  
                          MapServiceToken="7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw">
+            <Maps:MapControl.Transitions>
+                <TransitionCollection>
+                    <ContentThemeTransition/>
+                </TransitionCollection>
+            </Maps:MapControl.Transitions>   
             <!--<maps:MapControl x:Name="MapControl" 
                              MapTapped="MapTapped" 
                              MapDoubleTapped="MapTapped" 
                              MapHolding="MapTapped">-->
             <Maps:MapItemsControl ItemsSource="{Binding Restaurants}">
+                
                 <Maps:MapItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Height="20"
-                                Width="20"
+                        <Button Height="30"
+                                Width="30"
+                                BorderThickness="1" 
+                                BorderBrush="Gray"
+                                Padding="2"
+                                FontSize="13"
+                                Maps:MapControl.Location="{Binding Coordinates}"
                                 Background="{Binding Category,  Converter={StaticResource CategoryConverter}}"
-                                Maps:MapControl.Location="{Binding Coordinates}"/>
+                                Content="{Binding Name}"
+                                Click="ShowRestaurantDetails"
+                                />
                     </DataTemplate>
                 </Maps:MapItemsControl.ItemTemplate>
             </Maps:MapItemsControl>
         </Maps:MapControl>
+        <Grid x:Name="DetailsGrid" Visibility="Collapsed">
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <ContentThemeTransition/>
+                </TransitionCollection>
+            </Grid.Transitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Tapped="HideRestaurantDetails" Background="Black" Opacity="0.3">
+            </Grid>
+            <Grid Grid.Row="1"
+                Background="Black"
+                DataContext="{Binding Source={StaticResource RestaurantViewModel}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <Rectangle Grid.Row="0" 
+                   VerticalAlignment="Stretch" 
+                   HorizontalAlignment="Stretch" 
+                   Fill="{Binding Category,  Converter={StaticResource CategoryConverter}}"/>
+                <TextBlock Grid.Row="0" 
+                   Text="{Binding Category}" 
+                   VerticalAlignment="Center"/>
+                <Border Grid.Row="1">
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding PhotoUrl}" 
+                            Stretch="UniformToFill"/>
+                    </Border.Background>
+                </Border>
+                <TextBlock Grid.Row="1" 
+                   Text="{Binding Name}" 
+                   FontFamily="HeaderTextBlockStyle" 
+                   FontSize="36" 
+                   Foreground="White" 
+                   VerticalAlignment="Bottom"/>
+                <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden">
+                    <StackPanel ScrollViewer.VerticalScrollMode="Enabled"
+                    Orientation="Vertical">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                               Text="Aggregate Rating: " 
+                                Style="{StaticResource LableText}"
+                               VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                               Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged}"
+                               Padding="2"
+                               VerticalAlignment="Center"/>
+                        </Grid>
+                        <Rectangle HorizontalAlignment="Stretch" Height="0.5" Fill="Gray" Margin="10 0"></Rectangle>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                               Text="Your Rate: "
+                               Style="{StaticResource LableText}" 
+                               VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1"
+                               Text="{Binding YourVote, UpdateSourceTrigger=PropertyChanged}"
+                               Padding="2"
+                               VerticalAlignment="Center"/>
+                            <Slider Grid.Column="2"
+                            Value="{Binding YourVote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            Maximum="10"
+                            IsThumbToolTipEnabled="False"
+                            Margin="5 0"
+                            Padding="0"
+                            VerticalAlignment="Center"/>
+                        </Grid>
+                        <Rectangle HorizontalAlignment="Stretch" 
+                           Height="0.5" 
+                           Fill="Gray" 
+                           Margin="10 0"></Rectangle>
+                        <TextBlock Text="Short description:" 
+                           Style="{StaticResource LableText}" 
+                           Padding="10 10 10 5"/>
+                        <TextBlock Text="{Binding Description}" 
+                           Padding="20 2 20 10" 
+                           VerticalAlignment="Center"/>
+                        <Rectangle HorizontalAlignment="Stretch" 
+                           Height="0.5" 
+                           Fill="Gray" 
+                           Margin="10 0"></Rectangle>
+                        <TextBlock Text="Main dishes:" 
+                           Style="{StaticResource LableText}"/>
+                        <ListView ItemsSource="{Binding Specialties}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" 
+                                       Style="{StaticResource DefaultTextBlockStyle}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+
+
+        </Grid>
     </Grid>
 </Page>
