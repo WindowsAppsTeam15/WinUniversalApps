@@ -1,19 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Devices.Geolocation;
-using YamAndRateApp.Models;
-
-namespace YamAndRateApp.ViewModels
+﻿namespace YamAndRateApp.ViewModels
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using Parse;
+
+    using YamAndRateApp.Models;
+
     public class ListOFRestaurantsViewModel : BaseViewModel
     {
+        private ObservableCollection<RestaurantLimitedViewModel> restaurants;
+
         public ListOFRestaurantsViewModel()
         {
-            this.Restaurants = new ObservableCollection<RestaurantLimitedViewModel>();
+            this.LoadRestaurants();
+
+            /*
             this.Restaurants.Add(new RestaurantLimitedViewModel("Mrysnoto", 4.5,
                 "https://farm4.staticflickr.com/3795/13818125963_5a67445be7_b.jpg",
                 CategoryType.Bulgarian,
@@ -42,8 +46,46 @@ namespace YamAndRateApp.ViewModels
                 "http://img2.holidayiq.com/photos/ra/Ranthambore-Photos-Tigers-shareiq-1371017873-33553-JPG-destreviewimages-510x340-1371017873.JPG",
                 CategoryType.OtherAsian,
                 new Geopoint(new BasicGeoposition() { Latitude = 42.669225, Longitude = 23.358005 })));
+                */
         }
 
-        public ObservableCollection<RestaurantLimitedViewModel> Restaurants { get; set; }
+        public IEnumerable<RestaurantLimitedViewModel> Restaurants
+        {
+            get
+            {
+                if (this.restaurants == null)
+                {
+                    this.restaurants = new ObservableCollection<RestaurantLimitedViewModel>();
+                }
+
+                return this.restaurants;
+            }
+            set
+            {
+                if (this.restaurants == null)
+                {
+                    this.restaurants = new ObservableCollection<RestaurantLimitedViewModel>();
+                }
+
+                this.restaurants.Clear();
+                foreach (var item in value)
+                {
+                    this.restaurants.Add(item);
+                }
+            }
+        }
+
+        private async Task LoadRestaurants()
+        {
+            var restaurants = await new ParseQuery<Restaurant>().FindAsync();
+
+            this.Restaurants = restaurants.AsQueryable().Select(model => new RestaurantLimitedViewModel
+            {
+                Name = model.Name,
+                Rating = model.Rating,
+                PhotoUrl = "https://farm4.staticflickr.com/3795/13818125963_5a67445be7_b.jpg",
+                Category = model.Category.CategoryType.ToString()
+            });
+        }
     }
 }
