@@ -1,16 +1,14 @@
-﻿using Parse;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using YamAndRateApp.Helpers;
-using YamAndRateApp.Models;
-
-namespace YamAndRateApp.ViewModels
+﻿namespace YamAndRateApp.ViewModels
 {
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Windows.Input;
+
+    using Parse;
+
+    using YamAndRateApp.Helpers;
+    using YamAndRateApp.Models;
+
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
@@ -124,7 +122,7 @@ namespace YamAndRateApp.ViewModels
                 Specialties = this.Specialties,
                 Votes = this.Votes,
                 Rating = this.Rating,
-                Location = new ParseGeoPoint(40.0, -30.0)
+                Location = new ParseGeoPoint(42.650999, 23.380356)
             };
 
             await restaurant.SaveAsync();
