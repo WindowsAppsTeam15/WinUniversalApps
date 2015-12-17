@@ -37,7 +37,7 @@ We will develop a Windows Universal (Windows 10) app.
 
 #### As for that, we will have to implement at least the sequent XAML views:
 
--   **Initial view**, providing links to ‘Log In / Register’ view, ‘Nearby Restaurants’ view, ‘Add New Restaurant’ view, ‘See All Restaurants’ view. It should also have a search field which results should be rendered in ‘See All Restaurants’ view;
+-   **Initial view**, providing links to ‘Log In / Register’ view, ‘Nearby Restaurants’ view, ‘Add New Restaurant’ view, ‘See All Restaurants’ view. It should also have a search field which results should be rendered in ‘See All Restaurants’ view. We should perform check on initial load whether the client is logged;
 
 -   **Log In / Register view** when successfully registered / logged it redirects to the Initial view;
 
