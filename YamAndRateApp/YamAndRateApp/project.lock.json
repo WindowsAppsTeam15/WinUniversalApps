@@ -232,6 +232,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Parse/1.6.2": {
+        "compile": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        }
+      },
       "SQLite.Net-PCL/3.1.1": {
         "dependencies": {
           "SQLite.Net.Core-PCL": "[3.1.1, )"
@@ -1869,6 +1879,16 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Parse/1.6.2": {
+        "compile": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -3541,6 +3561,16 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Parse/1.6.2": {
+        "compile": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -5220,6 +5250,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Parse/1.6.2": {
+        "compile": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        }
+      },
       "SQLite.Net-PCL/3.1.1": {
         "dependencies": {
           "SQLite.Net.Core-PCL": "[3.1.1, )"
@@ -6890,6 +6930,16 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Parse/1.6.2": {
+        "compile": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -8569,6 +8619,16 @@
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
         }
       },
+      "Parse/1.6.2": {
+        "compile": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        }
+      },
       "SQLite.Net-PCL/3.1.1": {
         "dependencies": {
           "SQLite.Net.Core-PCL": "[3.1.1, )"
@@ -10239,6 +10299,16 @@
         },
         "runtime": {
           "lib/dotnet/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Parse/1.6.2": {
+        "compile": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
+        },
+        "runtime": {
+          "lib/netcore45/Parse.dll": {},
+          "lib/netcore45/Parse.WinRT.dll": {}
         }
       },
       "SQLite.Net-PCL/3.1.1": {
@@ -12343,6 +12413,38 @@
         "ref/net46/Microsoft.Win32.Primitives.dll",
         "ref/xamarinios10/_._",
         "ref/xamarinmac20/_._"
+      ]
+    },
+    "Parse/1.6.2": {
+      "sha512": "ptz+qcrq6qpnITa1902QUr0OvWSLyODyurUlWtENrPGidW+hhGPziQA8h5HLlCZPxHMkN7/xe0/c+hTUv+HguA==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/MonoAndroid/Parse.Android.dll",
+        "lib/MonoAndroid/Parse.Android.xml",
+        "lib/MonoTouch10/Parse.iOS.dll",
+        "lib/MonoTouch10/Parse.iOS.xml",
+        "lib/net45/Parse.dll",
+        "lib/net45/Parse.NetFx45.dll",
+        "lib/net45/Parse.NetFx45.xml",
+        "lib/net45/Parse.xml",
+        "lib/netcore45/Parse.dll",
+        "lib/netcore45/Parse.WinRT.dll",
+        "lib/netcore45/Parse.WinRT.xml",
+        "lib/netcore45/Parse.xml",
+        "lib/wp8/Parse.dll",
+        "lib/wp8/Parse.Phone.dll",
+        "lib/wp8/Parse.Phone.xml",
+        "lib/wp8/Parse.xml",
+        "lib/wpa81/Parse.dll",
+        "lib/wpa81/Parse.WinRT.dll",
+        "lib/wpa81/Parse.WinRT.xml",
+        "lib/wpa81/Parse.xml",
+        "lib/Xamarin.iOS10/Parse.iOS.dll",
+        "lib/Xamarin.iOS10/Parse.iOS.xml",
+        "package/services/metadata/core-properties/474be0e8c50f448eb2093aca43c8dd6f.psmdcp",
+        "Parse.nuspec"
       ]
     },
     "SQLite.Net-PCL/3.1.1": {
@@ -15089,6 +15191,7 @@
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
+      "Parse >= 1.6.2",
       "SQLite.Net.Async-PCL >= 3.1.1",
       "SQLite.Net.Core-PCL >= 3.1.1",
       "SQLite.Net-PCL >= 3.1.1"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parse;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace YamAndRateApp.ViewModels
         }
 
         public RelayCommand RegisterUser { get; private set; }
+
         public RelayCommand LogInUser { get; private set; }
 
         public bool IsInRegisterMode
@@ -85,7 +87,7 @@ namespace YamAndRateApp.ViewModels
             return true;
         }
 
-        private void OnRegisterUserExecute(object obj)
+        private async void OnRegisterUserExecute(object obj)
         {
             if (!isInRegisterMode)
             {
@@ -93,6 +95,7 @@ namespace YamAndRateApp.ViewModels
                 return;
             }
 
+            /*
             // We should implement vaidations for email and pass length
             if (string.IsNullOrEmpty(this.Pasword)
                 || string.IsNullOrEmpty(this.RepeatedPassword)
@@ -104,6 +107,16 @@ namespace YamAndRateApp.ViewModels
 
             // Register user
             return;
+            */
+
+            var user = new ParseUser()
+            {
+                Username = this.Email,
+                Password = this.Pasword,
+                Email = this.Email
+            };
+
+            await user.SignUpAsync();
         }
 
         private bool OnLogInUserCanExecute(object obj)
@@ -111,9 +124,10 @@ namespace YamAndRateApp.ViewModels
             return true;
         }
 
-        private void OnLogInUserExecute(object obj)
+        private async void OnLogInUserExecute(object obj)
         {
             // We should implement vaidations for email and pass length
+            /*
             if (string.IsNullOrEmpty(this.Pasword)
                || string.IsNullOrEmpty(this.Email))
             {
@@ -123,6 +137,18 @@ namespace YamAndRateApp.ViewModels
 
             // Login user
             return;
+            */
+
+            try
+            {
+                await ParseUser.LogInAsync(this.Email, this.Pasword);
+                // Login was successful.
+                // TODO: Redirect 
+            }
+            catch (Exception e)
+            {
+                // The login failed. Check the error to see why.
+            }
         }
     }
 }

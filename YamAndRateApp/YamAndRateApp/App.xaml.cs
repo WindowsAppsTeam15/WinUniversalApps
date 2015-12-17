@@ -15,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Parse;
+
 namespace YamAndRateApp
 {
     /// <summary>
@@ -29,10 +31,15 @@ namespace YamAndRateApp
         public App()
         {
             Microsoft.ApplicationInsights.WindowsAppInitializer.InitializeAsync(
-                Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
-                Microsoft.ApplicationInsights.WindowsCollectors.Session);
+                 Microsoft.ApplicationInsights.WindowsCollectors.Metadata |
+                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            ParseClient.Initialize("PSONNOvcFcWay4nWraPDC6mqmQnbbYWXdvqVsu2u", "JEX9HSMJKrPmJxFsXKLygK6ZuDWv2xa9NNFrbCzD");
+            var testObject = new ParseObject("TestObject");
+            testObject["foo"] = "bar";
+            testObject.SaveAsync();
         }
 
         /// <summary>

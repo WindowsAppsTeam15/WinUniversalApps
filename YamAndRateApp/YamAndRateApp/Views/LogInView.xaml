@@ -27,21 +27,21 @@
     <Grid Background="Black"
           DataContext="{Binding Source={StaticResource UserViewModel}}">
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBox Grid.Row="0" 
                  PlaceholderText="Your Email" 
                  HorizontalAlignment="Stretch" 
                  VerticalAlignment="Center"
                  Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-        <TextBox Grid.Row="1"
+        <PasswordBox Grid.Row="1"
                  PlaceholderText="Your Password"
                  HorizontalAlignment="Stretch" 
                  VerticalAlignment="Center" 
-                 Text="{Binding Pasword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                 Password="{Binding Pasword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <TextBox Grid.Row="2" 
                  PlaceholderText="Confirm Password" 
                  HorizontalAlignment="Stretch" 
@@ -50,8 +50,8 @@
                  Text="{Binding RepeatedPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Register" Command="{Binding RegisterUser}"></Button>
             <Button Grid.Column="1" Content="Log In"  Command="{Binding LogInUser}"></Button>
