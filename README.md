@@ -59,15 +59,15 @@ We will develop a Windows Universal (Windows 10) app.
 
 -   I still don’t know what ‘Custom Views’ are;
 
--   We will embed animations – it can be something simple. We can think of it later, when we already have some functionality and views;
+-   We will embed animations – it can be something simple. We can think of it later after implementing the functionality;
 
--   We will use the Camera and GPS of the device. We can also use the Accelerometer to put the app in a background mode. We can also think of one more API to use;
+-   We will use the Camera and GPS of the device. We can also use the Accelerometer to put the app in a background mode. We will also use the device's Networkconnection;
 
--   We can use SQLite to store information locally and use it when the device is off-line. We should think more about that. We can load the whole DB in the user’s device and check for changes when there is connection to the internet. I am still not aware how we can implement this…
+-   We can use SQLite to store information locally and use it when the device is off-line. We should think more about that. We can load the whole DB (without the images) on the user’s device and check for changes when there is connection to the internet. We are still not sure how to implement this.
 
--   We will consume remote data from Backend services or from Parse.com. We still need to use Dropbox to store images there;
+-   We will consume remote data from from Parse.com. We will store images there;
 
--   We can have sending and receiving data as a Background task as we talked. It also looks a bit complicated for now;
+-   We can send and recive data as a Background task as we talked. It still looks a bit complicated for now;
 
 -   We will have touch friendly UI;
 
@@ -75,7 +75,7 @@ We will develop a Windows Universal (Windows 10) app.
 
 -   As described above, we already use 4 gestures
 
-    -   double touch – on a map marker and on a restaurant in the list view;
+    -   double touch – on a map marker;
 
     -   long touch – to redirect to the initial view;
 
