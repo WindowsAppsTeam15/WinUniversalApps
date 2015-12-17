@@ -114,7 +114,7 @@ namespace YamAndRateApp.ViewModels
         }
 
         // TODO: Test after AddRestaurantView is implemented
-        private async void OnSaveRestaurantExecute(object obj)
+        private async void OnSaveRestaurantExecute()
         {
             var restaurant = new Restaurant
             {

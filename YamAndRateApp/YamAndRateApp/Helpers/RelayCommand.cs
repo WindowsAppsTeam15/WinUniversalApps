@@ -1,33 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-
-namespace YamAndRateApp.Helpers
+﻿namespace YamAndRateApp.Helpers
 {
-    public delegate void ExecuteDelegate(object obj);
-
-    public delegate bool CanExecuteDelegate(object obj);
+    using System;
+    using System.Windows.Input;
 
     public class RelayCommand : ICommand
     {
-        private ExecuteDelegate execute;
+        private Action execute;
+        private Func<bool> canExecute;
 
-        private CanExecuteDelegate canExecute;
-
-        public RelayCommand(ExecuteDelegate execute)
-            : this(execute, null)
-        {
-        }
-
-        public RelayCommand(ExecuteDelegate execute,
-            CanExecuteDelegate canExecute)
+        public RelayCommand(Action execute, Func<bool> canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;
         }
+
+        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
@@ -35,14 +22,13 @@ namespace YamAndRateApp.Helpers
             {
                 return true;
             }
-            return this.canExecute(parameter);
+
+            return this.canExecute();
         }
 
         public void Execute(object parameter)
         {
-            this.execute(parameter);
-        }
-
-        public event EventHandler CanExecuteChanged;
+            this.execute();
+        }        
     }
 }
