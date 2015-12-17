@@ -44,7 +44,7 @@ namespace YamAndRateApp.Views
                     Latitude = 42.672475,
                     Longitude = 23.361026
                 });
-            MapControl1.ZoomLevel = 15;
+            this.MapControl1.ZoomLevel = 15;
 
             GetUserLocation();
         }
@@ -113,6 +113,29 @@ namespace YamAndRateApp.Views
             this.MapControl1.MapElements.Add(userPositionIcon);
             this.MapControl1.Center = mapCenter;
             this.MapControl1.ZoomLevel = 15;
+        }
+
+        private void ShowRestaurantDetails(object sender, RoutedEventArgs e)
+        {
+            this.DetailsGrid.Visibility = Visibility.Visible;
+
+            var newCenter = new Geopoint(new BasicGeoposition()
+            {
+                Latitude = 42.667475,
+                Longitude = 23.361026
+            });
+
+            this.MapControl1.Center = newCenter;
+        }
+
+        private void HideRestaurantDetails(object sender, TappedRoutedEventArgs e)
+        {
+            if (e.OriginalSource is TextBlock)
+            {
+                return;
+            }
+
+            this.DetailsGrid.Visibility = Visibility.Collapsed;
         }
     }
 }
