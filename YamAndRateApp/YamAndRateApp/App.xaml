@@ -26,7 +26,7 @@
             <Setter Property="Padding" Value="10 5"/>
             <Setter Property="Foreground" Value="White"/>
         </Style>
-        
+
         <Style TargetType="TextBox">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -35,7 +35,7 @@
             <Setter Property="Margin" Value="2"/>
             <Setter Property="Padding" Value="5"/>
         </Style>
-        
+
         <Style TargetType="TextBlock" x:Key="DefaultTextBlockStyle">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Padding" Value="10"/>
@@ -48,8 +48,20 @@
         <Style TargetType="TextBlock" x:Key="LableText" BasedOn="{StaticResource DefaultTextBlockStyle}">
             <Setter Property="FontSize" Value="13"/>
         </Style>
+
+        <TransitionCollection x:Key="NavigationTransitions">
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+        
+        <Style TargetType="Page" x:Key="PageStyle">
+            <Setter Property="Transitions" Value="{StaticResource NavigationTransitions}"/>
+        </Style>
+        
     </Application.Resources>
-    
-    
-    
+
+
 </Application>

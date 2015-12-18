@@ -5,66 +5,57 @@
     xmlns:local="using:YamAndRateApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <SlideNavigationTransitionInfo/>
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
+    mc:Ignorable="d"
+    Style="{StaticResource PageStyle}">
 
     <Grid Background="Black">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" 
+            <TextBlock Grid.Row="0" 
                    TextAlignment="Center" 
                    Text="Yam&amp;Rate Logo" 
                    FontSize="36"/>
 
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
 
-            <TextBox Grid.Row="0" 
+                <TextBox Grid.Row="0" 
                      PlaceholderText="Serch for a Restaurant" 
                      HorizontalAlignment="Stretch"
                      VerticalAlignment="Bottom">
-                
-            </TextBox>
-            <Button Grid.Row="1" 
+
+                </TextBox>
+                <Button Grid.Row="1" 
                     Content="Go with the search" 
                     Click="GoToSearchResultsBtn"/>
-            <Button Grid.Row="2" 
+                <Button Grid.Row="2" 
                     Content ="Nearby Restaurants" 
                     Click="GoToNearbyRestaurantsBtn"/>
 
-            <!--I will take the command parameter in order to search and navigate to specific item-->
-            <!--Put the command parameter before the comand-->
-            <!--CommandParameter="{Binding}" - when we navigate to this specific restaurant-->
+                <!--I will take the command parameter in order to search and navigate to specific item-->
+                <!--Put the command parameter before the comand-->
+                <!--CommandParameter="{Binding}" - when we navigate to this specific restaurant-->
 
-            <Button Grid.Row="3" 
+                <Button Grid.Row="3" 
                     Content ="Add New Restaurant" 
                     CommandParameter="" 
                     Click="GoToAddNewRestaurantBtn"/>
-            <Button Grid.Row="4" 
+                <Button Grid.Row="4" 
                     Content ="See All Restaurants" 
                     Click="GoToAllRestaurantsBtn"/>
-            <Button Grid.Row="5" 
+                <Button Grid.Row="5" 
                     Content ="Log in / Register" 
                     Click="GoToLogInBtn"/>
+            </Grid>
         </Grid>
-    </Grid>
-</Page>
+    </Page>
