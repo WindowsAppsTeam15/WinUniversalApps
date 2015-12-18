@@ -2,6 +2,7 @@
 {
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using System.Windows.Input;
 
     using Parse;
@@ -12,18 +13,25 @@
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
+        private string name;
+        private string description;
+        private string photoUrl;
+        private CategoryType category;
         private double yourVote;
         private double rating;
 
         public RestaurantViewModel()
         {
-            this.Name = "Mrysnoto UI";
-            this.Description = "Very cool and delicate cuisine";
+
+            //this.Name = "Mrysnoto UI";
+            //this.Description = "Very cool and delicate cuisine";
+
             this.TestVotes = new ObservableCollection<double>()
             {
                 2.0, 3.0, 4.0
             };
 
+            /*
             this.Rating = this.TestVotes.Sum() / this.TestVotes.Count;
             this.YourVote = this.TestVotes[0];
 
@@ -43,11 +51,62 @@
             this.PhotoUrl = "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg";
             // this.Coords = new Coordinates(42.650999, 23.380356);
             this.Category = CategoryType.Bulgarian;
+            */
+
+            this.LoadRestaurantDetails();
         }
 
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+            set
+            {
+                this.name = value;
+                this.NotifyPropertyChanged("Name");
+            }
+        }
 
-        public string Description { get; set; }
+        public string Description
+        {
+            get
+            {
+                return this.description;
+            }
+            set
+            {
+                this.description = value;
+                this.NotifyPropertyChanged("Description");
+            }
+        }
+
+        public string PhotoUrl
+        {
+            get
+            {
+                return this.photoUrl;
+            }
+            set
+            {
+                this.photoUrl = value;
+                this.NotifyPropertyChanged("PhotoUrl");
+            }
+        }
+
+        public CategoryType Category
+        {
+            get
+            {
+                return this.category;
+            }
+            set
+            {
+                this.category = value;
+                this.NotifyPropertyChanged("Category");
+            }
+        }
 
         public double Rating
         {
@@ -85,18 +144,13 @@
             }
         }
 
-
         public ObservableCollection<string> Specialties { get; set; }
 
         public ObservableCollection<Vote> Votes { get; set; }
 
         public ObservableCollection<double> TestVotes { get; set; }
 
-        public string PhotoUrl { get; set; }
-
         // public Coordinates Coords { get; set; }
-
-        public CategoryType Category { get; set; }
 
         public ICommand SaveRestaurant
         {
@@ -126,6 +180,18 @@
             };
 
             await restaurant.SaveAsync();
+        }
+
+        private async Task LoadRestaurantDetails()
+        {
+            var restaurant = await new ParseQuery<Restaurant>().FirstOrDefaultAsync();
+
+            this.Name = restaurant.Name;
+            this.Description = restaurant.Description;
+            this.Category = restaurant.Category.CategoryType;
+            this.Specialties = (ObservableCollection<string>)restaurant.Specialties;
+            this.PhotoUrl = "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg";
+            this.Rating = restaurant.Rating;
         }
     }
 }

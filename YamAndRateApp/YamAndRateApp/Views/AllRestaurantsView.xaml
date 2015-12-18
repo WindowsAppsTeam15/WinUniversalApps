@@ -29,7 +29,7 @@
                     <Grid Height="155" Width="155">
                         <Border>
                             <Border.Background>
-                                <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill"/>
+                                <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill" />
                             </Border.Background>
                         </Border>
                         <TextBlock Text="{Binding Name}" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
