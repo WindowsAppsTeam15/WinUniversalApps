@@ -8,7 +8,8 @@
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:ViewModels="using:YamAndRateApp.ViewModels"
     xmlns:Helpers="using:YamAndRateApp.Helpers"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Style="{StaticResource PageStyle}">
 
     <!--7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw-->
 
