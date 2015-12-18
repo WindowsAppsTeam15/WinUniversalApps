@@ -194,7 +194,7 @@
             await restaurant.SaveAsync();
         }
 
-        private async Task LoadRestaurantDetails()
+        private async void LoadRestaurantDetails()
         {
             var restaurant = await new ParseQuery<Restaurant>().FirstOrDefaultAsync();
 
@@ -202,7 +202,7 @@
             this.Description = restaurant.Description;
             this.Category = restaurant.Category;
             this.Specialties = (ObservableCollection<string>)restaurant.Specialties;
-            this.PhotoUrl = "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg";
+            this.PhotoUrl = restaurant.Photo.Url.ToString();
             this.Rating = restaurant.Rating;
             this.Coordinates = new Geopoint(new BasicGeoposition()
             {

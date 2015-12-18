@@ -84,7 +84,7 @@
             {
                 Name = model.Name,
                 Rating = model.Rating,
-                PhotoUrl = "https://farm4.staticflickr.com/3795/13818125963_5a67445be7_b.jpg",
+                PhotoUrl = model.Photo.Url.ToString(),
                 Category = model.Category,
                 Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })             
             });
