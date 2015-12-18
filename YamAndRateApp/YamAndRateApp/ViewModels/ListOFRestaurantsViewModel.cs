@@ -9,6 +9,8 @@
 
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
+    using System.Windows.Input;
+    using Helpers;
     public class ListOFRestaurantsViewModel : BaseViewModel
     {
         private ObservableCollection<RestaurantLimitedViewModel> restaurants;

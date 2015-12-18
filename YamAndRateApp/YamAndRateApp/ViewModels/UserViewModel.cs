@@ -103,7 +103,7 @@
             }
         }
 
-        private async void OnRegisterUserExecute()
+        private async void OnRegisterUserExecute(object parameters)
         {
             if (!isInRegisterMode)
             {
@@ -135,7 +135,7 @@
             await user.SignUpAsync();
         }
 
-        private async void OnLogInUserExecute()
+        private async void OnLogInUserExecute(object parameters)
         {
             // We should implement vaidations for email and pass length
             /*

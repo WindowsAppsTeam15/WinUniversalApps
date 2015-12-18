@@ -3,18 +3,26 @@
     using System;
     using System.Windows.Input;
 
+    public delegate void ExecuteDelegate(object obj);
+    public delegate bool CanExecuteDelegate(object obj);
+
     public class RelayCommand : ICommand
     {
-        private Action execute;
-        private Func<bool> canExecute;
+        private ExecuteDelegate execute;
 
-        public RelayCommand(Action execute, Func<bool> canExecute = null)
+        private CanExecuteDelegate canExecute;
+
+        public RelayCommand(ExecuteDelegate execute)
+            : this(execute, null)
+        {
+        }
+
+        public RelayCommand(ExecuteDelegate execute,
+            CanExecuteDelegate canExecute)
         {
             this.execute = execute;
             this.canExecute = canExecute;
         }
-
-        public event EventHandler CanExecuteChanged;
 
         public bool CanExecute(object parameter)
         {
@@ -22,13 +30,14 @@
             {
                 return true;
             }
-
-            return this.canExecute();
+            return this.canExecute(parameter);
         }
 
         public void Execute(object parameter)
         {
-            this.execute();
-        }        
+            this.execute(parameter);
+        }
+
+        public event EventHandler CanExecuteChanged;
     }
 }

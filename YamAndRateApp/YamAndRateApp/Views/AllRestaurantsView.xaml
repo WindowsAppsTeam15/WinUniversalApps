@@ -26,16 +26,19 @@
             ScrollViewer.VerticalScrollMode="Enabled">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="155" Width="155">
-                        <Border>
-                            <Border.Background>
-                                <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill" />
-                            </Border.Background>
-                        </Border>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
-                        <TextBlock Text="{Binding Category}" VerticalAlignment="Bottom" Foreground="White"/>
-                        <TextBlock Text="{Binding Rating}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="White"/>
-                    </Grid>
+                    <Button Height="155" Width="155" Padding="0" Margin="0" 
+                            Click="LoadDetailsView">
+                        <Grid Background="Purple" Height="155" Width="155" Padding="0" Margin="0">
+                            <Border >
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill" />
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Top" Foreground="White" FontSize="18"/>
+                            <TextBlock Text="{Binding Category}" VerticalAlignment="Bottom" Foreground="White"/>
+                            <TextBlock Text="{Binding Rating}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="White"/>
+                        </Grid>
+                    </Button>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>

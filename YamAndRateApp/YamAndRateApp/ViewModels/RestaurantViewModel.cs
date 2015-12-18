@@ -178,7 +178,7 @@
         }
 
         // TODO: Test after AddRestaurantView is implemented
-        private async void OnSaveRestaurantExecute()
+        private async void OnSaveRestaurantExecute(object parameters)
         {
             var restaurant = new Restaurant
             {

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using YamAndRateApp.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,6 +28,23 @@ namespace YamAndRateApp.Views
         public AllRestaurantsView()
         {
             this.InitializeComponent();
+        }
+
+        private void LoadDetailsView(object sender, RoutedEventArgs e)
+        {
+            var initiator = e.OriginalSource as Button;
+            if (initiator != null)
+            {
+                var currentRestaurant = initiator.DataContext as RestaurantLimitedViewModel;
+
+                if (currentRestaurant != null)
+                {
+                    var restaurantName = currentRestaurant.Name;
+                    // Or we can same and get the ID
+                }
+            }
+
+            this.Frame.Navigate(typeof(RestaurantDetailsView));
         }
     }
 }

@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.Devices.Geolocation;
+using YamAndRateApp.Helpers;
 using YamAndRateApp.Models;
 
 namespace YamAndRateApp.ViewModels
 {
     public class RestaurantLimitedViewModel
     {
+        private ICommand loadDetailsView;
+
         /*
         public RestaurantLimitedViewModel(string name, double rating, string photoUrl, string category, Geopoint coords)
         {
