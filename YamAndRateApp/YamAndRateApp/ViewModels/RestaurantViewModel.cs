@@ -2,7 +2,6 @@
 {
     using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Threading.Tasks;
     using System.Windows.Input;
 
     using Parse;
@@ -10,7 +9,7 @@
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
-    using Windows.UI.Xaml.Navigation;
+
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
@@ -28,7 +27,7 @@
 
         }
 
-        public RestaurantViewModel(NavigationEventArgs e)
+        public RestaurantViewModel(string selectedRestaurantName)
         {
 
             //this.Name = "Mrysnoto UI";
@@ -61,7 +60,7 @@
             this.Category = CategoryType.Bulgarian;
             */
 
-            this.LoadRestaurantDetails();
+            this.LoadRestaurantDetails(selectedRestaurantName);
         }
 
         public string Name
@@ -184,7 +183,6 @@
             }
         }
 
-        // TODO: Test after AddRestaurantView is implemented
         private async void OnSaveRestaurantExecute(object parameters)
         {
             var restaurant = new Restaurant
@@ -201,9 +199,10 @@
             await restaurant.SaveAsync();
         }
 
-        private async void LoadRestaurantDetails()
+        private async void LoadRestaurantDetails(string selectedRestaurantName)
         {
-            var restaurant = await new ParseQuery<Restaurant>().FirstOrDefaultAsync();
+            var query = new ParseQuery<Restaurant>().Where(r => r.Name == selectedRestaurantName);
+            var restaurant = await query.FirstOrDefaultAsync();
 
             this.Name = restaurant.Name;
             this.Description = restaurant.Description;

@@ -32,9 +32,9 @@ namespace YamAndRateApp.Views
         {
             base.OnNavigatedTo(e);
 
-            // int currentId = (int)e.Content;
+            string selectedRestaurantName = e.Parameter.ToString();
 
-            this.DataContext = new RestaurantViewModel(e);
+            this.DataContext = new RestaurantViewModel(selectedRestaurantName);
         }
     }
 }

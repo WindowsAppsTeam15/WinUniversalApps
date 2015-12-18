@@ -33,7 +33,7 @@ namespace YamAndRateApp.Views
         private void LoadDetailsView(object sender, RoutedEventArgs e)
         {
             var initiator = e.OriginalSource as Button;
-            string restaurantName = String.Empty;
+            string selectedRestaurantName = string.Empty;
 
             if (initiator != null)
             {
@@ -41,12 +41,12 @@ namespace YamAndRateApp.Views
 
                 if (currentRestaurant != null)
                 {
-                    restaurantName = currentRestaurant.Name;
+                    selectedRestaurantName = currentRestaurant.Name;
                     // Or we can same and get the ID
                 }
             }
 
-            this.Frame.Navigate(typeof(RestaurantDetailsView), restaurantName);
+            this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantName);
         }
     }
 }

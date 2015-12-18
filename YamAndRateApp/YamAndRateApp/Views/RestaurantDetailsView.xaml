@@ -16,8 +16,7 @@
         <Helpers:RatingConverter x:Key="RatingConverter" />
     </Page.Resources>
 
-    <Grid Style="{StaticResource CntainerGrid}"
-          DataContext="{Binding Source={StaticResource RestaurantViewModel}}">
+    <Grid Style="{StaticResource CntainerGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="1*"/>
