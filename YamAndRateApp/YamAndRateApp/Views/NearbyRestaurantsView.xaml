@@ -8,6 +8,7 @@
     xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     xmlns:ViewModels="using:YamAndRateApp.ViewModels"
     xmlns:Helpers="using:YamAndRateApp.Helpers"
+    xmlns:UserControls="using:YamAndRateApp.Controls"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
@@ -23,8 +24,17 @@
           DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}"
           Name="RootGrid"
           >
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <UserControls:HeaderControl Grid.Row="0"/>
+
         <Maps:MapControl
-                         x:Name="MapControl1"  
+                         x:Name="MapControl1"
+                        Grid.Row="1"
                          MapServiceToken="7HAr3wCak0NdvJccBqBO~J0sq5kA3SVX3C9ZdtcFr1w~An3TrhFmG_JHubEK6SjvVcIyIrMibpkK2zy48RA7bCHOV2ZXVTTWHvD3Dh8j1WJw">
             <Maps:MapControl.Transitions>
                 <TransitionCollection>

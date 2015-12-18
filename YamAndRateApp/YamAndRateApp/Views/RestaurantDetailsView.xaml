@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:YamAndRateApp.ViewModels"
     xmlns:Helpers="using:YamAndRateApp.Helpers"
+    xmlns:UserControls="using:YamAndRateApp.Controls"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
@@ -19,29 +20,33 @@
     <Grid Style="{StaticResource CntainerGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Rectangle Grid.Row="0" 
+
+        <UserControls:HeaderControl Grid.Row="0"/>
+
+        <Rectangle Grid.Row="1" 
                    VerticalAlignment="Stretch" 
                    HorizontalAlignment="Stretch" 
                    Fill="{Binding Category,  Converter={StaticResource CategoryConverter}}"/>
-        <TextBlock Grid.Row="0" 
+        <TextBlock Grid.Row="1" 
                    Text="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                    VerticalAlignment="Center"/>
-        <Border Grid.Row="1">
+        <Border Grid.Row="2">
             <Border.Background>
                 <ImageBrush ImageSource="{Binding PhotoUrl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                             Stretch="UniformToFill"/>
             </Border.Background>
         </Border>
-        <TextBlock Grid.Row="1" 
+        <TextBlock Grid.Row="2" 
                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                    FontFamily="HeaderTextBlockStyle" 
                    FontSize="36" 
                    Foreground="White" 
                    VerticalAlignment="Bottom"/>
-        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Hidden">
             <StackPanel ScrollViewer.VerticalScrollMode="Enabled"
                     Orientation="Vertical">
                 <Grid>

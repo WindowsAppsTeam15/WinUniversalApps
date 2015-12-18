@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ViewModels="using:YamAndRateApp.ViewModels"
     xmlns:Helpers="using:YamAndRateApp.Helpers"
+    xmlns:UserControls="using:YamAndRateApp.Controls"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
@@ -18,10 +19,14 @@
     <Grid Style="{StaticResource CntainerGrid}"
           DataContext="{Binding Source={StaticResource UserViewModel}}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="7*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0"
+
+        <UserControls:HeaderControl Grid.Row="0"/>
+
+        <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Hidden">
             <StackPanel>
                 <Grid Style="{StaticResource InputGridField}">
@@ -52,7 +57,7 @@
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
