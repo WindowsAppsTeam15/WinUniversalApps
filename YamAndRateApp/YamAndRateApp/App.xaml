@@ -36,6 +36,15 @@
             <Setter Property="Padding" Value="5"/>
         </Style>
 
+        <Style TargetType="PasswordBox">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Padding" Value="5"/>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="DefaultTextBlockStyle">
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="Padding" Value="10"/>

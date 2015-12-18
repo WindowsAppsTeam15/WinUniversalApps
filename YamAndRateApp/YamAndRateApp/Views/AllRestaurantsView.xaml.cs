@@ -33,18 +33,20 @@ namespace YamAndRateApp.Views
         private void LoadDetailsView(object sender, RoutedEventArgs e)
         {
             var initiator = e.OriginalSource as Button;
+            string restaurantName = String.Empty;
+
             if (initiator != null)
             {
                 var currentRestaurant = initiator.DataContext as RestaurantLimitedViewModel;
 
                 if (currentRestaurant != null)
                 {
-                    var restaurantName = currentRestaurant.Name;
+                    restaurantName = currentRestaurant.Name;
                     // Or we can same and get the ID
                 }
             }
 
-            this.Frame.Navigate(typeof(RestaurantDetailsView));
+            this.Frame.Navigate(typeof(RestaurantDetailsView), restaurantName);
         }
     }
 }

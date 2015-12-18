@@ -10,6 +10,7 @@
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
+    using Windows.UI.Xaml.Navigation;
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
@@ -22,6 +23,12 @@
         private Geopoint coordinates;
 
         public RestaurantViewModel()
+            : this(null)
+        {
+
+        }
+
+        public RestaurantViewModel(NavigationEventArgs e)
         {
 
             //this.Name = "Mrysnoto UI";
