@@ -60,7 +60,12 @@
         <Style TargetType="Page" x:Key="PageStyle">
             <Setter Property="Transitions" Value="{StaticResource NavigationTransitions}"/>
         </Style>
-        
+
+
+        <Style TargetType="Grid" x:Key="InputGridField">
+            <Setter Property="Margin" Value="3 15"/>
+        </Style>
+
     </Application.Resources>
 
 

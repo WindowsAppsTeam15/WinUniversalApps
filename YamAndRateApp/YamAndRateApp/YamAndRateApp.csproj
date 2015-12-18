@@ -127,6 +127,9 @@
     <Compile Include="Views\NearbyRestaurantsView.xaml.cs">
       <DependentUpon>NearbyRestaurantsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RegisterView.xaml.cs">
+      <DependentUpon>RegisterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestaurantDetailsView.xaml.cs">
       <DependentUpon>RestaurantDetailsView.xaml</DependentUpon>
     </Compile>
@@ -169,6 +172,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NearbyRestaurantsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegisterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
