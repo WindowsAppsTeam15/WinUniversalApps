@@ -8,69 +8,161 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid Background="Black">
-            <Grid.DataContext>
-                <viewModels:RestaurantViewModel />
-            </Grid.DataContext>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="1*"/>
-                <ColumnDefinition Width="3*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0"
-                       Grid.Column="0" 
-                       VerticalAlignment="Center"
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
+    <Page.Resources>
+        <Style TargetType="Grid" x:Key="InputGridField">
+            <Setter Property="Margin" Value="3 15"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel>
+                <Grid Style="{StaticResource InputGridField}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                       Grid.Column="0"
                        Text="Name:"/>
-            <TextBox Grid.Row="0"
+                    <TextBox
                      Grid.Column="1"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Stretch"
+                     PlaceholderText="Type name"
                      Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-            <TextBlock Grid.Row="1"
-                       Grid.Column="0" 
-                       VerticalAlignment="Center"
+                </Grid>
+                <Grid Style="{StaticResource InputGridField}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                       Grid.Column="0"
                        Text="Description:"/>
-            <TextBox Grid.Row="1"
+                    <TextBox
                      Grid.Column="1"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Stretch"
+                     PlaceholderText="Type short description"
                      Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-            <TextBlock Grid.Row="2"
+                </Grid>
+                <Grid  Style="{StaticResource InputGridField}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
                        Grid.Column="0" 
-                       VerticalAlignment="Center"
                        Text="Category:"/>
-            <ComboBox Grid.Row="2"
+                    <ComboBox
                       Grid.Column="1"
                       VerticalAlignment="Center"
-                      HorizontalAlignment="Stretch" 
-                      IsEnabled="True">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Vertical">
-                            <!-- TODO: List categories -->
-                            <TextBlock Text="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <TextBlock Grid.Row="3"
+                      HorizontalAlignment="Stretch"
+                      Padding="10">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <!-- TODO: List categories -->
+                                    <TextBlock Text="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
+                <Grid  Style="{StaticResource InputGridField}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
                         Grid.Column="0" 
-                        VerticalAlignment="Center"
-                        Text="Specialties:" />
-            <Button Content="Upload Photo" 
-                    Grid.Row="4"
-                    Grid.ColumnSpan="2" />
-            <Button Content="Save"
-                    Grid.Row="5"
-                    Grid.ColumnSpan="2"
+                        Text="Specialty:" />
+                    <TextBox
+                     Grid.Column="1"
+                     PlaceholderText="Type specialty" />
+                </Grid>
+                <Grid  Style="{StaticResource InputGridField}"
+                       Visibility="Collapsed"
+                       x:Name="FirstHidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0" 
+                        Text="Specialty:" />
+                    <TextBox
+                     Grid.Column="1"
+                     PlaceholderText="Type specialty" />
+                </Grid>
+                <Grid  Style="{StaticResource InputGridField}"
+                       Visibility="Collapsed"
+                       x:Name="SecondHidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0" 
+                        Text="Specialty:" />
+                    <TextBox
+                     Grid.Column="1"
+                     PlaceholderText="Type specialty" />
+                </Grid>
+                <Grid  Style="{StaticResource InputGridField}"
+                       Visibility="Collapsed"
+                       x:Name="ThirdHidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0" 
+                        Text="Specialty:" />
+                    <TextBox
+                     Grid.Column="1"
+                     PlaceholderText="Type specialty" />
+                </Grid>
+                <Grid  Style="{StaticResource InputGridField}"
+                       Visibility="Collapsed"
+                       x:Name="ForthHidden">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Column="0" 
+                        Text="Specialty:" />
+                    <TextBox
+                     Grid.Column="1"
+                     PlaceholderText="Type specialty" />
+                </Grid>
+                <Grid  Style="{StaticResource InputGridField}">
+                    <Button Content="Add new specialty" Padding="15" Click="DisplayNewSpecialty"/>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                Content="Upload Photo" />
+            <Button Grid.Column="1"
+                Content="Save"
                     Command="{Binding SaveRestaurant}" />
         </Grid>
     </Grid>

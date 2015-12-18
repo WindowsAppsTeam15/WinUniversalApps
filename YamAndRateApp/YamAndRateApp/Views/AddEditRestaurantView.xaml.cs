@@ -22,9 +22,34 @@ namespace YamAndRateApp.Views
     /// </summary>
     public sealed partial class AddEditRestaurantView : Page
     {
+        private int currentVisibleSpecialtyField;
+
         public AddEditRestaurantView()
         {
             this.InitializeComponent();
+            currentVisibleSpecialtyField = 0;
+        }
+
+        private void DisplayNewSpecialty(object sender, RoutedEventArgs e)
+        {
+            currentVisibleSpecialtyField += 1;
+            switch (currentVisibleSpecialtyField)
+            {
+                case 1:
+                    this.FirstHidden.Visibility = Visibility.Visible;
+                    break;
+                case 2:
+                    this.SecondHidden.Visibility = Visibility.Visible;
+                    break;
+                case 3:
+                    this.ThirdHidden.Visibility = Visibility.Visible;
+                    break;
+                case 4:
+                    this.ForthHidden.Visibility = Visibility.Visible;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
