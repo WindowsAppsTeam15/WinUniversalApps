@@ -8,7 +8,7 @@
     using Parse;
 
     using YamAndRateApp.Models;
-
+    using Windows.Devices.Geolocation;
     public class ListOFRestaurantsViewModel : BaseViewModel
     {
         private ObservableCollection<RestaurantLimitedViewModel> restaurants;
@@ -84,7 +84,8 @@
                 Name = model.Name,
                 Rating = model.Rating,
                 PhotoUrl = "https://farm4.staticflickr.com/3795/13818125963_5a67445be7_b.jpg",
-                Category = model.Category.CategoryType
+                Category = model.Category.CategoryType,
+                Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })             
             });
         }
     }

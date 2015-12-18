@@ -9,7 +9,7 @@
 
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
-
+    using Windows.Devices.Geolocation;
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
@@ -19,6 +19,7 @@
         private CategoryType category;
         private double yourVote;
         private double rating;
+        private Geopoint coordinates;
 
         public RestaurantViewModel()
         {
@@ -125,6 +126,19 @@
             }
         }
 
+        public Geopoint Coordinates
+        {
+            get
+            {
+                return this.coordinates;
+            }
+            set
+            {
+                this.coordinates = value;
+                this.NotifyPropertyChanged("Coordinates");
+            }
+        }
+
         public double YourVote
         {
             get
@@ -149,8 +163,6 @@
         public ObservableCollection<Vote> Votes { get; set; }
 
         public ObservableCollection<double> TestVotes { get; set; }
-
-        // public Coordinates Coords { get; set; }
 
         public ICommand SaveRestaurant
         {
@@ -192,6 +204,11 @@
             this.Specialties = (ObservableCollection<string>)restaurant.Specialties;
             this.PhotoUrl = "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg";
             this.Rating = restaurant.Rating;
+            this.Coordinates = new Geopoint(new BasicGeoposition()
+            {
+                Longitude = restaurant.Location.Longitude,
+                Latitude = restaurant.Location.Latitude
+            });
         }
     }
 }
