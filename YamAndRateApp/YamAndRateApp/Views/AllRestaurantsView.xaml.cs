@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Core;
@@ -47,6 +48,13 @@ namespace YamAndRateApp.Views
             }
 
             this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantName);
+        }
+
+        private async void GridView_Loaded(object sender, RoutedEventArgs e)
+        {
+            await Task.Delay(1000);
+            this.ProgressRingControl.Visibility = Visibility.Collapsed;
+            this.ProgressRingControl.IsActive = false;
         }
     }
 }

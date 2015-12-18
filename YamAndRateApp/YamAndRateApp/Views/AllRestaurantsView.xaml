@@ -19,12 +19,21 @@
 
     <Grid Style="{StaticResource CntainerGrid}"
           DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}">
-
-        <GridView        
+        
+        <!--Implemented progress ring -->
+        <ProgressRing x:Name="ProgressRingControl"
+                          IsActive="True"
+                          Visibility="Visible"
+                          Height="50"
+                          Width="50"
+                          Foreground="Yellow"/>
+        <GridView 
+            Loaded="GridView_Loaded"
             ItemsSource="{Binding Restaurants}"
             SelectionMode="Single"
             ItemsPanel="{StaticResource GridViewItemsPanel}"
-            ScrollViewer.VerticalScrollMode="Enabled">
+            ScrollViewer.VerticalScrollMode="Enabled"
+            ScrollViewer.VerticalScrollBarVisibility="Hidden">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Button Height="155" Width="155" Padding="0" Margin="0" 

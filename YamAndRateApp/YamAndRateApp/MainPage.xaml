@@ -9,14 +9,13 @@
     Style="{StaticResource PageStyle}">
 
     <Grid Style="{StaticResource CntainerGrid}">
-        
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
         </Grid.RowDefinitions>
+
         <Border Grid.Row="0" Margin="10">
             <Border.Background>
-                <!--<SolidColorBrush Color="red"/>-->
                 <ImageBrush ImageSource="/Assets/LogoScript.png" Stretch="Uniform"/>
             </Border.Background>
         </Border>
@@ -30,7 +29,7 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <Grid Grid.Row="0"
                   Opacity="0.7"
                   Background="White"
@@ -65,5 +64,7 @@
                     Content ="Log in / Register" 
                     Click="GoToLogInBtn"/>
         </Grid>
+
+
     </Grid>
 </Page>

@@ -38,6 +38,20 @@ namespace YamAndRateApp
             };
         }
 
+
+        // Implemented progress ring which is not arrearing on page
+        //protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        //{
+        //    this.ProgressRingControl.Visibility = Visibility.Visible;
+        //    this.ProgressRingControl.IsActive = true;
+        //}
+
+        //protected override void OnNavigatedFrom(NavigationEventArgs e)
+        //{
+        //    this.ProgressRingControl.Visibility = Visibility.Collapsed;
+        //    this.ProgressRingControl.IsActive = false;
+        //}
+
         public void GoToSearchResultsBtn(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AllRestaurantsView));
