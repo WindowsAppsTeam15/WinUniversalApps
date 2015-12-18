@@ -15,7 +15,7 @@
         <Helpers:RepeatePaswordConverter x:Key="RepeatePaswordConverter" />
     </Page.Resources>
 
-    <Grid Background="Black"
+    <Grid Style="{StaticResource CntainerGrid}"
           DataContext="{Binding Source={StaticResource UserViewModel}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"/>

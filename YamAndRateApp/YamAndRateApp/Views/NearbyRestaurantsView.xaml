@@ -19,7 +19,7 @@
         <ViewModels:RestaurantViewModel x:Key="RestaurantViewModel" />
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    <Grid Style="{StaticResource CntainerGrid}"
           DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}"
           Name="RootGrid"
           >

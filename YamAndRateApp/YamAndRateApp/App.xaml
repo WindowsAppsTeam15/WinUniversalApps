@@ -43,6 +43,7 @@
             <Setter Property="FontWeight" Value="SemiLight"/>
             <Setter Property="Margin" Value="2"/>
             <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="White"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="DefaultTextBlockStyle">
@@ -73,6 +74,14 @@
 
         <Style TargetType="Grid" x:Key="InputGridField">
             <Setter Property="Margin" Value="3 15"/>
+        </Style>
+
+        <Style TargetType="Grid" x:Key="CntainerGrid">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush Stretch="UniformToFill"  ImageSource="/Assets/Background.png" />
+                </Setter.Value>
+            </Setter>
         </Style>
 
     </Application.Resources>

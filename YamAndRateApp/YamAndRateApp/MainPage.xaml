@@ -8,54 +8,62 @@
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
-    <Grid Background="Black">
+    <Grid Style="{StaticResource CntainerGrid}">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Margin="10">
+            <Border.Background>
+                <!--<SolidColorBrush Color="red"/>-->
+                <ImageBrush ImageSource="/Assets/LogoScript.png" Stretch="Uniform"/>
+            </Border.Background>
+        </Border>
+
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0" 
-                   TextAlignment="Center" 
-                   Text="Yam&amp;Rate Logo" 
-                   FontSize="36"/>
-
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <TextBox Grid.Row="0" 
-                     PlaceholderText="Serch for a Restaurant" 
+            
+            <Grid Grid.Row="0"
+                  Opacity="0.7"
+                  Background="White"
+                  Margin="2">
+                <TextBox
+                     PlaceholderText="Serch for a Restaurant"
+                     Padding="10"
                      HorizontalAlignment="Stretch"
-                     VerticalAlignment="Bottom">
-
+                     VerticalAlignment="Stretch">
                 </TextBox>
-                <Button Grid.Row="1" 
+            </Grid>
+
+            <Button Grid.Row="1" 
                     Content="Go with the search" 
                     Click="GoToSearchResultsBtn"/>
-                <Button Grid.Row="2" 
+            <Button Grid.Row="2" 
                     Content ="Nearby Restaurants" 
                     Click="GoToNearbyRestaurantsBtn"/>
 
-                <!--I will take the command parameter in order to search and navigate to specific item-->
-                <!--Put the command parameter before the comand-->
-                <!--CommandParameter="{Binding}" - when we navigate to this specific restaurant-->
+            <!--I will take the command parameter in order to search and navigate to specific item-->
+            <!--Put the command parameter before the comand-->
+            <!--CommandParameter="{Binding}" - when we navigate to this specific restaurant-->
 
-                <Button Grid.Row="3" 
+            <Button Grid.Row="3" 
                     Content ="Add New Restaurant" 
                     CommandParameter="" 
                     Click="GoToAddNewRestaurantBtn"/>
-                <Button Grid.Row="4" 
+            <Button Grid.Row="4" 
                     Content ="See All Restaurants" 
                     Click="GoToAllRestaurantsBtn"/>
-                <Button Grid.Row="5" 
+            <Button Grid.Row="5" 
                     Content ="Log in / Register" 
                     Click="GoToLogInBtn"/>
-            </Grid>
         </Grid>
-    </Page>
+    </Grid>
+</Page>
