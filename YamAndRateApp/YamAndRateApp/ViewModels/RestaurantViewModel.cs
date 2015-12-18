@@ -16,7 +16,7 @@
         private string name;
         private string description;
         private string photoUrl;
-        private CategoryType category;
+        private string category;
         private double yourVote;
         private double rating;
         private Geopoint coordinates;
@@ -96,7 +96,7 @@
             }
         }
 
-        public CategoryType Category
+        public string Category
         {
             get
             {
@@ -184,7 +184,7 @@
             {
                 Name = this.Name,
                 Description = this.Description,
-                Category = new Category { CategoryType = this.Category },
+                Category = this.Category,
                 Specialties = this.Specialties,
                 Votes = this.Votes,
                 Rating = this.Rating,
@@ -200,7 +200,7 @@
 
             this.Name = restaurant.Name;
             this.Description = restaurant.Description;
-            this.Category = restaurant.Category.CategoryType;
+            this.Category = restaurant.Category;
             this.Specialties = (ObservableCollection<string>)restaurant.Specialties;
             this.PhotoUrl = "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg";
             this.Rating = restaurant.Rating;

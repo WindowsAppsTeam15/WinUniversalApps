@@ -21,6 +21,13 @@
             set { SetProperty<string>(value); }
         }
 
+        [ParseFieldName("category")]
+        public string Category
+        {
+            get { return GetProperty<string>(); }
+            set { SetProperty<string>(value); }
+        }
+
         [ParseFieldName("specialties")]
         public IEnumerable<string> Specialties
         {
@@ -54,13 +61,6 @@
         {
             get { return GetProperty<ParseGeoPoint>(); }
             set { SetProperty<ParseGeoPoint>(value); }
-        }
-
-        [ParseFieldName("category")]
-        public Category Category
-        {
-            get { return GetProperty<Category>(); }
-            set { SetProperty<Category>(value); }
-        }
+        }        
     }
 }

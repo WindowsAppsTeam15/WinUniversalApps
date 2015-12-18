@@ -31,7 +31,7 @@ namespace YamAndRateApp.ViewModels
 
         public string PhotoUrl { get; set; }
 
-        public CategoryType Category { get; set; }
+        public string Category { get; set; }
 
         public Geopoint Coordinates { get; set; }
     }

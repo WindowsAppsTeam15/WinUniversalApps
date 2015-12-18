@@ -9,8 +9,7 @@
 
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
-    using System.Windows.Input;
-    using Helpers;
+
     public class ListOFRestaurantsViewModel : BaseViewModel
     {
         private ObservableCollection<RestaurantLimitedViewModel> restaurants;
@@ -77,7 +76,7 @@
             }
         }
 
-        private async Task LoadRestaurants()
+        private async void LoadRestaurants()
         {
             var restaurants = await new ParseQuery<Restaurant>().FindAsync();
 
@@ -86,7 +85,7 @@
                 Name = model.Name,
                 Rating = model.Rating,
                 PhotoUrl = "https://farm4.staticflickr.com/3795/13818125963_5a67445be7_b.jpg",
-                Category = model.Category.CategoryType,
+                Category = model.Category,
                 Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })             
             });
         }
