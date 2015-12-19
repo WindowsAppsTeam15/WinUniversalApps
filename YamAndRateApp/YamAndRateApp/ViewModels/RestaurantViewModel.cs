@@ -9,6 +9,7 @@
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
+    using System.Collections.Generic;
 
     public class RestaurantViewModel : BaseViewModel
     {
@@ -17,14 +18,25 @@
         private string description;
         private string photoUrl;
         private string category;
-        private double yourVote;
+        private int yourVote;
         private double rating;
-        private Geopoint coordinates;
+        private double longitude;
+        private double lattitude;
 
         public RestaurantViewModel()
-            : this(null)
         {
-
+            this.Specialties = new ObservableCollection<string>();
+            this.Votes = new ObservableCollection<int>();
+            this.Categories = new ObservableCollection<string>()
+            {
+                "Unspecified",
+                "Italian",
+                "French",
+                "Chinise",
+                "OtherAsian",
+                "Bulgarian"
+            };
+            this.Category = this.Categories[0];
         }
 
         public RestaurantViewModel(string selectedRestaurantName)
@@ -33,9 +45,10 @@
             //this.Name = "Mrysnoto UI";
             //this.Description = "Very cool and delicate cuisine";
 
-            this.TestVotes = new ObservableCollection<double>()
+            // Remove this when we initialize the collection below after requesting data from Parse
+            this.Votes = new ObservableCollection<int>()
             {
-                2.0, 3.0, 4.0
+                2, 3, 4
             };
 
             /*
@@ -124,7 +137,7 @@
 
             set
             {
-                if (!(this.rating == value))
+                if (this.rating != value)
                 {
                     this.rating = value;
                     base.NotifyPropertyChanged("Rating");
@@ -132,20 +145,39 @@
             }
         }
 
-        public Geopoint Coordinates
+        public double Longitude
         {
             get
             {
-                return this.coordinates;
+                return this.longitude;
             }
             set
             {
-                this.coordinates = value;
-                this.NotifyPropertyChanged("Coordinates");
+                if (this.longitude != value)
+                {
+                    this.longitude = value;
+                    this.NotifyPropertyChanged("Longitude");
+                }
             }
         }
 
-        public double YourVote
+        public double Lattitude
+        {
+            get
+            {
+                return this.lattitude;
+            }
+            set
+            {
+                if (this.lattitude != value)
+                {
+                    this.lattitude = value;
+                    this.NotifyPropertyChanged("Lattitude");
+                }
+            }
+        }
+
+        public int YourVote
         {
             get
             {
@@ -157,18 +189,18 @@
                 if (!(this.yourVote == value))
                 {
                     this.yourVote = value;
-                    this.TestVotes[0] = value;
-                    this.Rating = this.TestVotes.Sum() / this.TestVotes.Count;
+                    this.Votes[0] = value;
+                    this.Rating = this.Votes.Sum() / this.Votes.Count;
                     base.NotifyPropertyChanged("YourVote");
                 }
             }
         }
 
+        public ObservableCollection<string> Categories { get; set; }
+
         public ObservableCollection<string> Specialties { get; set; }
 
-        public ObservableCollection<Vote> Votes { get; set; }
-
-        public ObservableCollection<double> TestVotes { get; set; }
+        public ObservableCollection<int> Votes { get; set; }
 
         public ICommand SaveRestaurant
         {
@@ -191,9 +223,15 @@
                 Description = this.Description,
                 Category = this.Category,
                 Specialties = this.Specialties,
-                Votes = this.Votes,
-                Rating = this.Rating,
-                Location = new ParseGeoPoint(42.650999, 23.380356)
+                Votes = new ObservableCollection<Vote>(),
+
+                // We do not have to store the ratingas we can easily calculate it 
+                // when we know all votes. However, we can keep it
+                //Rating = this.Rating,
+
+                // We should also attach photo here
+
+                Location = new ParseGeoPoint(this.Lattitude, this.Longitude)
             };
 
             await restaurant.SaveAsync();
@@ -209,12 +247,21 @@
             this.Category = restaurant.Category;
             this.Specialties = (ObservableCollection<string>)restaurant.Specialties;
             this.PhotoUrl = restaurant.Photo.Url.ToString();
-            this.Rating = restaurant.Rating;
-            this.Coordinates = new Geopoint(new BasicGeoposition()
-            {
-                Longitude = restaurant.Location.Longitude,
-                Latitude = restaurant.Location.Latitude
-            });
+
+            // We do not need to store Rating in the model (Parse object)
+            // However, we can keep it
+            // this.Rating = restaurant.Rating;
+
+            // The below is the proper implementation for the votes / ratings functionality.
+            // By noy it throws exeption as there are no votes saved in Parse for the restaurants.
+            // It needs the list to be different from null
+            //List<int> votesValuesCollection = restaurant.Votes.Select(v => v.Value).ToList();
+            //this.Votes = new ObservableCollection<int>(votesValuesCollection);
+            //this.Rating = (votesValuesCollection.Sum()) / votesValuesCollection.Count;
+            //this.YourVote = restaurant.Votes.FirstOrDefault().Value;
+
+            this.Longitude = restaurant.Location.Longitude;
+            this.Lattitude = restaurant.Location.Latitude;
         }
     }
 }

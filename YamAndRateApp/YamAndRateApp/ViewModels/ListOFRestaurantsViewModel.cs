@@ -48,7 +48,7 @@
         {
             var restaurants = await new ParseQuery<Restaurant>().FindAsync();
 
-            this.Restaurants = restaurants.AsQueryable().Select(model => new RestaurantLimitedViewModel
+            var loadedRestaurants = restaurants.AsQueryable().Select(model => new RestaurantLimitedViewModel
             {
                 Name = model.Name,
                 Rating = model.Rating,
@@ -56,6 +56,8 @@
                 Category = model.Category,
                 Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })             
             });
+
+            this.Restaurants = loadedRestaurants.ToList();
         }
     }
 }

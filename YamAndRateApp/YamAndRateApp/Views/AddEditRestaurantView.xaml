@@ -60,15 +60,14 @@
                       Grid.Column="1"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Stretch"
-                      Padding="10">
-                        <ComboBox.ItemTemplate>
+                      Padding="10"
+                      ItemsSource="{Binding Categories}"
+                      SelectedItem="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <!--<ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Vertical">
-                                    <!-- TODO: List categories -->
-                                    <TextBlock Text="{Binding Category, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                                </StackPanel>
+                                    <TextBlock Text="{Binding}"/>
                             </DataTemplate>
-                        </ComboBox.ItemTemplate>
+                        </ComboBox.ItemTemplate>-->
                     </ComboBox>
                 </Grid>
                 <Grid  Style="{StaticResource InputGridField}">
@@ -144,6 +143,14 @@
                 <Grid  Style="{StaticResource InputGridField}">
                     <Button Content="Add new specialty" Padding="15" Click="DisplayNewSpecialty"/>
                 </Grid>
+                <TextBlock x:Name="LongitudeField" 
+                           Visibility="Collapsed" 
+                           FontSize="30" 
+                           Text="{Binding Longitude, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <TextBlock x:Name="LattitudeField" 
+                           Visibility="Collapsed" 
+                           FontSize="30" 
+                           Text="{Binding Lattitude, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Row="2">
