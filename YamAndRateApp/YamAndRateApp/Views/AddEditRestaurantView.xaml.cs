@@ -109,9 +109,9 @@ namespace YamAndRateApp.Views
 
             if (e.Parameter != null)
             {
-                string selectedRestaurantName = e.Parameter.ToString();
+                int SelectedRestaurantId = int.Parse(e.Parameter.ToString());
 
-                this.DataContext = new RestaurantViewModel(selectedRestaurantName);
+                this.DataContext = new RestaurantViewModel(SelectedRestaurantId);
             }
             else
             {

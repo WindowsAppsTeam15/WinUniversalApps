@@ -59,6 +59,7 @@
                                 Background="{Binding Category,  Converter={StaticResource CategoryConverter}}"
                                 Content="{Binding Name}"
                                 Click="ShowRestaurantDetails"
+                                Holding="GoToRestaurantDetails"
                                 />
                     </DataTemplate>
                 </Maps:MapItemsControl.ItemTemplate>

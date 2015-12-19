@@ -6,6 +6,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Input;
+using YamAndRateApp.ViewModels;
 
 namespace YamAndRateApp.Views
 {
@@ -115,6 +116,24 @@ namespace YamAndRateApp.Views
             }
 
             this.DetailsGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void GoToRestaurantDetails(object sender, HoldingRoutedEventArgs e)
+        {
+            var initiator = sender as Button;
+            int selectedRestaurantId = 1;
+
+            if (initiator != null)
+            {
+                var currentRestaurant = initiator.DataContext as RestaurantLimitedViewModel;
+
+                if (currentRestaurant != null)
+                {
+                    selectedRestaurantId = currentRestaurant.Id;
+                }
+            }
+
+            this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantId);
         }
     }
 }
