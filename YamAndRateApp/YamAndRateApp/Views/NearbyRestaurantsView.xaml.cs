@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.UI.Core;
@@ -144,6 +145,12 @@ namespace YamAndRateApp.Views
             }
 
             return selectedRestaurantId;
+        }
+
+        private async void RedirectToAddNewRestaurant(object sender, MapInputEventArgs e)
+        {
+            await Task.Delay(1000);
+            this.Frame.Navigate(typeof(AddEditRestaurantView));
         }
     }
 }
