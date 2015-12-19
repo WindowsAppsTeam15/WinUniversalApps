@@ -28,6 +28,13 @@
             set { SetProperty<string>(value); }
         }
 
+        [ParseFieldName("id")]
+        public int Id
+        {
+            get { return GetProperty<int>(); }
+            set { SetProperty<int>(value); }
+        }
+
         [ParseFieldName("specialties")]
         public IEnumerable<string> Specialties
         {

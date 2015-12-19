@@ -1,5 +1,7 @@
 ﻿namespace YamAndRateApp.ViewModels
 {
+    using System;
+
     using Windows.Devices.Geolocation;
 
     public class RestaurantLimitedViewModel
@@ -11,6 +13,8 @@
         public string PhotoUrl { get; set; }
 
         public string Category { get; set; }
+
+        public int Id { get; set; }
 
         public Geopoint Coordinates { get; set; }
     }
