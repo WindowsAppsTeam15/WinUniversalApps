@@ -97,7 +97,9 @@ namespace YamAndRateApp.Views
 
         private void ShowRestaurantDetails(object sender, RoutedEventArgs e)
         {
-            this.DetailsGrid.Visibility = Visibility.Visible;
+            int selectedRestaurantId = GetCurrentRestaurantId(sender);
+
+            this.DetailsGrid.DataContext = new RestaurantViewModel(selectedRestaurantId);
 
             var newCenter = new Geopoint(new BasicGeoposition()
             {
@@ -106,6 +108,7 @@ namespace YamAndRateApp.Views
             });
 
             this.MapControl1.Center = newCenter;
+            this.DetailsGrid.Visibility = Visibility.Visible;
         }
 
         private void HideRestaurantDetails(object sender, TappedRoutedEventArgs e)
@@ -120,6 +123,13 @@ namespace YamAndRateApp.Views
 
         private void GoToRestaurantDetails(object sender, HoldingRoutedEventArgs e)
         {
+            int selectedRestaurantId = GetCurrentRestaurantId(sender);
+
+            this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantId);
+        }
+
+        private int GetCurrentRestaurantId(object sender)
+        {
             var initiator = sender as Button;
             int selectedRestaurantId = 1;
 
@@ -133,7 +143,7 @@ namespace YamAndRateApp.Views
                 }
             }
 
-            this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantId);
+            return selectedRestaurantId;
         }
     }
 }

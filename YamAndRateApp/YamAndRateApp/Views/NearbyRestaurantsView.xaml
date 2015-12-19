@@ -65,7 +65,7 @@
                 </Maps:MapItemsControl.ItemTemplate>
             </Maps:MapItemsControl>
         </Maps:MapControl>
-        <Grid x:Name="DetailsGrid" Visibility="Collapsed">
+        <Grid x:Name="DetailsGrid" Visibility="Collapsed" Grid.Row="1">
             <Grid.Transitions>
                 <TransitionCollection>
                     <ContentThemeTransition/>
@@ -77,9 +77,10 @@
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" Tapped="HideRestaurantDetails" Background="Black" Opacity="0.3">
             </Grid>
-            <Grid Grid.Row="1"
-                Background="Black"
-                DataContext="{Binding Source={StaticResource RestaurantViewModel}}">
+
+            <UserControls:RestaurantDetailsControl Grid.Row="1"/>
+            <!--<Grid Grid.Row="1"
+                Background="Black">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="1*"/>
@@ -170,7 +171,7 @@
                         </ListView>
                     </StackPanel>
                 </ScrollViewer>
-            </Grid>
+            </Grid>-->
 
 
         </Grid>
