@@ -7,6 +7,7 @@ using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Graphics.Imaging;
+using Windows.Media.Capture;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
@@ -150,25 +151,52 @@ namespace YamAndRateApp.Views
             if (file != null)
             {
                 // Ensure the stream is disposed once the image is loaded
-                using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
                 {
-                    // Convert IRandomAccessStream to byte array
-                    var reader = new DataReader(fileStream.GetInputStreamAt(0));
-                    var bytes = new byte[fileStream.Size];
-                    await reader.LoadAsync((uint)fileStream.Size);
-                    reader.ReadBytes(bytes);
-
-                    (this.DataContext as RestaurantViewModel).PhotoData = bytes;
 
                     // Set the image source to the selected bitmap
                     BitmapImage bitmapImage = new BitmapImage();
                     bitmapImage.DecodePixelHeight = decodePixelHeight;
                     bitmapImage.DecodePixelWidth = decodePixelWidth;
 
-                    await bitmapImage.SetSourceAsync(fileStream);
-                    uploadedPhoto.Source = bitmapImage;
+                    await bitmapImage.SetSourceAsync(stream);
+                    this.uploadedPhoto.Source = bitmapImage;
+
+                    // Convert IRandomAccessStream to byte array
+                    using (var reader = new DataReader(stream.GetInputStreamAt(0)))
+                    {
+                        var bytes = new byte[stream.Size];
+                        await reader.LoadAsync((uint)stream.Size);
+                        reader.ReadBytes(bytes);
+
+                        (this.DataContext as RestaurantViewModel).PhotoData = bytes;
+                    } 
                 }
             }
+        }
+
+        private async void OnCameraButtonClick(object sender, RoutedEventArgs e)
+        {
+            var camera = new CameraCaptureUI();
+            var photo = await camera.CaptureFileAsync(CameraCaptureUIMode.Photo);
+
+            if (photo != null)
+            {
+                byte[] bytes = null;
+
+                using (var stream = await photo.OpenReadAsync())
+                {
+                    bytes = new byte[stream.Size];
+                    using (var reader = new DataReader(stream))
+                    {
+                        await reader.LoadAsync((uint)stream.Size);
+                        reader.ReadBytes(bytes);
+                    }
+                }
+
+                (this.DataContext as RestaurantViewModel).PhotoData = bytes;
+                this.uploadedPhoto.Source = new BitmapImage(new Uri(photo.Path));                
+            }            
         }
     }
 }
