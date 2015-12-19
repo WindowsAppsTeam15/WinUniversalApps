@@ -1,5 +1,6 @@
 ﻿namespace YamAndRateApp.ViewModels
 {
+    using System;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
@@ -8,6 +9,7 @@
 
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
+
     using Windows.Devices.Geolocation;
 
     public class RestaurantViewModel : BaseViewModel
@@ -20,14 +22,16 @@
         private double yourVote;
         private double rating;
         private Geopoint coordinates;
+        private int id;
+        private int nextId = 1;
 
         public RestaurantViewModel()
-            : this(null)
+            : this(1)
         {
 
         }
 
-        public RestaurantViewModel(string selectedRestaurantName)
+        public RestaurantViewModel(int selectedRestaurantId)
         {
 
             //this.Name = "Mrysnoto UI";
@@ -60,7 +64,7 @@
             this.Category = CategoryType.Bulgarian;
             */
 
-            this.LoadRestaurantDetails(selectedRestaurantName);
+            this.LoadRestaurantDetails(selectedRestaurantId);
         }
 
         public string Name
@@ -112,6 +116,18 @@
             {
                 this.category = value;
                 this.NotifyPropertyChanged("Category");
+            }
+        }
+
+        public int Id
+        {
+            get
+            {
+                return this.id;
+            }
+            set
+            {
+                this.id = value;
             }
         }
 
@@ -184,12 +200,13 @@
         }
 
         private async void OnSaveRestaurantExecute(object parameters)
-        {
+        { 
             var restaurant = new Restaurant
             {
                 Name = this.Name,
                 Description = this.Description,
                 Category = this.Category,
+                Id = this.Id,
                 Specialties = this.Specialties,
                 Votes = this.Votes,
                 Rating = this.Rating,
@@ -197,16 +214,18 @@
             };
 
             await restaurant.SaveAsync();
+            this.nextId++;
         }
 
-        private async void LoadRestaurantDetails(string selectedRestaurantName)
+        private async void LoadRestaurantDetails(int selectedRestaurantId)
         {
-            var query = new ParseQuery<Restaurant>().Where(r => r.Name == selectedRestaurantName);
+            var query = new ParseQuery<Restaurant>().Where(r => r.Id == selectedRestaurantId);
             var restaurant = await query.FirstOrDefaultAsync();
 
             this.Name = restaurant.Name;
             this.Description = restaurant.Description;
             this.Category = restaurant.Category;
+            this.Id = restaurant.Id;
             this.Specialties = (ObservableCollection<string>)restaurant.Specialties;
             this.PhotoUrl = restaurant.Photo.Url.ToString();
             this.Rating = restaurant.Rating;

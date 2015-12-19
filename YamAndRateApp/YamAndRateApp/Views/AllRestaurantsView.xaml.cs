@@ -34,7 +34,7 @@ namespace YamAndRateApp.Views
         private void LoadDetailsView(object sender, RoutedEventArgs e)
         {
             var initiator = e.OriginalSource as Button;
-            string selectedRestaurantName = string.Empty;
+            int selectedRestaurantId = 1;
 
             if (initiator != null)
             {
@@ -42,12 +42,11 @@ namespace YamAndRateApp.Views
 
                 if (currentRestaurant != null)
                 {
-                    selectedRestaurantName = currentRestaurant.Name;
-                    // Or we can same and get the ID
+                    selectedRestaurantId = currentRestaurant.Id;
                 }
             }
 
-            this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantName);
+            this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantId);
         }
 
         private async void GridView_Loaded(object sender, RoutedEventArgs e)

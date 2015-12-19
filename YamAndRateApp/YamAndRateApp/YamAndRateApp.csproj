@@ -108,7 +108,6 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\CategoryType.cs" />
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\Specialty.cs" />
     <Compile Include="Models\Vote.cs" />

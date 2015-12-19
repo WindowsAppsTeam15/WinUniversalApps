@@ -54,6 +54,7 @@
                 Rating = model.Rating,
                 PhotoUrl = model.Photo.Url.ToString(),
                 Category = model.Category,
+                Id = model.Id,
                 Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })             
             });
         }
