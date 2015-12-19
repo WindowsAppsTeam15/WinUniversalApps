@@ -133,12 +133,10 @@
                         <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="5*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock
-                        Grid.Column="0" 
-                        Text="Specialty:" />
-                    <TextBox
-                     Grid.Column="1"
-                     PlaceholderText="Type specialty" />
+                    <TextBlock  Grid.Column="0" 
+                                Text="Specialty:" />
+                    <TextBox Grid.Column="1"
+                             PlaceholderText="Type specialty" />
                 </Grid>
                 <Grid  Style="{StaticResource InputGridField}">
                     <Button Content="Add new specialty" Padding="15" Click="DisplayNewSpecialty"/>
@@ -151,17 +149,48 @@
                            Visibility="Collapsed" 
                            FontSize="30" 
                            Text="{Binding Lattitude, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <Image Name="uploadedPhoto" Width="100" Height="100" />
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0"
-                Content="Upload Photo" />
-            <Button Grid.Column="1"
-                Content="Save"
+
+            <Button Grid.Row="1" 
+                    Grid.Column="0"
+                    Content="Upload Photo"
+                    Click="ShowUploadOptions"/>
+            
+            <Grid x:Name="uploadOptionsGrid" 
+                  Visibility="Collapsed" 
+                  Grid.Column="0"
+                  Grid.RowSpan="2">
+                <Grid.Transitions>
+                    <TransitionCollection>
+                        <ContentThemeTransition/>
+                    </TransitionCollection>
+                </Grid.Transitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Name="libraryBtn" 
+                        Grid.Row="0" 
+                        Content="Library" 
+                        Click="OnLibraryButtonClick"/>
+                <Button x:Name="photoBtn" 
+                        Grid.Row="1"
+                        Content="Camera" />
+            </Grid>
+            <Button Grid.Row="1"
+                    Grid.Column="1"
+                    Content="Save"
                     Command="{Binding SaveRestaurant}" />
         </Grid>
     </Grid>

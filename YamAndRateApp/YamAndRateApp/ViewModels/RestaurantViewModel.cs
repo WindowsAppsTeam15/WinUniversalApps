@@ -12,20 +12,19 @@
 
     using Windows.Devices.Geolocation;
     using System.Collections.Generic;
-
+    using Windows.Storage.Streams;
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
         private string name;
         private string description;
-        private string photoUrl;
+        private string photoUrl;        
         private string category;
         private int yourVote;
         private double rating;
         private double longitude;
         private double lattitude;
         private int id;
-        private int nextId = 1;
 
         public RestaurantViewModel()
         {
@@ -212,6 +211,8 @@
             }
         }
 
+        public byte[] PhotoData { get; set; }
+
         public ObservableCollection<string> Categories { get; set; }
 
         public ObservableCollection<string> Specialties { get; set; }
@@ -232,7 +233,13 @@
         }
 
         private async void OnSaveRestaurantExecute(object parameters)
-        { 
+        {
+            var restaurantsCount = await new ParseQuery<Restaurant>().CountAsync();
+            this.Id = ++restaurantsCount;
+
+            ParseFile photo = new ParseFile(this.Name + ".jpg", this.PhotoData);
+            await photo.SaveAsync();
+
             var restaurant = new Restaurant
             {
                 Name = this.Name,
@@ -246,13 +253,11 @@
                 // when we know all votes. However, we can keep it
                 //Rating = this.Rating,
 
-                // We should also attach photo here
-
+                Photo = photo,
                 Location = new ParseGeoPoint(this.Lattitude, this.Longitude)
             };
 
             await restaurant.SaveAsync();
-            this.nextId++;
         }
 
         private async void LoadRestaurantDetails(int selectedRestaurantId)

@@ -6,6 +6,10 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Geolocation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Imaging;
+using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -13,6 +17,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using YamAndRateApp.ViewModels;
 
@@ -118,6 +123,52 @@ namespace YamAndRateApp.Views
                 this.DataContext = new RestaurantViewModel();
             }
 
+        }
+
+        private void ShowUploadOptions(object sender, RoutedEventArgs e)
+        {
+            this.uploadOptionsGrid.Visibility = Visibility.Visible;
+        }
+
+        private async void OnLibraryButtonClick(object sender, RoutedEventArgs e)
+        {
+            int decodePixelHeight = 100;
+            int decodePixelWidth = 100;
+
+            FileOpenPicker open = new FileOpenPicker();
+            open.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            open.ViewMode = PickerViewMode.Thumbnail;
+
+            // Filter to include the file type
+            open.FileTypeFilter.Clear();
+            open.FileTypeFilter.Add(".jpg");
+
+            // Open a stream for the selected file
+            StorageFile file = await open.PickSingleFileAsync();
+
+            // Ensure a file was selected
+            if (file != null)
+            {
+                // Ensure the stream is disposed once the image is loaded
+                using (IRandomAccessStream fileStream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    // Convert IRandomAccessStream to byte array
+                    var reader = new DataReader(fileStream.GetInputStreamAt(0));
+                    var bytes = new byte[fileStream.Size];
+                    await reader.LoadAsync((uint)fileStream.Size);
+                    reader.ReadBytes(bytes);
+
+                    (this.DataContext as RestaurantViewModel).PhotoData = bytes;
+
+                    // Set the image source to the selected bitmap
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.DecodePixelHeight = decodePixelHeight;
+                    bitmapImage.DecodePixelWidth = decodePixelWidth;
+
+                    await bitmapImage.SetSourceAsync(fileStream);
+                    uploadedPhoto.Source = bitmapImage;
+                }
+            }
         }
     }
 }
