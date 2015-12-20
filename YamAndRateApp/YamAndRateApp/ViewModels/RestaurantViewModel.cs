@@ -1,6 +1,6 @@
 ﻿namespace YamAndRateApp.ViewModels
 {
-    using System;
+    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
@@ -10,9 +10,6 @@
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
 
-    using Windows.Devices.Geolocation;
-    using System.Collections.Generic;
-    using Windows.Storage.Streams;
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
@@ -20,11 +17,13 @@
         private string description;
         private string photoUrl;        
         private string category;
+        private string specialty;
+        private int id;
         private int yourVote;
         private double rating;
         private double longitude;
         private double lattitude;
-        private int id;
+        private ObservableCollection<string> specialties;     
 
         public RestaurantViewModel()
         {
@@ -35,8 +34,8 @@
                 "Unspecified",
                 "Italian",
                 "French",
-                "Chinise",
-                "OtherAsian",
+                "Chinеse",
+                "Other Asian",
                 "Bulgarian"
             };
             this.Category = this.Categories[0];
@@ -44,9 +43,15 @@
 
         public RestaurantViewModel(int selectedRestaurantId)
         {
-
-            //this.Name = "Mrysnoto UI";
-            //this.Description = "Very cool and delicate cuisine";
+            this.Categories = new ObservableCollection<string>()
+            {
+                "Unspecified",
+                "Italian",
+                "French",
+                "Chinеse",
+                "Other Asian",
+                "Bulgarian"
+            };
 
             // Remove this when we initialize the collection below after requesting data from Parse
             this.Votes = new ObservableCollection<int>()
@@ -56,24 +61,12 @@
 
             /*
             this.Rating = this.TestVotes.Sum() / this.TestVotes.Count;
-            this.YourVote = this.TestVotes[0];
-
-            this.Specialties = new ObservableCollection<string>();
-            this.Specialties.Add("Shkembe chorba");
-            this.Specialties.Add("Kiselo zae s praz");
-            this.Specialties.Add("Chibapchita");
-            this.Specialties.Add("Bob");
-            this.Specialties.Add("Lik s oriz");
-            this.Specialties.Add("Krokodil na plocha");
+            this.YourVote = this.TestVotes[0];            
 
             this.Votes = new ObservableCollection<Vote>();
             //this.Votes.Add(new Vote(3, "Pesho"));
             //this.Votes.Add(new Vote(2, "Evstati"));
             //this.Votes.Add(new Vote(4, "Az"));
-
-            this.PhotoUrl = "http://www.gettyimages.ca/gi-resources/images/Homepage/Category-Creative/UK/UK_Creative_462809583.jpg";
-            // this.Coords = new Coordinates(42.650999, 23.380356);
-            this.Category = CategoryType.Bulgarian;
             */
 
             this.LoadRestaurantDetails(selectedRestaurantId);
@@ -128,6 +121,76 @@
             {
                 this.category = value;
                 this.NotifyPropertyChanged("Category");
+            }
+        }
+
+        public string FirstSpecialty
+        {
+            get
+            {
+                return this.specialty;
+            }
+            set
+            {
+                this.specialty = value;
+                this.NotifyPropertyChanged("Specialty");
+                this.Specialties.Add(this.FirstSpecialty);
+            }
+        }
+
+        public string SecondSpecialty
+        {
+            get
+            {
+                return this.specialty;
+            }
+            set
+            {
+                this.specialty = value;
+                this.NotifyPropertyChanged("Specialty");
+                this.Specialties.Add(this.SecondSpecialty);
+            }
+        }
+
+        public string ThirdSpecialty
+        {
+            get
+            {
+                return this.specialty;
+            }
+            set
+            {
+                this.specialty = value;
+                this.NotifyPropertyChanged("Specialty");
+                this.Specialties.Add(this.ThirdSpecialty);
+            }
+        }
+
+        public string FourthSpecialty
+        {
+            get
+            {
+                return this.specialty;
+            }
+            set
+            {
+                this.specialty = value;
+                this.NotifyPropertyChanged("Specialty");
+                this.Specialties.Add(this.FourthSpecialty);
+            }
+        }
+
+        public string FifthSpecialty
+        {
+            get
+            {
+                return this.specialty;
+            }
+            set
+            {
+                this.specialty = value;
+                this.NotifyPropertyChanged("Specialty");
+                this.Specialties.Add(this.FifthSpecialty);
             }
         }
 
@@ -215,7 +278,18 @@
 
         public ObservableCollection<string> Categories { get; set; }
 
-        public ObservableCollection<string> Specialties { get; set; }
+        public ObservableCollection<string> Specialties
+        {
+            get
+            {
+                return this.specialties;
+            }
+            set
+            {
+                this.specialties = value;
+                this.NotifyPropertyChanged("Specialties");
+            }
+        }
 
         public ObservableCollection<int> Votes { get; set; }
 
@@ -246,13 +320,9 @@
                 Description = this.Description,
                 Category = this.Category,
                 Id = this.Id,
-                Specialties = this.Specialties,
+                Specialties = new List<string>(this.Specialties),
                 Votes = new ObservableCollection<Vote>(),
-
-                // We do not have to store the ratingas we can easily calculate it 
-                // when we know all votes. However, we can keep it
-                //Rating = this.Rating,
-
+                Rating = this.Rating,
                 Photo = photo,
                 Location = new ParseGeoPoint(this.Lattitude, this.Longitude)
             };
@@ -269,12 +339,9 @@
             this.Description = restaurant.Description;
             this.Category = restaurant.Category;
             this.Id = restaurant.Id;
-            this.Specialties = (ObservableCollection<string>)restaurant.Specialties;
+            this.Specialties = new ObservableCollection<string>(restaurant.Specialties);
             this.PhotoUrl = restaurant.Photo.Url.ToString();
-
-            // We do not need to store Rating in the model (Parse object)
-            // However, we can keep it
-            // this.Rating = restaurant.Rating;
+            this.Rating = restaurant.Rating;
 
             // The below is the proper implementation for the votes / ratings functionality.
             // By noy it throws exeption as there are no votes saved in Parse for the restaurants.

@@ -63,9 +63,8 @@
 
                 this.Restaurants = loadedRestaurants.ToList();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
             } 
         }
     }

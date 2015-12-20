@@ -98,7 +98,7 @@
                            Margin="10 0"></Rectangle>
                 <TextBlock Text="Main dishes:" 
                            Style="{StaticResource LableText}"/>
-                <ListView ItemsSource="{Binding Specialties, UpdateSourceTrigger=PropertyChanged}">
+                <ListView ItemsSource="{Binding Specialties, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding}" 

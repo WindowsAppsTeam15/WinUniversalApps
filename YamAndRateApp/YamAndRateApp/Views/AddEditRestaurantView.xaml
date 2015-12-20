@@ -78,9 +78,9 @@
                     <TextBlock
                         Grid.Column="0" 
                         Text="Specialty:" />
-                    <TextBox
-                     Grid.Column="1"
-                     PlaceholderText="Type specialty" />
+                    <TextBox Grid.Column="1"
+                             PlaceholderText="Type specialty"
+                             Text="{Binding FirstSpecialty, Mode=TwoWay}" />
                 </Grid>
                 
                 <!--Replace the below with collection!!!-->
@@ -94,9 +94,9 @@
                     <TextBlock
                         Grid.Column="0" 
                         Text="Specialty:" />
-                    <TextBox
-                     Grid.Column="1"
-                     PlaceholderText="Type specialty" />
+                    <TextBox Grid.Column="1"
+                             PlaceholderText="Type specialty"
+                             Text="{Binding SecondSpecialty, Mode=TwoWay}" />
                 </Grid>
                 <Grid  Style="{StaticResource InputGridField}"
                        Visibility="Collapsed"
@@ -108,9 +108,9 @@
                     <TextBlock
                         Grid.Column="0" 
                         Text="Specialty:" />
-                    <TextBox
-                     Grid.Column="1"
-                     PlaceholderText="Type specialty" />
+                    <TextBox Grid.Column="1"
+                             PlaceholderText="Type specialty"
+                             Text="{Binding ThirdSpecialty, Mode=TwoWay}" />
                 </Grid>
                 <Grid  Style="{StaticResource InputGridField}"
                        Visibility="Collapsed"
@@ -122,11 +122,11 @@
                     <TextBlock
                         Grid.Column="0" 
                         Text="Specialty:" />
-                    <TextBox
-                     Grid.Column="1"
-                     PlaceholderText="Type specialty" />
+                    <TextBox Grid.Column="1"
+                             PlaceholderText="Type specialty"
+                             Text="{Binding FourthSpecialty, Mode=TwoWay}" />
                 </Grid>
-                <Grid  Style="{StaticResource InputGridField}"
+                <Grid Style="{StaticResource InputGridField}"
                        Visibility="Collapsed"
                        x:Name="ForthHidden">
                     <Grid.ColumnDefinitions>
@@ -136,7 +136,8 @@
                     <TextBlock  Grid.Column="0" 
                                 Text="Specialty:" />
                     <TextBox Grid.Column="1"
-                             PlaceholderText="Type specialty" />
+                             PlaceholderText="Type specialty"
+                             Text="{Binding FifthSpecialty, Mode=TwoWay}" />
                 </Grid>
                 <Grid  Style="{StaticResource InputGridField}">
                     <Button Content="Add new specialty" Padding="15" Click="DisplayNewSpecialty"/>

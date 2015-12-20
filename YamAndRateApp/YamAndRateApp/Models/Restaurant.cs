@@ -36,10 +36,10 @@
         }
 
         [ParseFieldName("specialties")]
-        public IEnumerable<string> Specialties
+        public IList<string> Specialties
         {
-            get { return GetProperty<IEnumerable<string>>(); }
-            set { SetProperty<IEnumerable<string>>(value); }
+            get { return GetProperty<IList<string>>(); }
+            set { SetProperty<IList<string>>(value); }
         }
 
         [ParseFieldName("votes")]
