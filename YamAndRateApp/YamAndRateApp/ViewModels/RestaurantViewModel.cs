@@ -10,21 +10,23 @@
 
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
-
+    using Utils;
+    using System.Net;
     public class RestaurantViewModel : BaseViewModel
     {
         private ICommand saveRestaurant;
         private string name;
         private string description;
-        private string photoUrl;        
+        private string photoUrl;
         private string category;
         private string specialty;
+        private string errorMessage;
         private int id;
         private int yourVote;
         private double rating;
         private double longitude;
         private double lattitude;
-        private ObservableCollection<string> specialties;        
+        private ObservableCollection<string> specialties;
 
         public RestaurantViewModel()
         {
@@ -186,6 +188,19 @@
             }
         }
 
+        public string ErrorMessage
+        {
+            get
+            {
+                return this.errorMessage;
+            }
+            set
+            {
+                this.errorMessage = value;
+                this.NotifyPropertyChanged("ErrorMessage");
+            }
+        }
+
         public int Id
         {
             get
@@ -303,25 +318,55 @@
             var restaurantsCount = await new ParseQuery<Restaurant>().CountAsync();
             this.Id = ++restaurantsCount;
 
-            ParseFile photo = new ParseFile(this.Name + ".jpg", this.PhotoData);
-            await photo.SaveAsync();
+            if (Validator.ValidateRestaurantDetails(this.Name, this.Description) != string.Empty)
+            {
+                this.ErrorMessage = Validator.ValidateRestaurantDetails(this.Name, this.Description);
+                return;
+            }
+
+            ParseFile photo;
+            try
+            {
+                photo = new ParseFile(this.Name + ".jpg", this.PhotoData);
+                await photo.SaveAsync();
+            }
+            catch (ArgumentNullException ex)
+            {
+                this.ErrorMessage = "Add a photo!";
+                return;
+            }
+            catch (WebException ex)
+            {
+                this.ErrorMessage = "No internet connection!";
+                return;
+            }
 
             this.Votes.Add(0);
 
-            var restaurant = new Restaurant
+            try
             {
-                Name = this.Name,
-                Description = this.Description,
-                Category = this.Category,
-                Id = this.Id,
-                Specialties = new List<string>(this.Specialties),
-                Votes = new List<int>(this.Votes),
-                Rating = this.Rating,
-                Photo = photo,
-                Location = new ParseGeoPoint(this.Lattitude, this.Longitude)
-            };
+                var restaurant = new Restaurant
+                {
+                    Name = this.Name,
+                    Description = this.Description,
+                    Category = this.Category,
+                    Id = this.Id,
+                    Specialties = new List<string>(this.Specialties),
+                    Votes = new List<int>(this.Votes),
+                    Rating = this.Rating,
+                    Photo = photo,
+                    Location = new ParseGeoPoint(this.Lattitude, this.Longitude)
+                };
 
-            await restaurant.SaveAsync();
+                await restaurant.SaveAsync();
+            }
+            catch (WebException)
+            {
+                this.ErrorMessage = "No internet connection!";
+                return;
+            }
+
+            this.ErrorMessage = string.Empty;  
         }
 
         private async void LoadRestaurantDetails(int selectedRestaurantId)
@@ -334,7 +379,7 @@
             this.Category = restaurant.Category;
             this.Id = restaurant.Id;
             this.PhotoUrl = restaurant.Photo.Url.ToString();
-            this.Rating = restaurant.Rating;            
+            this.Rating = restaurant.Rating;
             this.Votes = new ObservableCollection<int>(restaurant.Votes);
             this.Rating += this.Votes.Sum();
             this.Rating /= this.Votes.Count;

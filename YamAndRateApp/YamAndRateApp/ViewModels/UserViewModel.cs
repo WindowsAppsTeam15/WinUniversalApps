@@ -22,6 +22,8 @@
 
         public UserViewModel()
         {
+            this.ErrorMessage = string.Empty;
+            this.SuccessMessage = string.Empty;
         }
 
         public ICommand RegisterUser
@@ -199,7 +201,8 @@
                 }            
             }
 
-            // TODO: Somehow redirect to login page   
+            // TODO: Somehow redirect to login page  
+            this.ErrorMessage = ""; 
             this.SuccessMessage = "Successful registration!";         
         }
 
@@ -225,6 +228,7 @@
             }
 
             // TODO: Somehow redirect to home page?
+            this.ErrorMessage = string.Empty;
             this.SuccessMessage = "Successfully logged in!";
         }
     }

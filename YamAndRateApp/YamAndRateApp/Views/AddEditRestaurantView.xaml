@@ -13,13 +13,23 @@
     <Grid Style="{StaticResource CntainerGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
+            <RowDefinition />
             <RowDefinition Height="7*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
+
         <UserControls:HeaderControl Grid.Row="0"/>
 
-        <ScrollViewer Grid.Row="1"
+        <Grid Grid.Row="1"
+              Style="{StaticResource InputGridField}">
+            <TextBlock Grid.Row="0"
+                       Grid.Column="0"
+                       Text="{Binding ErrorMessage, Mode=TwoWay}"
+                       Foreground="Red"
+                       FontSize="16"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="2"
                       VerticalScrollBarVisibility="Hidden">
             <StackPanel>
                 <Grid Style="{StaticResource InputGridField}">
@@ -82,7 +92,7 @@
                              PlaceholderText="Type specialty"
                              Text="{Binding FirstSpecialty, Mode=TwoWay}" />
                 </Grid>
-                
+
                 <!--Replace the below with collection!!!-->
                 <Grid  Style="{StaticResource InputGridField}"
                        Visibility="Collapsed"
@@ -153,7 +163,7 @@
                 <Image Name="uploadedPhoto" Width="100" Height="100" />
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -167,7 +177,7 @@
                     Grid.Column="0"
                     Content="Upload Photo"
                     Click="ShowUploadOptions"/>
-            
+
             <Grid x:Name="uploadOptionsGrid" 
                   Visibility="Collapsed" 
                   Grid.Column="0"
