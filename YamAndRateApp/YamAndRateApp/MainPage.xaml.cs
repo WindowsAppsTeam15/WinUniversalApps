@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Parse;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -52,11 +53,6 @@ namespace YamAndRateApp
         //    this.ProgressRingControl.IsActive = false;
         //}
 
-        public void GoToSearchResultsBtn(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(AllRestaurantsView));
-        }
-
         public void GoToLogInBtn(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(LogInView));
@@ -69,7 +65,16 @@ namespace YamAndRateApp
 
         public void GoToAddNewRestaurantBtn(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddEditRestaurantView));
+            if (ParseUser.CurrentUser != null)
+            {
+                this.Frame.Navigate(typeof(AddEditRestaurantView));
+            }
+            else
+            {
+                this.tbMessage.Text = "You must be logged in to add new restaurant!";
+                this.tbMessage.Visibility = Visibility.Visible;
+                return;
+            }            
         }
 
         public void GoToAllRestaurantsBtn(object sender, RoutedEventArgs e)
