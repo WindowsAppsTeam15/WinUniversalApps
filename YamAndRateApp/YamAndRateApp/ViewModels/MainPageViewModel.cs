@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using YamAndRateApp.Helpers;
+using YamAndRateApp.Utils;
 
 namespace YamAndRateApp.ViewModels
 {
@@ -61,6 +62,12 @@ namespace YamAndRateApp.ViewModels
         private void OnLogOutExecute(object obj)
         {
             ParseUser.LogOut();
+
+            ToastManager toastManager = new ToastManager();
+            var heading = "Successfully logged out!";
+            var image = "/Assets/LockScreenLogo.scale-200.png";
+            toastManager.CreateToast(heading, image);
+
             this.DisplayLogIn = true;
         }
     }
