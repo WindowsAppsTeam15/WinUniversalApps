@@ -2,6 +2,7 @@
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Navigation;
 using YamAndRateApp.Models;
 using YamAndRateApp.ViewModels;
 
@@ -40,6 +41,15 @@ namespace YamAndRateApp.Views
             await Task.Delay(1000);
             this.ProgressRingControl.Visibility = Visibility.Collapsed;
             this.ProgressRingControl.IsActive = false;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            string pattern = (e.Parameter).ToString();
+
+            this.DataContext = new ListOFRestaurantsViewModel(pattern);
         }
     }
 }

@@ -82,7 +82,12 @@ namespace YamAndRateApp
 
         public void GoToAllRestaurantsBtn(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AllRestaurantsView));
+            this.Frame.Navigate(typeof(AllRestaurantsView), String.Empty);
+        }
+
+        public void SearchForRestaurantsBtn(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AllRestaurantsView), this.SearchInput.Text);
         }
     }
 }

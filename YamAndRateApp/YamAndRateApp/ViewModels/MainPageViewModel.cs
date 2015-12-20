@@ -14,6 +14,7 @@ namespace YamAndRateApp.ViewModels
     {
         private bool displayLogIn;
         private RelayCommand logOut;
+        private RelayCommand executeRestaurantSearch;
 
         public MainPageViewModel()
         {
@@ -52,10 +53,33 @@ namespace YamAndRateApp.ViewModels
             {
                 if (this.logOut == null)
                 {
-                    this.logOut = new RelayCommand(this.OnLogOutExecute);
+                    this.logOut = new RelayCommand(this.OnSearchExecute);
                 }
 
                 return this.logOut;
+            }
+        }
+
+        public ICommand ExecuteRestaurantSearch
+        {
+            get
+            {
+                if (this.executeRestaurantSearch == null)
+                {
+                    this.executeRestaurantSearch = new RelayCommand(this.OnSearchExecute);
+                }
+
+                return this.executeRestaurantSearch;
+            }
+        }
+
+        private void OnSearchExecute(object obj)
+        {
+            var searchPattern = obj.ToString();
+
+            if (String.IsNullOrEmpty(searchPattern))
+            {
+
             }
         }
 

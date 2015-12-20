@@ -28,6 +28,7 @@
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -39,16 +40,24 @@
             <Grid Grid.Row="0"
                   Opacity="0.7"
                   Margin="2">
-                <TextBlock x:Name="tbMessage" 
-                           Padding="10"
-                           Visibility="Collapsed"
+                <TextBlock x:Name="tbMessage"
                            HorizontalAlignment="Stretch"
                            VerticalAlignment="Stretch"
-                           Foreground="Red"
-                           FontSize="16"/>
+                           Visibility="Collapsed"
+                           Foreground="Yellow"/>
             </Grid>
-            
+            <TextBox Grid.Row="1" x:Name="SearchInput"
+                     PlaceholderText="Your search"
+                     VerticalAlignment="Stretch"
+                     Padding="12">
+
+            </TextBox>
+
             <Button Grid.Row="2" 
+                    Content ="Search for a Restaurant"
+                    Click="SearchForRestaurantsBtn"/>
+
+            <Button Grid.Row="3" 
                     Content ="Nearby Restaurants" 
                     Click="GoToNearbyRestaurantsBtn"/>
 
@@ -56,18 +65,18 @@
             <!--Put the command parameter before the comand-->
             <!--CommandParameter="{Binding}" - when we navigate to this specific restaurant-->
 
-            <Button Grid.Row="3" 
+            <Button Grid.Row="4" 
                     Content ="Add New Restaurant" 
                     CommandParameter="" 
                     Click="GoToAddNewRestaurantBtn"/>
-            <Button Grid.Row="4" 
+            <Button Grid.Row="5" 
                     Content ="See All Restaurants" 
                     Click="GoToAllRestaurantsBtn"/>
-            <Button Grid.Row="5" 
+            <Button Grid.Row="6" 
                     Content ="Log in / Register" 
                     Click="GoToLogInBtn"
                     Visibility="{Binding DisplayLogIn, Converter={StaticResource DisplayLogIn}}"/>
-            <Button Grid.Row="5" 
+            <Button Grid.Row="6" 
                     Content ="Log out" 
                     Command="{Binding LogOut}"
                     Visibility="{Binding DisplayLogIn, Converter={StaticResource DisplayLogOut}}"/>

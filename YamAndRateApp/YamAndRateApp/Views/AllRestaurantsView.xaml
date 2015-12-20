@@ -11,15 +11,12 @@
     Style="{StaticResource PageStyle}">
 
     <Page.Resources>
-        <ViewModels:ListOFRestaurantsViewModel x:Key="RestaurantsListViewModel" />
-
         <ItemsPanelTemplate x:Key="GridViewItemsPanel">
             <WrapGrid Orientation="Horizontal" HorizontalAlignment="Center"/>
         </ItemsPanelTemplate>
     </Page.Resources>
 
-    <Grid Style="{StaticResource CntainerGrid}"
-          DataContext="{Binding Source={StaticResource RestaurantsListViewModel}}">
+    <Grid Style="{StaticResource CntainerGrid}">
         
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
