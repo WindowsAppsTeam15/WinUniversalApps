@@ -42,7 +42,6 @@ namespace YamAndRateApp
 
         private void InitializeParse()
         {
-            ParseObject.RegisterSubclass<Vote>();
             ParseObject.RegisterSubclass<Restaurant>();
 
             ParseClient.Initialize("PSONNOvcFcWay4nWraPDC6mqmQnbbYWXdvqVsu2u", "JEX9HSMJKrPmJxFsXKLygK6ZuDWv2xa9NNFrbCzD");

@@ -43,10 +43,10 @@
         }
 
         [ParseFieldName("votes")]
-        public IEnumerable<Vote> Votes
+        public IList<int> Votes
         {
-            get { return GetProperty<IEnumerable<Vote>>(); }
-            set { SetProperty<IEnumerable<Vote>>(value); }
+            get { return GetProperty<IList<int>>(); }
+            set { SetProperty<IList<int>>(value); }
         }
 
         [ParseFieldName("rating")]

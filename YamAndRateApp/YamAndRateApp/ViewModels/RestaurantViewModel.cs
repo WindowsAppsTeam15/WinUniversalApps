@@ -1,5 +1,6 @@
 ﻿namespace YamAndRateApp.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -23,7 +24,7 @@
         private double rating;
         private double longitude;
         private double lattitude;
-        private ObservableCollection<string> specialties;     
+        private ObservableCollection<string> specialties;        
 
         public RestaurantViewModel()
         {
@@ -43,17 +44,8 @@
 
         public RestaurantViewModel(int selectedRestaurantId)
         {
-            this.Categories = new ObservableCollection<string>()
-            {
-                "Unspecified",
-                "Italian",
-                "French",
-                "Chinеse",
-                "Other Asian",
-                "Bulgarian"
-            };
-
             // Remove this when we initialize the collection below after requesting data from Parse
+            /*
             this.Votes = new ObservableCollection<int>()
             {
                 2, 3, 4
@@ -314,6 +306,8 @@
             ParseFile photo = new ParseFile(this.Name + ".jpg", this.PhotoData);
             await photo.SaveAsync();
 
+            this.Votes.Add(0);
+
             var restaurant = new Restaurant
             {
                 Name = this.Name,
@@ -321,7 +315,7 @@
                 Category = this.Category,
                 Id = this.Id,
                 Specialties = new List<string>(this.Specialties),
-                Votes = new ObservableCollection<Vote>(),
+                Votes = new List<int>(this.Votes),
                 Rating = this.Rating,
                 Photo = photo,
                 Location = new ParseGeoPoint(this.Lattitude, this.Longitude)
@@ -341,15 +335,11 @@
             this.Id = restaurant.Id;
             this.Specialties = new ObservableCollection<string>(restaurant.Specialties);
             this.PhotoUrl = restaurant.Photo.Url.ToString();
-            this.Rating = restaurant.Rating;
-
-            // The below is the proper implementation for the votes / ratings functionality.
-            // By noy it throws exeption as there are no votes saved in Parse for the restaurants.
-            // It needs the list to be different from null
-            //List<int> votesValuesCollection = restaurant.Votes.Select(v => v.Value).ToList();
-            //this.Votes = new ObservableCollection<int>(votesValuesCollection);
-            //this.Rating = (votesValuesCollection.Sum()) / votesValuesCollection.Count;
-            //this.YourVote = restaurant.Votes.FirstOrDefault().Value;
+            this.Rating = restaurant.Rating;            
+            this.Votes = new ObservableCollection<int>(restaurant.Votes);
+            this.Rating += this.Votes.Sum();
+            this.Rating /= this.Votes.Count;
+            this.YourVote = restaurant.Votes.FirstOrDefault();
 
             this.Longitude = restaurant.Location.Longitude;
             this.Lattitude = restaurant.Location.Latitude;

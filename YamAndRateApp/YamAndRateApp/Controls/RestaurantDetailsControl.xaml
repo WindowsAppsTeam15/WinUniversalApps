@@ -50,8 +50,8 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
-                               Text="Aggregate Rating: " 
-                                Style="{StaticResource LableText}"
+                               Text="Rating: " 
+                               Style="{StaticResource LableText}"
                                VerticalAlignment="Center"/>
                     <TextBlock Grid.Column="1"
                                Text="{Binding Rating, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
