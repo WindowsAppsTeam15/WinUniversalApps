@@ -5,14 +5,14 @@
     xmlns:local="using:YamAndRateApp.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:ViewModels="using:YamAndRateApp.ViewModels"
+    xmlns:ViewModels="using:YamAndRateApp.ViewModels.UserViewModels"
     xmlns:Helpers="using:YamAndRateApp.Helpers"
     xmlns:UserControls="using:YamAndRateApp.Controls"
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
     <Page.Resources>
-        <ViewModels:UserViewModel x:Key="UserViewModel" />
+        <ViewModels:RegisterUserViewModel x:Key="UserViewModel" />
         <Helpers:RepeatePaswordConverter x:Key="RepeatePaswordConverter" />
     </Page.Resources>
 
