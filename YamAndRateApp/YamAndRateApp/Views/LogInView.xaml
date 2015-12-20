@@ -62,13 +62,6 @@
                                Foreground="Red"
                                FontSize="16" />
                 </Grid>
-                <Grid Style="{StaticResource InputGridField}">
-                    <TextBlock Grid.Row="0"
-                               Grid.Column="0"
-                               Text="{Binding SuccessMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                               Foreground="Green"
-                               FontSize="16" />
-                </Grid>
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Row="2">

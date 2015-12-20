@@ -16,14 +16,12 @@
         private string password;
         private string confirmedPassword;
         private string errorMessage;
-        private string successMessage;
         private ICommand registerUser;
         private ICommand loginUser;
 
         public UserViewModel()
         {
             this.ErrorMessage = string.Empty;
-            this.SuccessMessage = string.Empty;
         }
 
         public ICommand RegisterUser
@@ -121,19 +119,6 @@
             }
         }
 
-        public string SuccessMessage
-        {
-            get
-            {
-                return this.successMessage;
-            }
-            set
-            {
-                this.successMessage = value;
-                this.NotifyPropertyChanged("SuccessMessage");
-            }
-        }
-
         private async void OnRegisterUserExecute(object parameters)
         {
             if (Validator.ValidateUserRegistration(this.Username, this.Email, this.Password, this.ConfirmedPassword) != string.Empty)
@@ -202,8 +187,12 @@
             }
 
             // TODO: Somehow redirect to login page  
-            this.ErrorMessage = ""; 
-            this.SuccessMessage = "Successful registration!";         
+            this.ErrorMessage = "";
+            ToastManager toastManager = new ToastManager();
+            var heading = "Successful registration!";
+            var content = string.Empty;
+            var image = "/Assets/LockScreenLogo.scale-200.png";
+            toastManager.CreateToast(heading, content, image);
         }
 
         private async void OnLogInUserExecute(object parameters)
@@ -229,7 +218,11 @@
 
             // TODO: Somehow redirect to home page?
             this.ErrorMessage = string.Empty;
-            this.SuccessMessage = "Successfully logged in!";
+            ToastManager toastManager = new ToastManager();
+            var heading = "Successfully logged in!";
+            var content = string.Format("User: {0}", this.Username);
+            var image = "/Assets/LockScreenLogo.scale-200.png";
+            toastManager.CreateToast(heading, content, image);
         }
     }
 }

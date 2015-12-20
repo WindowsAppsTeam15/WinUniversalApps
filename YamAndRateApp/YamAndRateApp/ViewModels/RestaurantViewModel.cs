@@ -330,12 +330,12 @@
                 photo = new ParseFile(this.Name + ".jpg", this.PhotoData);
                 await photo.SaveAsync();
             }
-            catch (ArgumentNullException ex)
+            catch (ArgumentNullException)
             {
                 this.ErrorMessage = "Add a photo!";
                 return;
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 this.ErrorMessage = "No internet connection!";
                 return;
@@ -366,7 +366,12 @@
                 return;
             }
 
-            this.ErrorMessage = string.Empty;  
+            this.ErrorMessage = string.Empty;
+            ToastManager toastManager = new ToastManager();
+            var heading = "Successfully added new restaurant!";
+            var content = string.Format("{0} - {1}", this.Name, this.Description);
+            var image = photo.Url.ToString();
+            toastManager.CreateToast(heading, content, image);
         }
 
         private async void LoadRestaurantDetails(int selectedRestaurantId)

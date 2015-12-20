@@ -1,0 +1,37 @@
+﻿namespace YamAndRateApp.Utils
+{
+    using System;
+    using Windows.Data.Xml.Dom;
+    using Windows.UI.Notifications;
+
+    public class ToastManager
+    {
+        private ToastTemplateType toastTemplate;
+        private XmlDocument toastXml;
+
+        public ToastManager()
+        {
+            this.toastTemplate = ToastTemplateType.ToastImageAndText02;
+            this.toastXml = ToastNotificationManager.GetTemplateContent(this.toastTemplate);
+        }
+
+        public void CreateToast(string heading, string content, string image)
+        {
+            this.FillToastContent(heading, content, image);
+            ToastNotification toast = new ToastNotification(this.toastXml);
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
+        private void FillToastContent(string heading, string content, string image)
+        {
+            // Fill in the text elements
+            XmlNodeList stringElements = this.toastXml.GetElementsByTagName("text");
+            stringElements[0].AppendChild(this.toastXml.CreateTextNode(heading));
+            stringElements[1].AppendChild(this.toastXml.CreateTextNode(content));
+
+            // Specify the absolute path to an image
+            XmlNodeList imageElements = this.toastXml.GetElementsByTagName("image");
+            imageElements[0].Attributes.GetNamedItem("src").NodeValue = image;
+        }
+    }
+}
