@@ -13,23 +13,15 @@
     <Grid Style="{StaticResource CntainerGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition />
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <UserControls:HeaderControl Grid.Row="0"/>
 
-        <Grid Grid.Row="1"
-              Style="{StaticResource InputGridField}">
-            <TextBlock Grid.Row="0"
-                       Grid.Column="0"
-                       Text="{Binding ErrorMessage, Mode=TwoWay}"
-                       Foreground="Red"
-                       FontSize="16"/>
-        </Grid>
 
-        <ScrollViewer Grid.Row="2"
+
+        <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Hidden">
             <StackPanel>
                 <Grid Style="{StaticResource InputGridField}">
@@ -160,48 +152,59 @@
                            Visibility="Collapsed" 
                            FontSize="30" 
                            Text="{Binding Lattitude, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
-                <Image Name="uploadedPhoto" Width="100" Height="100" />
+                <Image Name="uploadedPhoto" Width="200" Height="100" />
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="2">
+
+
+
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-
-            <Button Grid.Row="1" 
-                    Grid.Column="0"
-                    Content="Upload Photo"
-                    Click="ShowUploadOptions"/>
-
+            <TextBlock Grid.Row="0"
+                       Grid.ColumnSpan="2"
+                       VerticalAlignment="Stretch"
+                       Text="{Binding ErrorMessage, Mode=TwoWay}"
+                       Foreground="Yellow"/>
             <Grid x:Name="uploadOptionsGrid" 
                   Visibility="Collapsed" 
                   Grid.Column="0"
-                  Grid.RowSpan="2">
+                  Grid.Row="1"
+                  Grid.ColumnSpan="2">
                 <Grid.Transitions>
                     <TransitionCollection>
                         <ContentThemeTransition/>
                     </TransitionCollection>
                 </Grid.Transitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" 
                         Content="Library" 
-                        Click="OnLibraryButtonClick" />
-                <Button Grid.Row="1"
+                        Click="OnLibraryButtonClick"
+                        Opacity="0.7"/>
+                <Button Grid.Column="1"
                         Content="Camera" 
-                        Click="OnCameraButtonClick" />
+                        Click="OnCameraButtonClick"
+                        Opacity="0.7"/>
             </Grid>
-            <Button Grid.Row="1"
+            <Button Grid.Row="2"
                     Grid.Column="1"
                     Content="Save"
                     Command="{Binding SaveRestaurant}" />
+            <Button Grid.Row="2" 
+                    Grid.Column="0"
+                    Content="Upload Photo"
+                    VerticalAlignment="Stretch"
+                    Click="ShowUploadOptions"/>
         </Grid>
     </Grid>
 </Page>

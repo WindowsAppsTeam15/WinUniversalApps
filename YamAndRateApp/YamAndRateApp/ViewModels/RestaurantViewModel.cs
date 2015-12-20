@@ -360,7 +360,7 @@
             ParseFile photo;
             try
             {
-                photo = new ParseFile(this.Id + ".jpg", this.PhotoData);
+                photo = new ParseFile(this.Name + ".jpg", this.PhotoData);
                 await photo.SaveAsync();
             }
             catch (ArgumentNullException)
