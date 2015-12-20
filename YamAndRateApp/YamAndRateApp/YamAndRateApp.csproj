@@ -101,8 +101,14 @@
     <Compile Include="Controls\HeaderControl.xaml.cs">
       <DependentUpon>HeaderControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PassControl.xaml.cs">
+      <DependentUpon>PassControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\RestaurantDetailsControl.xaml.cs">
       <DependentUpon>RestaurantDetailsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UsernameControl.xaml.cs">
+      <DependentUpon>UsernameControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CategoryConverter.cs" />
     <Compile Include="Helpers\DisplayLogInConverter.cs" />
@@ -172,7 +178,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\PassControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\RestaurantDetailsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UsernameControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,6 +30,9 @@
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Hidden">
             <StackPanel>
+                <UserControls:UsernameControl/>
+                <UserControls:PassControl/>
+
                 <Grid Style="{StaticResource InputGridField}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -37,12 +40,13 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock
                        Grid.Column="0"
-                       Text="Username:"/>
-                    <TextBox
+                       Text="Confirm pass:"/>
+                    <PasswordBox
                      Grid.Column="1"
-                     PlaceholderText="Your username"
-                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                     PlaceholderText="Confirm your password"
+                     Password="{Binding ConfirmedPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
+                
                 <Grid Style="{StaticResource InputGridField}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
@@ -56,32 +60,7 @@
                      PlaceholderText="Your email"
                      Text="{Binding Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
-                <Grid Style="{StaticResource InputGridField}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock
-                       Grid.Column="0"
-                       Text="Password:"/>
-                    <PasswordBox
-                     Grid.Column="1"
-                     PlaceholderText="Your password"
-                     Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </Grid>
-                <Grid Style="{StaticResource InputGridField}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock
-                       Grid.Column="0"
-                       Text="Confirm password:"/>
-                    <PasswordBox
-                     Grid.Column="1"
-                     PlaceholderText="Confirm your password"
-                     Password="{Binding ConfirmedPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </Grid>
+                
                 <Grid Style="{StaticResource InputGridField}">
                     <TextBlock Grid.Row="0"
                                Grid.Column="0"
