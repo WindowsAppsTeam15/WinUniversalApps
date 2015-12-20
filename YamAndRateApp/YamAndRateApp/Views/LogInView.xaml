@@ -55,6 +55,20 @@
                      PlaceholderText="Your password"
                      Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
+                <Grid Style="{StaticResource InputGridField}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Foreground="Red"
+                               FontSize="16" />
+                </Grid>
+                <Grid Style="{StaticResource InputGridField}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{Binding SuccessMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Foreground="Green"
+                               FontSize="16" />
+                </Grid>
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Row="2">
@@ -62,8 +76,8 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Register" Click="Button_Click"></Button>
-            <Button Grid.Column="1" Content="Log In"  Command="{Binding LogInUser}"></Button>
+            <Button Grid.Column="0" Content="Register" Click="OnRegisterButtonClick" />
+            <Button Grid.Column="1" Content="Log In"  Command="{Binding LogInUser}" />
         </Grid>
     </Grid>
 </Page>

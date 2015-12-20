@@ -1,5 +1,6 @@
 ﻿namespace YamAndRateApp.ViewModels
 {
+    using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -46,19 +47,26 @@
 
         private async void LoadRestaurants()
         {
-            var restaurants = await new ParseQuery<Restaurant>().FindAsync();
-
-            var loadedRestaurants = restaurants.AsQueryable().Select(model => new RestaurantLimitedViewModel
+            try
             {
-                Name = model.Name,
-                Rating = model.Rating,
-                PhotoUrl = model.Photo.Url.ToString(),
-                Category = model.Category,
-                Id = model.Id,
-                Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })             
-            });
+                var restaurants = await new ParseQuery<Restaurant>().FindAsync();
 
-            this.Restaurants = loadedRestaurants.ToList();
+                var loadedRestaurants = restaurants.AsQueryable().Select(model => new RestaurantLimitedViewModel
+                {
+                    Name = model.Name,
+                    Rating = model.Rating,
+                    PhotoUrl = model.Photo.Url.ToString(),
+                    Category = model.Category,
+                    Id = model.Id,
+                    Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })
+                });
+
+                this.Restaurants = loadedRestaurants.ToList();
+            }
+            catch (Exception e)
+            {
+
+            } 
         }
     }
 }

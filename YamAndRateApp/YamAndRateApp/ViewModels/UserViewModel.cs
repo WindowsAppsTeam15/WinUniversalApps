@@ -6,19 +6,22 @@
     using Parse;
 
     using YamAndRateApp.Helpers;
+    using YamAndRateApp.Utils;
+    using System.Net;
 
     public class UserViewModel : BaseViewModel
     {
+        private string username;
         private string email;
         private string password;
         private string confirmedPassword;
-        private bool isInRegisterMode;
+        private string errorMessage;
+        private string successMessage;
         private ICommand registerUser;
         private ICommand loginUser;
 
         public UserViewModel()
         {
-            this.isInRegisterMode = false;
         }
 
         public ICommand RegisterUser
@@ -27,7 +30,7 @@
             {
                 if (this.registerUser == null)
                 {
-                    this.registerUser = new RelayCommand(this.OnRegisterUserExecute);
+                    this.registerUser = new RelayCommand(this.OnRegisterUserExecute);                    
                 }
 
                 return this.registerUser;
@@ -44,6 +47,20 @@
                 }
 
                 return this.loginUser;
+            }
+        }
+
+        public string Username
+        {
+            get { return this.username; }
+
+            set
+            {
+                if (value != this.username)
+                {
+                    this.username = value;
+                    base.NotifyPropertyChanged("Username");
+                }
             }
         }
 
@@ -89,77 +106,126 @@
             }
         }
 
-        public bool IsInRegisterMode
+        public string ErrorMessage
         {
-            get { return this.isInRegisterMode; }
-
+            get
+            {
+                return this.errorMessage;
+            }
             set
             {
-                if (value != this.isInRegisterMode)
-                {
-                    this.isInRegisterMode = value;
-                    base.NotifyPropertyChanged("IsInRegisterMode");
-                }
+                this.errorMessage = value;
+                this.NotifyPropertyChanged("ErrorMessage");
+            }
+        }
+
+        public string SuccessMessage
+        {
+            get
+            {
+                return this.successMessage;
+            }
+            set
+            {
+                this.successMessage = value;
+                this.NotifyPropertyChanged("SuccessMessage");
             }
         }
 
         private async void OnRegisterUserExecute(object parameters)
         {
-            if (!isInRegisterMode)
+            if (Validator.ValidateUserRegistration(this.Username, this.Email, this.Password, this.ConfirmedPassword) != string.Empty)
             {
-                this.IsInRegisterMode = true;
+                this.ErrorMessage = Validator.ValidateUserRegistration(this.Username, this.Email, this.Password, this.ConfirmedPassword);
                 return;
             }
 
-            /*
-            // We should implement vaidations for email and pass length
-            if (string.IsNullOrEmpty(this.Pasword)
-                || string.IsNullOrEmpty(this.RepeatedPassword)
-                || string.IsNullOrEmpty(this.Email))
+            int usersWithCurrentUsername = 0;
+            try
             {
-                // Retern error
+                usersWithCurrentUsername = await ParseUser.Query.WhereEqualTo("username", this.Username).CountAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            if (usersWithCurrentUsername != 0)
+            {
+                this.ErrorMessage = "Username is already taken!";
                 return;
             }
 
-            // Register user
-            return;
-            */
+            int usersWithCurrentEmail = 0;
+
+            try
+            {
+               usersWithCurrentEmail  = await ParseUser.Query.WhereEqualTo("email", this.Email).CountAsync();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            if (usersWithCurrentEmail != 0)
+            {
+                this.ErrorMessage = "Email is already taken!";
+                return;
+            }
 
             var user = new ParseUser()
             {
-                Username = this.Email,
+                Username = this.Username,
                 Password = this.Password,
                 Email = this.Email
             };
 
-            await user.SignUpAsync();
+            try
+            {
+                await user.SignUpAsync();                
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status == WebExceptionStatus.NameResolutionFailure)
+                {
+                    this.ErrorMessage = "No internet connection!";
+                    return;
+                }    
+                
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    this.ErrorMessage = "Invalid e-mail!";
+                    return;
+                }            
+            }
+
+            // TODO: Somehow redirect to login page   
+            this.SuccessMessage = "Successful registration!";         
         }
 
         private async void OnLogInUserExecute(object parameters)
         {
-            // We should implement vaidations for email and pass length
-            /*
-            if (string.IsNullOrEmpty(this.Pasword)
-               || string.IsNullOrEmpty(this.Email))
-            {
-                // Return error message
-                return;
-            }
-
-            // Login user
-            return;
-            */
-
             try
             {
-                await ParseUser.LogInAsync(this.Email, this.Password);
-                // Login was successful.
-                // TODO: Redirect to all restaurants view?
+                await ParseUser.LogInAsync(this.Username, this.Password);                
             }
-            catch (Exception e)
+            catch (WebException ex)
             {
-                // The login failed. Check the error to see why.
+                if (ex.Status == WebExceptionStatus.NameResolutionFailure)
+                {
+                    this.ErrorMessage = "No internet connection!";
+                    return;
+                }
+
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    this.ErrorMessage = "Invalid username or password!";
+                    return;
+                }
             }
+
+            // TODO: Somehow redirect to home page?
+            this.SuccessMessage = "Successfully logged in!";
         }
     }
 }

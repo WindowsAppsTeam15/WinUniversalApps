@@ -76,16 +76,32 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock
                        Grid.Column="0"
-                       Text="Confirm pass:"/>
+                       Text="Confirm password:"/>
                     <PasswordBox
                      Grid.Column="1"
                      PlaceholderText="Confirm your password"
                      Password="{Binding ConfirmedPassword, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </Grid>
+                <Grid Style="{StaticResource InputGridField}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{Binding ErrorMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Foreground="Red"
+                               FontSize="16" />
+                </Grid>
+                <Grid Style="{StaticResource InputGridField}">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="{Binding SuccessMessage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                               Foreground="Green"
+                               FontSize="16" />
+                </Grid>
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Row="2">
-            <Button Grid.Column="0" Content="Register" Command="{Binding RegisterUser}"></Button>
+            <Button Grid.Column="0" 
+                    Content="Register" 
+                    Command="{Binding RegisterUser}" />
         </Grid>
     </Grid>
 </Page>
