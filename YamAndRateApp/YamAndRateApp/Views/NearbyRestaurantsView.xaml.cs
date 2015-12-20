@@ -6,7 +6,9 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using YamAndRateApp.Models;
 using YamAndRateApp.ViewModels;
 
 namespace YamAndRateApp.Views
@@ -126,7 +128,8 @@ namespace YamAndRateApp.Views
         {
             int selectedRestaurantId = GetCurrentRestaurantId(sender);
 
-            this.Frame.Navigate(typeof(RestaurantDetailsView), selectedRestaurantId);
+            this.Frame.Navigate(typeof(RestaurantDetailsView),
+                            new RestaurantNavigationArguments(selectedRestaurantId, EdgeTransitionLocation.Left));
         }
 
         private int GetCurrentRestaurantId(object sender)

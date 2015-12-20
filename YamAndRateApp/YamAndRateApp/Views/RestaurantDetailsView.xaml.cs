@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Navigation;
 using Parse;
 using YamAndRateApp.Models;
 using YamAndRateApp.ViewModels;
+using Windows.UI.Xaml.Media.Animation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,7 +33,7 @@ namespace YamAndRateApp.Views
 
         public RestaurantDetailsView()
         {
-            this.InitializeComponent();            
+            this.InitializeComponent();
 
             this.ManipulationMode = ManipulationModes.TranslateX;
             this.ManipulationStarted += (s, e) => this.x1 = (int)e.Position.X;
@@ -45,12 +46,19 @@ namespace YamAndRateApp.Views
                     int restaurantsCount = await this.GetRestaurantsCount();
                     if (nextRestaurantId <= restaurantsCount)
                     {
-                        this.DataContext = new RestaurantViewModel(nextRestaurantId);
-                    }       
+                        var entranceTransition = new PaneThemeTransition();
+                        entranceTransition.Edge = EdgeTransitionLocation.Left;
+                        this.Transitions.Clear();
+                        this.Transitions.Add(entranceTransition);
+
+                        this.Frame.Navigate(typeof(RestaurantDetailsView),
+                            new RestaurantNavigationArguments(nextRestaurantId, EdgeTransitionLocation.Right));
+                        //this.DataContext = new RestaurantViewModel(nextRestaurantId);
+                    }
                     else
                     {
                         nextRestaurantId = --this.selectedRestaurantId;
-                    }             
+                    }
                 }
 
                 if (this.x1 < this.x2)
@@ -58,7 +66,14 @@ namespace YamAndRateApp.Views
                     var prevRestaurantId = --this.selectedRestaurantId;
                     if (prevRestaurantId > 0)
                     {
-                        this.DataContext = new RestaurantViewModel(prevRestaurantId);
+                        var entranceTransition = new PaneThemeTransition();
+                        entranceTransition.Edge = EdgeTransitionLocation.Right;
+                        this.Transitions.Clear();
+                        this.Transitions.Add(entranceTransition);
+
+                        this.Frame.Navigate(typeof(RestaurantDetailsView), 
+                            new RestaurantNavigationArguments(prevRestaurantId, EdgeTransitionLocation.Left));
+                        //this.DataContext = new RestaurantViewModel(prevRestaurantId);
                     }
                     else
                     {
@@ -78,7 +93,12 @@ namespace YamAndRateApp.Views
         {
             base.OnNavigatedTo(e);
 
-            selectedRestaurantId = (int)e.Parameter;
+            var navigationArgs = (e.Parameter) as RestaurantNavigationArguments;
+            selectedRestaurantId = navigationArgs.RestaurantId;
+
+            var entranceTransition = new PaneThemeTransition();
+            entranceTransition.Edge = navigationArgs.NavigationDirection;
+            this.Transitions.Add(entranceTransition);
 
             this.DataContext = new RestaurantViewModel(selectedRestaurantId);
         }

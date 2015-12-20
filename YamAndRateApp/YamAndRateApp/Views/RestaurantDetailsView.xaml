@@ -11,6 +11,18 @@
     mc:Ignorable="d"
     Style="{StaticResource PageStyle}">
 
+    <Page.Transitions>
+        <TransitionCollection >
+            <PaneThemeTransition Edge="Left"/>
+            <!--<NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>-->
+        </TransitionCollection>
+    </Page.Transitions>
+
+    
     <Page.Resources>
         <ViewModels:RestaurantViewModel x:Key="RestaurantViewModel" />
         <Helpers:CategoryConverter x:Key="CategoryConverter" />

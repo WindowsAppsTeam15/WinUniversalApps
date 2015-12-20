@@ -333,13 +333,18 @@
             this.Description = restaurant.Description;
             this.Category = restaurant.Category;
             this.Id = restaurant.Id;
-            this.Specialties = new ObservableCollection<string>(restaurant.Specialties);
             this.PhotoUrl = restaurant.Photo.Url.ToString();
             this.Rating = restaurant.Rating;            
             this.Votes = new ObservableCollection<int>(restaurant.Votes);
             this.Rating += this.Votes.Sum();
             this.Rating /= this.Votes.Count;
             this.YourVote = restaurant.Votes.FirstOrDefault();
+
+            if (restaurant.Specialties == null)
+            {
+                restaurant.Specialties = new ObservableCollection<string>();
+            }
+            this.Specialties = new ObservableCollection<string>(restaurant.Specialties);
 
             this.Longitude = restaurant.Location.Longitude;
             this.Lattitude = restaurant.Location.Latitude;
