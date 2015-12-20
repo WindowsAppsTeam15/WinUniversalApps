@@ -327,7 +327,7 @@
             ParseFile photo;
             try
             {
-                photo = new ParseFile(this.Name + ".jpg", this.PhotoData);
+                photo = new ParseFile(this.Id + ".jpg", this.PhotoData);
                 await photo.SaveAsync();
             }
             catch (ArgumentNullException)
@@ -371,7 +371,9 @@
             var heading = "Successfully added new restaurant!";
             var content = string.Format("{0} - {1}", this.Name, this.Description);
             var image = photo.Url.ToString();
-            toastManager.CreateToast(heading, content, image);
+            // TODO: Maybe navigate to restaurant details is better
+            var navigateTo = "allRestaurants";
+            toastManager.CreateToast(heading, content, image, navigateTo);
         }
 
         private async void LoadRestaurantDetails(int selectedRestaurantId)

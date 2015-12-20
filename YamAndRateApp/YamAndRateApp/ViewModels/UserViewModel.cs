@@ -192,7 +192,8 @@
             var heading = "Successful registration!";
             var content = string.Empty;
             var image = "/Assets/LockScreenLogo.scale-200.png";
-            toastManager.CreateToast(heading, content, image);
+            var navigateTo = "login";
+            toastManager.CreateToast(heading, content, image, navigateTo);
         }
 
         private async void OnLogInUserExecute(object parameters)
@@ -222,7 +223,8 @@
             var heading = "Successfully logged in!";
             var content = string.Format("User: {0}", this.Username);
             var image = "/Assets/LockScreenLogo.scale-200.png";
-            toastManager.CreateToast(heading, content, image);
+            var navigateTo = "main";
+            toastManager.CreateToast(heading, content, image, navigateTo);
         }
     }
 }

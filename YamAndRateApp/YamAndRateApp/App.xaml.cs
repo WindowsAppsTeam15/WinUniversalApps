@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 using Parse;
 using YamAndRateApp.Models;
+using YamAndRateApp.Views;
 
 namespace YamAndRateApp
 {
@@ -144,8 +145,7 @@ namespace YamAndRateApp
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
-        {
-
+        {            
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -154,6 +154,21 @@ namespace YamAndRateApp
 #endif
 
             Frame rootFrame = Window.Current.Content as Frame;
+
+            if (e.Arguments == "main")
+            {
+                rootFrame.Navigate(typeof(MainPage));
+            }
+
+            if (e.Arguments == "allRestaurants")
+            {
+                rootFrame.Navigate(typeof(AllRestaurantsView));
+            }
+
+            if (e.Arguments == "login")
+            {
+                rootFrame.Navigate(typeof(LogInView));
+            }
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
