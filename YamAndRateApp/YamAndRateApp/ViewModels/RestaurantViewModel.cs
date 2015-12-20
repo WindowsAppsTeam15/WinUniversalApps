@@ -31,6 +31,7 @@
         private string[] restaurantIds;
         private string nextRestaurant;
         private string prevRestaurantId;
+        private Restaurant restaurant;
 
         public RestaurantViewModel()
         {
@@ -261,9 +262,11 @@
                 if (!(this.yourVote == value))
                 {
                     this.yourVote = value;
-                    this.Votes[0] = value;
+                    this.Votes.Add(value);
+                    
                     this.Rating = this.Votes.Sum() / this.Votes.Count;
                     base.NotifyPropertyChanged("YourVote");
+                    UpdateDbVotes(value);
                 }
             }
         }
@@ -334,10 +337,20 @@
             }
         }
 
+        private async void UpdateDbVotes(int value)
+        {
+            try
+            {
+                this.restaurant.Votes.Add(value);
+                await this.restaurant.SaveAsync();
+            }
+            catch (Exception e)
+            {
+            }
+        }
+
         private async void OnSaveRestaurantExecute(object parameters)
         {
-            var restaurantsCount = await new ParseQuery<Restaurant>().CountAsync();
-
             if (Validator.ValidateRestaurantDetails(this.Name, this.Description) != string.Empty)
             {
                 this.ErrorMessage = Validator.ValidateRestaurantDetails(this.Name, this.Description);
@@ -399,7 +412,7 @@
         private async void LoadRestaurantDetails(string selectedRestaurantId)
         {
             var query = new ParseQuery<Restaurant>().Where(r => r.ObjectId == selectedRestaurantId);
-            var restaurant = await query.FirstOrDefaultAsync();
+            this.restaurant = await query.FirstOrDefaultAsync();
 
             this.restaurantIds = (await new ParseQuery<Restaurant>().FindAsync()).AsQueryable().Select(r => r.ObjectId).OrderBy(i => i).ToArray();
             int currentIdIndex = Array.IndexOf(restaurantIds, selectedRestaurantId);
@@ -410,7 +423,7 @@
             this.Id = restaurant.ObjectId;
             this.PhotoUrl = restaurant.Photo.Url.ToString();
             this.Votes = new ObservableCollection<int>(restaurant.Votes);
-            this.Rating += this.Votes.Sum();
+            this.Rating += (double)this.Votes.Sum();
             this.Rating /= this.Votes.Count;
             this.YourVote = restaurant.Votes.FirstOrDefault();
 

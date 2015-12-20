@@ -39,8 +39,8 @@
 
         <UserControls:RestaurantDetailsControl Grid.Row="1"/>
 
-        <TextBlock x:Name="NextId" Text="{Binding NextRestaurantId}"/>
-        <TextBlock x:Name="PrevId" Text="{Binding PrevRestaurantId}" HorizontalAlignment="Right"/>
+        <TextBlock x:Name="NextId" Visibility="Collapsed" Text="{Binding NextRestaurantId}"/>
+        <TextBlock x:Name="PrevId" Visibility="Collapsed" Text="{Binding PrevRestaurantId}" HorizontalAlignment="Right"/>
 
     </Grid>
 </Page>
