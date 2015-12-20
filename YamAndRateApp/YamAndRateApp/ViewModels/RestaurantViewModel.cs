@@ -411,11 +411,24 @@
 
         private async void LoadRestaurantDetails(string selectedRestaurantId)
         {
-            var query = new ParseQuery<Restaurant>().Where(r => r.ObjectId == selectedRestaurantId);
-            this.restaurant = await query.FirstOrDefaultAsync();
+            int currentIdIndex;
+            try
+            {
+                var query = new ParseQuery<Restaurant>().Where(r => r.ObjectId == selectedRestaurantId);
+                this.restaurant = await query.FirstOrDefaultAsync();
 
-            this.restaurantIds = (await new ParseQuery<Restaurant>().FindAsync()).AsQueryable().Select(r => r.ObjectId).OrderBy(i => i).ToArray();
-            int currentIdIndex = Array.IndexOf(restaurantIds, selectedRestaurantId);
+                this.restaurantIds = (await new ParseQuery<Restaurant>().FindAsync()).AsQueryable().Select(r => r.ObjectId).OrderBy(i => i).ToArray();
+                currentIdIndex = Array.IndexOf(restaurantIds, selectedRestaurantId);
+            }
+            catch
+            {
+                ToastManager toastManager = new ToastManager();
+                var heading = "There is no internet connection!";
+                var image = "/Assets/LockScreenLogo.scale-200.png";
+                var navigateTo = "main";
+                toastManager.CreateToast(heading, String.Empty, image, navigateTo);
+                return;
+            }
 
             this.Name = restaurant.Name;
             this.Description = restaurant.Description;

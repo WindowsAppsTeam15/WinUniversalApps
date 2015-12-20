@@ -9,7 +9,7 @@
 
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
-
+    using Utils;
     public class ListOFRestaurantsViewModel : ViewModelBase
     {
         private ObservableCollection<RestaurantLimitedViewModel> restaurants;
@@ -65,6 +65,12 @@
             }
             catch (Exception)
             {
+                ToastManager toastManager = new ToastManager();
+                var heading = "There is no internet connection!";
+                var image = "/Assets/LockScreenLogo.scale-200.png";
+                var navigateTo = "main";
+                toastManager.CreateToast(heading, String.Empty, image, navigateTo);
+                return;
             } 
         }
     }
