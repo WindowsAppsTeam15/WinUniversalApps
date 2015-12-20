@@ -1,7 +1,5 @@
 ﻿namespace YamAndRateApp.ViewModels
 {
-    using System;
-
     using Windows.Devices.Geolocation;
 
     public class RestaurantLimitedViewModel

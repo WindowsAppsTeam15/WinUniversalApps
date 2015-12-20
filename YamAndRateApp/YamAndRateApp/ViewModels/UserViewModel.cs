@@ -9,7 +9,7 @@
     using YamAndRateApp.Utils;
     using System.Net;
 
-    public class UserViewModel : BaseViewModel
+    public class UserViewModel : ViewModelBase
     {
         private string username;
         private string email;
@@ -185,8 +185,7 @@
                     return;
                 }            
             }
-
-            // TODO: Somehow redirect to login page  
+             
             this.ErrorMessage = "";
             ToastManager toastManager = new ToastManager();
             var heading = "Successful registration!";
@@ -217,7 +216,6 @@
                 }
             }
 
-            // TODO: Somehow redirect to home page?
             this.ErrorMessage = string.Empty;
             ToastManager toastManager = new ToastManager();
             var heading = "Successfully logged in!";

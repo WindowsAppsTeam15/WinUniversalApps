@@ -4,15 +4,16 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Net;
     using System.Windows.Input;
 
     using Parse;
 
     using YamAndRateApp.Helpers;
     using YamAndRateApp.Models;
-    using Utils;
-    using System.Net;
-    public class RestaurantViewModel : BaseViewModel
+    using YamAndRateApp.Utils;
+
+    public class RestaurantViewModel : ViewModelBase
     {
         private ICommand saveRestaurant;
         private string name;
@@ -46,23 +47,6 @@
 
         public RestaurantViewModel(int selectedRestaurantId)
         {
-            // Remove this when we initialize the collection below after requesting data from Parse
-            /*
-            this.Votes = new ObservableCollection<int>()
-            {
-                2, 3, 4
-            };
-
-            /*
-            this.Rating = this.TestVotes.Sum() / this.TestVotes.Count;
-            this.YourVote = this.TestVotes[0];            
-
-            this.Votes = new ObservableCollection<Vote>();
-            //this.Votes.Add(new Vote(3, "Pesho"));
-            //this.Votes.Add(new Vote(2, "Evstati"));
-            //this.Votes.Add(new Vote(4, "Az"));
-            */
-
             this.LoadRestaurantDetails(selectedRestaurantId);
         }
 

@@ -10,7 +10,7 @@
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
 
-    public class ListOFRestaurantsViewModel : BaseViewModel
+    public class ListOFRestaurantsViewModel : ViewModelBase
     {
         private ObservableCollection<RestaurantLimitedViewModel> restaurants;
 

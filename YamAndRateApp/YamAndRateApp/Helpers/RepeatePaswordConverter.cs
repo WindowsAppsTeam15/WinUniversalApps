@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Data;
-
-namespace YamAndRateApp.Helpers
+﻿namespace YamAndRateApp.Helpers
 {
+    using System;
+
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Data;
+
     public class RepeatePaswordConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

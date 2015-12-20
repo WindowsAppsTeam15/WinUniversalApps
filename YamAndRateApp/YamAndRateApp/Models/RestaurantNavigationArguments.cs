@@ -1,5 +1,4 @@
-﻿
-namespace YamAndRateApp.Models
+﻿namespace YamAndRateApp.Models
 {
     using Windows.UI.Xaml.Controls.Primitives;
 
@@ -12,6 +11,7 @@ namespace YamAndRateApp.Models
         }
 
         public EdgeTransitionLocation NavigationDirection { get; private set; }
+
         public int RestaurantId { get; private set; }
     }
 }
