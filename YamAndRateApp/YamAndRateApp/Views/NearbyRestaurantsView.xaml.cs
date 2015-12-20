@@ -100,7 +100,12 @@ namespace YamAndRateApp.Views
 
         private void ShowRestaurantDetails(object sender, RoutedEventArgs e)
         {
-            int selectedRestaurantId = GetCurrentRestaurantId(sender);
+            string selectedRestaurantId = GetCurrentRestaurantId(sender);
+
+            if (selectedRestaurantId == null)
+            {
+                return;
+            }
 
             this.DetailsGrid.DataContext = new RestaurantViewModel(selectedRestaurantId);
 
@@ -126,16 +131,21 @@ namespace YamAndRateApp.Views
 
         private void GoToRestaurantDetails(object sender, HoldingRoutedEventArgs e)
         {
-            int selectedRestaurantId = GetCurrentRestaurantId(sender);
+            string selectedRestaurantId = GetCurrentRestaurantId(sender);
+
+            if (selectedRestaurantId == null)
+            {
+                return;
+            }
 
             this.Frame.Navigate(typeof(RestaurantDetailsView),
                             new RestaurantNavigationArguments(selectedRestaurantId, EdgeTransitionLocation.Left));
         }
 
-        private int GetCurrentRestaurantId(object sender)
+        private string GetCurrentRestaurantId(object sender)
         {
             var initiator = sender as Button;
-            int selectedRestaurantId = 1;
+            string selectedRestaurantId = null;
 
             if (initiator != null)
             {

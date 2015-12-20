@@ -38,6 +38,9 @@
         <UserControls:HeaderControl Grid.Row="0"/>
 
         <UserControls:RestaurantDetailsControl Grid.Row="1"/>
-        
+
+        <TextBlock x:Name="NextId" Text="{Binding NextRestaurantId}"/>
+        <TextBlock x:Name="PrevId" Text="{Binding PrevRestaurantId}" HorizontalAlignment="Right"/>
+
     </Grid>
 </Page>

@@ -27,7 +27,7 @@ namespace YamAndRateApp.Views
     /// </summary>
     public sealed partial class RestaurantDetailsView : Page
     {
-        private int selectedRestaurantId;
+        private string selectedRestaurantId;
         private int x1;
         private int x2;
 
@@ -37,56 +37,36 @@ namespace YamAndRateApp.Views
 
             this.ManipulationMode = ManipulationModes.TranslateX;
             this.ManipulationStarted += (s, e) => this.x1 = (int)e.Position.X;
-            this.ManipulationCompleted += async (s, e) =>
+            this.ManipulationCompleted += (s, e) =>
             {
                 this.x2 = (int)e.Position.X;
                 if (this.x1 > this.x2)
                 {
-                    var nextRestaurantId = ++this.selectedRestaurantId;
-                    int restaurantsCount = await this.GetRestaurantsCount();
-                    if (nextRestaurantId <= restaurantsCount)
-                    {
-                        var entranceTransition = new PaneThemeTransition();
-                        entranceTransition.Edge = EdgeTransitionLocation.Left;
-                        this.Transitions.Clear();
-                        this.Transitions.Add(entranceTransition);
+                    // Will be difficult to use???
+                    var nextRestaurantId = this.NextId.Text;
 
-                        this.Frame.Navigate(typeof(RestaurantDetailsView),
-                            new RestaurantNavigationArguments(nextRestaurantId, EdgeTransitionLocation.Right));
-                        //this.DataContext = new RestaurantViewModel(nextRestaurantId);
-                    }
-                    else
-                    {
-                        nextRestaurantId = --this.selectedRestaurantId;
-                    }
+                    var entranceTransition = new PaneThemeTransition();
+                    entranceTransition.Edge = EdgeTransitionLocation.Left;
+                    this.Transitions.Clear();
+                    this.Transitions.Add(entranceTransition);
+
+                    this.Frame.Navigate(typeof(RestaurantDetailsView),
+                        new RestaurantNavigationArguments(nextRestaurantId, EdgeTransitionLocation.Right));
                 }
 
                 if (this.x1 < this.x2)
                 {
-                    var prevRestaurantId = --this.selectedRestaurantId;
-                    if (prevRestaurantId > 0)
-                    {
-                        var entranceTransition = new PaneThemeTransition();
-                        entranceTransition.Edge = EdgeTransitionLocation.Right;
-                        this.Transitions.Clear();
-                        this.Transitions.Add(entranceTransition);
+                    var prevRestaurantId = this.PrevId.Text;
 
-                        this.Frame.Navigate(typeof(RestaurantDetailsView), 
-                            new RestaurantNavigationArguments(prevRestaurantId, EdgeTransitionLocation.Left));
-                        //this.DataContext = new RestaurantViewModel(prevRestaurantId);
-                    }
-                    else
-                    {
-                        prevRestaurantId = ++this.selectedRestaurantId;
-                    }
+                    var entranceTransition = new PaneThemeTransition();
+                    entranceTransition.Edge = EdgeTransitionLocation.Right;
+                    this.Transitions.Clear();
+                    this.Transitions.Add(entranceTransition);
+
+                    this.Frame.Navigate(typeof(RestaurantDetailsView),
+                        new RestaurantNavigationArguments(prevRestaurantId, EdgeTransitionLocation.Left));
                 }
             };
-        }
-
-        private async Task<int> GetRestaurantsCount()
-        {
-            int count = await new ParseQuery<Restaurant>().CountAsync();
-            return count;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

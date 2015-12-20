@@ -12,7 +12,7 @@
 
         public string Category { get; set; }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public Geopoint Coordinates { get; set; }
     }
