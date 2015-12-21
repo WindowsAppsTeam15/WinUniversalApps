@@ -46,7 +46,7 @@
                 <DataTemplate>
                     <Button Height="155" Width="155" Padding="0" Margin="0" 
                             Click="LoadDetailsView">
-                        <Grid Background="Purple" Height="155" Width="155" Padding="0" Margin="0">
+                        <Grid Background="Yellow" Height="155" Width="155" Padding="0" Margin="0">
                             <Border >
                                 <Border.Background>
                                     <ImageBrush ImageSource="{Binding PhotoUrl}" Stretch="UniformToFill" />

@@ -17,8 +17,8 @@
                 case "Italian": return new SolidColorBrush(Colors.Coral);
                 case "French": return new SolidColorBrush(Colors.PaleVioletRed);
                 case "Chinese": return new SolidColorBrush(Colors.Plum);
-                case "Other Asian": return new SolidColorBrush(Colors.Pink);
-                case "Bulgarian": return new SolidColorBrush(Colors.HotPink);
+                case "Other Asian": return new SolidColorBrush(Colors.CornflowerBlue);
+                case "Bulgarian": return new SolidColorBrush(Colors.LightGreen);
                 default: return new SolidColorBrush(Colors.Gray);
             }
         }
