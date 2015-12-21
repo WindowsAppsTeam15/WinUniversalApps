@@ -29,7 +29,7 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35"></RowDefinition>
-                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="100"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -46,13 +46,21 @@
                            Visibility="Collapsed"
                            Foreground="Yellow"/>
             </Grid>
-            <TextBox Grid.Row="1" x:Name="SearchInput"
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="0" x:Name="SearchInput"
                      PlaceholderText="Your search"
                      VerticalAlignment="Stretch"
-                     Padding="12">
-
-            </TextBox>
-
+                     Padding="12" />
+                <ListBox x:Name="SearchSuggestions"
+                         Grid.Row="1"
+                         Visibility="Collapsed"
+                         SelectionChanged="SearchSuggestionsSelectionChanged">
+                </ListBox>
+            </Grid>  
             <Button Grid.Row="2" 
                     Content ="Search for a Restaurant"
                     Click="SearchForRestaurantsBtn"/>
