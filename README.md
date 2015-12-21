@@ -9,15 +9,17 @@ We will develop a Windows Universal (Windows 10) app.
 
 -   Create accounts. User accounts will have:
 
-    -   Email (provided also as username);
+    -   Email;
+    
+    -   Username;
 
     -   Pass (saved in our storage as hashed pass);
 
-    -   List of ratings (votes). Each user will be allowed to rate each restaurant only once;
+    -   List of ratings (votes);
 
 -   Create restaurant profile. Each profile will have:
 
-    -   Photo (or photos), made and shared by user(s);
+    -   Photo, made and shared by users;
 
     -   Name;
 
@@ -31,7 +33,7 @@ We will develop a Windows Universal (Windows 10) app.
 
     -   Category of the restaurant;
 
--   Edit restaurant profile. Users will be able to edit profiles;
+-   See nearby restaurants;
 
 -   See restaurant profile information;
 
@@ -41,11 +43,11 @@ We will develop a Windows Universal (Windows 10) app.
 
 -   **Log In / Register view** when successfully registered / logged it redirects to the Initial view;
 
--   **Nearby Restaurants view** – a map view displaying the current location of the user and the restaurants around. We should think of having sort description of a restaurant, when user taps the sign of the specific place. We can also use double touch on the map marker to redirect to the ‘Restaurant Details’ view;
+-   **Nearby Restaurants view** – a map view displaying the current location of the user and the restaurants around. Short description of a restaurant is shown, when the user taps the sign of the specific place. Double tap on the map marker redirects to the ‘Add New Restaurant’ view;
 
--   **Add New Restaurant view** – It will have textboxes for Name, Category, Short description of the restaurant. It will also have five textboxes for the special dishes in the menu. It will have slider for rating and button ‘Take Photo’ that will activate the device camera. The coordinates will be send automatically according to the location of the user. When finished Add, it redirects to the ‘Nearby Restaurants’ view;
+-   **Add New Restaurant view** – It will have textboxes for Name, Category, Short description of the restaurant. It will also have five textboxes for the special dishes in the menu. It will have slider for rating and button ‘Upload Photo’. The user can take a new photo or upload one from library. The coordinates will be send automatically according to the location of the user.
 
--   **Restaurant Details view** – similar as the above, but instead of TextBoxes, it will have TextBlocks displaying the content. We can implement the Swipe left and right to navigate to nearby restaurants. We will try to merge here the **Edit Restaurant view** – it will have the edited field converted to TextBox instead of TextBlock ready to be filled in. Edit submit will be lost focus on the specific field;
+-   **Restaurant Details view** – We can implement the Swipe left and right to navigate to nearby restaurants;
 
 -   **See All Restaurants view** – listing all the restaurants or all the results from a search. When Tapped / Clicked on a restaurant it shows the ‘Restaurant Details’ view;
 
@@ -67,7 +69,7 @@ We will develop a Windows Universal (Windows 10) app.
 
 -   We will consume remote data from from Parse.com. We will store images there;
 
--   We can send and recive data as a Background task as we talked. It still looks a bit complicated for now;
+-   We can send and receive data as a Background task as we talked. It still looks a bit complicated for now;
 
 -   We will have touch friendly UI;
 
