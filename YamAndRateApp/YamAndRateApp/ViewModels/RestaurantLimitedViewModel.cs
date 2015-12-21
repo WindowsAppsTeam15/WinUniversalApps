@@ -1,19 +1,19 @@
-﻿namespace YamAndRateApp.ViewModels
-{
-    using Windows.Devices.Geolocation;
+﻿//namespace YamAndRateApp.ViewModels
+//{
+//    using Windows.Devices.Geolocation;
 
-    public class RestaurantLimitedViewModel
-    {
-        public string Name { get; set; }
+//    public class RestaurantLimitedViewModel
+//    {
+//        public string Name { get; set; }
 
-        public double Rating { get; set; }
+//        public double Rating { get; set; }
 
-        public string PhotoUrl { get; set; }
+//        public string PhotoUrl { get; set; }
 
-        public string Category { get; set; }
+//        public string Category { get; set; }
 
-        public string Id { get; set; }
+//        public string Id { get; set; }
 
-        public Geopoint Coordinates { get; set; }
-    }
-}
+//        public Geopoint Coordinates { get; set; }
+//    }
+//}

@@ -1,15 +1,12 @@
-﻿using Parse;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using YamAndRateApp.Helpers;
-using YamAndRateApp.Utils;
-
-namespace YamAndRateApp.ViewModels
+﻿namespace YamAndRateApp.ViewModels
 {
+    using Parse;
+    
+    using System.Windows.Input;
+
+    using YamAndRateApp.Helpers;
+    using YamAndRateApp.Utils;
+
     public class MainPageViewModel : ViewModelBase
     {
         private bool displayLogIn;

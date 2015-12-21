@@ -1,30 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Parse;
-using YamAndRateApp.Models;
-using YamAndRateApp.ViewModels;
-using Windows.UI.Xaml.Media.Animation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace YamAndRateApp.Views
+﻿namespace YamAndRateApp.Views
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Input;
+    using Windows.UI.Xaml.Navigation;
+
+    using YamAndRateApp.Models;
+    using Windows.UI.Xaml.Media.Animation;
+    using YamAndRateApp.ViewModels.RestaurantViewModels;
+
     public sealed partial class RestaurantDetailsView : Page
     {
         private string selectedRestaurantId;
@@ -42,7 +26,6 @@ namespace YamAndRateApp.Views
                 this.x2 = (int)e.Position.X;
                 if (this.x1 > this.x2)
                 {
-                    // Will be difficult to use???
                     var nextRestaurantId = this.NextId.Text;
 
                     var entranceTransition = new PaneThemeTransition();
@@ -80,7 +63,7 @@ namespace YamAndRateApp.Views
             entranceTransition.Edge = navigationArgs.NavigationDirection;
             this.Transitions.Add(entranceTransition);
 
-            this.DataContext = new RestaurantViewModel(selectedRestaurantId);
+            this.DataContext = new DisplayRestaurantViewModel(selectedRestaurantId);
         }
     }
 }

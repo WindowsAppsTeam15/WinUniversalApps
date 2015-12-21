@@ -10,9 +10,11 @@
     using YamAndRateApp.Models;
     using Windows.Devices.Geolocation;
     using Utils;
+    using RestaurantViewModels;
+
     public class ListOFRestaurantsViewModel : ViewModelBase
     {
-        private ObservableCollection<RestaurantLimitedViewModel> restaurants;
+        private ObservableCollection<BaseRestaurantViewModel> restaurants;
 
         public ListOFRestaurantsViewModel()
             : this(String.Empty)
@@ -24,13 +26,13 @@
             this.LoadRestaurants(pattern);
         }
 
-        public IEnumerable<RestaurantLimitedViewModel> Restaurants
+        public IEnumerable<BaseRestaurantViewModel> Restaurants
         {
             get
             {
                 if (this.restaurants == null)
                 {
-                    this.restaurants = new ObservableCollection<RestaurantLimitedViewModel>();
+                    this.restaurants = new ObservableCollection<BaseRestaurantViewModel>();
                 }
 
                 return this.restaurants;
@@ -39,7 +41,7 @@
             {
                 if (this.restaurants == null)
                 {
-                    this.restaurants = new ObservableCollection<RestaurantLimitedViewModel>();
+                    this.restaurants = new ObservableCollection<BaseRestaurantViewModel>();
                 }
 
                 this.restaurants.Clear();
@@ -49,35 +51,6 @@
                 }
             }
         }
-
-        //private async void LoadRestaurants()
-        //{
-        //    try
-        //    {
-        //        var restaurants = await new ParseQuery<Restaurant>().FindAsync();
-
-        //        var loadedRestaurants = restaurants.AsQueryable().Select(model => new RestaurantLimitedViewModel
-        //        {
-        //            Name = model.Name,
-        //            Rating = model.Rating,
-        //            PhotoUrl = model.Photo.Url.ToString(),
-        //            Category = model.Category,
-        //            Id = model.ObjectId,
-        //            Coordinates = new Geopoint(new BasicGeoposition() { Longitude = model.Location.Longitude, Latitude = model.Location.Latitude })
-        //        });
-
-        //        this.Restaurants = loadedRestaurants.ToList();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        ToastManager toastManager = new ToastManager();
-        //        var heading = "There is no internet connection!";
-        //        var image = "/Assets/LockScreenLogo.scale-200.png";
-        //        var navigateTo = "main";
-        //        toastManager.CreateToast(heading, String.Empty, image, navigateTo);
-        //        return;
-        //    } 
-        //}
 
         private async void LoadRestaurants(string pattern)
         {
@@ -94,10 +67,10 @@
                     restaurants = (await new ParseQuery<Restaurant>().FindAsync()).AsQueryable().Where(r => r.Name.Contains(pattern));
                 }
 
-                var loadedRestaurants = restaurants.Select(model => new RestaurantLimitedViewModel
+                var loadedRestaurants = restaurants.Select(model => new BaseRestaurantViewModel
                 {
                     Name = model.Name,
-                    Rating = model.Rating,
+                    //Rating = model.Rating,
                     PhotoUrl = model.Photo.Url.ToString(),
                     Category = model.Category,
                     Id = model.ObjectId,

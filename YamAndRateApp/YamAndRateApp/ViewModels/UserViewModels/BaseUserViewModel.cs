@@ -1,6 +1,6 @@
 ﻿namespace YamAndRateApp.ViewModels.UserViewModels
 {
-    public class BaseUserViewModel : ViewModelBase
+    public abstract class BaseUserViewModel : ViewModelBase
     {
         private string username;
         private string password;

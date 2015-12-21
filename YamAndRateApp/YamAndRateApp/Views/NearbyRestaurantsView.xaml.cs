@@ -1,18 +1,20 @@
-﻿using System;
-using System.Threading.Tasks;
-using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Maps;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using YamAndRateApp.Models;
-using YamAndRateApp.ViewModels;
-
-namespace YamAndRateApp.Views
+﻿namespace YamAndRateApp.Views
 {
+    using System;
+    using System.Threading.Tasks;
+
+    using Windows.Devices.Geolocation;
+    using Windows.Foundation;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Maps;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Input;
+
+    using YamAndRateApp.Models;
+    using YamAndRateApp.ViewModels.RestaurantViewModels;
+
     public sealed partial class NearbyRestaurantsView : Page
     {
         private Geolocator geolocator;
@@ -107,7 +109,7 @@ namespace YamAndRateApp.Views
                 return;
             }
 
-            this.DetailsGrid.DataContext = new RestaurantViewModel(selectedRestaurantId);
+            this.DetailsGrid.DataContext = new DisplayRestaurantViewModel(selectedRestaurantId);
 
             var newCenter = new Geopoint(new BasicGeoposition()
             {
@@ -149,7 +151,7 @@ namespace YamAndRateApp.Views
 
             if (initiator != null)
             {
-                var currentRestaurant = initiator.DataContext as RestaurantLimitedViewModel;
+                var currentRestaurant = initiator.DataContext as BaseRestaurantViewModel;
 
                 if (currentRestaurant != null)
                 {

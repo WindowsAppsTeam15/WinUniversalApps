@@ -17,7 +17,6 @@
     <Page.Resources>
         <ViewModels:ListOFRestaurantsViewModel x:Key="RestaurantsListViewModel" />
         <Helpers:CategoryConverter x:Key="CategoryConverter" />
-        <ViewModels:RestaurantViewModel x:Key="RestaurantViewModel" />
     </Page.Resources>
 
     <Grid Style="{StaticResource CntainerGrid}"

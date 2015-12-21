@@ -126,6 +126,10 @@
     <Compile Include="Utils\Validator.cs" />
     <Compile Include="ViewModels\HeaderViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\RestaurantViewModels\BaseRestaurantViewModel.cs" />
+    <Compile Include="ViewModels\RestaurantViewModels\DetailsBaseRestaurantViewModel.cs" />
+    <Compile Include="ViewModels\RestaurantViewModels\DisplayRestaurantViewModel.cs" />
+    <Compile Include="ViewModels\RestaurantViewModels\SaveRestaurantViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\BaseUserViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\LogInUserViewModel.cs" />
     <Compile Include="ViewModels\UserViewModels\RegisterUserViewModel.cs" />

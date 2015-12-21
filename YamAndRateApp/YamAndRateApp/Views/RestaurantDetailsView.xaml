@@ -24,7 +24,6 @@
 
     
     <Page.Resources>
-        <ViewModels:RestaurantViewModel x:Key="RestaurantViewModel" />
         <Helpers:CategoryConverter x:Key="CategoryConverter" />
         <Helpers:RatingConverter x:Key="RatingConverter" />
     </Page.Resources>

@@ -1,31 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.Graphics.Imaging;
-using Windows.Media.Capture;
-using Windows.Storage;
-using Windows.Storage.Pickers;
-using Windows.Storage.Streams;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.UI.Xaml.Navigation;
-using YamAndRateApp.ViewModels;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace YamAndRateApp.Views
+﻿namespace YamAndRateApp.Views
 {
+    using System;
+
+    using Windows.Devices.Geolocation;
+    using Windows.Media.Capture;
+    using Windows.Storage;
+    using Windows.Storage.Pickers;
+    using Windows.Storage.Streams;
+    using Windows.UI.Core;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Media.Imaging;
+    using Windows.UI.Xaml.Navigation;
+
+    using YamAndRateApp.ViewModels.RestaurantViewModels;
+
     public sealed partial class AddEditRestaurantView : Page
     {
         private int currentVisibleSpecialtyField;
@@ -112,18 +101,7 @@ namespace YamAndRateApp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            if (e.Parameter != null)
-            {
-                string SelectedRestaurantId = e.Parameter.ToString();
-
-                this.DataContext = new RestaurantViewModel(SelectedRestaurantId);
-            }
-            else
-            {
-                this.DataContext = new RestaurantViewModel();
-            }
-
+            this.DataContext = new SaveRestaurantViewModel();
         }
 
         private void ShowUploadOptions(object sender, RoutedEventArgs e)
@@ -169,8 +147,8 @@ namespace YamAndRateApp.Views
                         await reader.LoadAsync((uint)stream.Size);
                         reader.ReadBytes(bytes);
 
-                        (this.DataContext as RestaurantViewModel).PhotoData = bytes;
-                    } 
+                        (this.DataContext as SaveRestaurantViewModel).PhotoData = bytes;
+                    }
                 }
             }
         }
@@ -194,9 +172,9 @@ namespace YamAndRateApp.Views
                     }
                 }
 
-                (this.DataContext as RestaurantViewModel).PhotoData = bytes;
-                this.uploadedPhoto.Source = new BitmapImage(new Uri(photo.Path));                
-            }            
+                (this.DataContext as SaveRestaurantViewModel).PhotoData = bytes;
+                this.uploadedPhoto.Source = new BitmapImage(new Uri(photo.Path));
+            }
         }
     }
 }

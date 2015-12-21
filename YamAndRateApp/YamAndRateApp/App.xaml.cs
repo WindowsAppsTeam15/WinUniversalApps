@@ -1,26 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-
-using Parse;
-using YamAndRateApp.Models;
-using YamAndRateApp.Views;
-
-namespace YamAndRateApp
+﻿namespace YamAndRateApp
 {
+    using System;
+
+    using Windows.ApplicationModel;
+    using Windows.ApplicationModel.Activation;
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Navigation;
+
+    using Parse;
+
+    using YamAndRateApp.Models;
+    using YamAndRateApp.Views;
+
     sealed partial class App : Application
     {
         public App()
@@ -39,90 +31,7 @@ namespace YamAndRateApp
             ParseObject.RegisterSubclass<Restaurant>();
 
             ParseClient.Initialize("PSONNOvcFcWay4nWraPDC6mqmQnbbYWXdvqVsu2u", "JEX9HSMJKrPmJxFsXKLygK6ZuDWv2xa9NNFrbCzD");
-
-            // this.CreateRestaurants();
         }
-
-        //private async void CreateRestaurants()
-        //{
-        //    List<Restaurant> restaurants = new List<Restaurant>()
-        //   {
-        //       new Restaurant()
-        //       {
-        //           Name = "Mrysnoto UI",
-        //           Description = "Very cool and delicate cuisine",
-        //           Category = "Bulgarian",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 3,
-        //           Location = new ParseGeoPoint(42.670384, 23.362506)
-        //       },
-        //       new Restaurant()
-        //       {
-        //           Name = "Chehov 52",
-        //           Description = "Very good",
-        //           Category = "French",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 2.5,
-        //           Location = new ParseGeoPoint(42.670025, 23.363450)
-        //       },
-        //       new Restaurant()
-        //       {
-        //           Name = "Chistoto",
-        //           Description = "Delicious cooking",
-        //           Category = "Chinese",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 4.5,
-        //           Location = new ParseGeoPoint(42.671299, 23.364003)
-        //       },
-        //       new Restaurant()
-        //       {
-        //           Name = "Gotiniq zaek",
-        //           Description = "Very good",
-        //           Category = "Bulgarian",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 8.6,
-        //           Location = new ParseGeoPoint(42.670384, 23.362506)
-        //       },
-        //       new Restaurant()
-        //       {
-        //           Name = "Batman",
-        //           Description = "Very cool and delicate cuisine",
-        //           Category = "French",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 6.7,
-        //           Location = new ParseGeoPoint(42.671536, 23.365290)
-        //       },
-        //       new Restaurant()
-        //       {
-        //           Name = "Tiger-tiger",
-        //           Description = "Very cool and delicate cuisine",
-        //           Category = "Other Asian",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 9.5,
-        //           Location = new ParseGeoPoint(42.673437, 23.363305)
-        //       },
-        //       new Restaurant()
-        //       {
-        //           Name = "Karuchkata",
-        //           Description = "Good",
-        //           Category = "Bulgarian",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 5.3,
-        //           Location = new ParseGeoPoint(42.669363, 23.360682 )
-        //       },
-        //       new Restaurant()
-        //       {
-        //           Name = "Test Restaurant",
-        //           Description = "Test",
-        //           Category = "Italian",
-        //           Specialties = new List<string>() { "Shkembe chorba", "Kiselo zae s praz", "Chibapchita", "Bob", "Lik s oriz", "Krokodil na plocha" },
-        //           Rating = 7,
-        //           Location = new ParseGeoPoint(42.669225, 23.358005)
-        //       }
-        //   };
-
-        //    await restaurants.SaveAllAsync();
-        //}
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

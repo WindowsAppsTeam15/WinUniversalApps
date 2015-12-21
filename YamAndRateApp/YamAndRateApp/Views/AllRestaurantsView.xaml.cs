@@ -1,13 +1,16 @@
-﻿using System.Threading.Tasks;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Navigation;
-using YamAndRateApp.Models;
-using YamAndRateApp.ViewModels;
-
-namespace YamAndRateApp.Views
+﻿namespace YamAndRateApp.Views
 {
+    using System.Threading.Tasks;
+
+    using Windows.UI.Xaml;
+    using Windows.UI.Xaml.Controls;
+    using Windows.UI.Xaml.Controls.Primitives;
+    using Windows.UI.Xaml.Navigation;
+
+    using YamAndRateApp.Models;
+    using YamAndRateApp.ViewModels;
+    using YamAndRateApp.ViewModels.RestaurantViewModels;
+
     public sealed partial class AllRestaurantsView : Page
     {
         public AllRestaurantsView()
@@ -18,11 +21,11 @@ namespace YamAndRateApp.Views
         private void LoadDetailsView(object sender, RoutedEventArgs e)
         {
             var initiator = e.OriginalSource as Button;
-            RestaurantLimitedViewModel currentRestaurant;
+            BaseRestaurantViewModel currentRestaurant;
 
             if (initiator != null)
             {
-                currentRestaurant = initiator.DataContext as RestaurantLimitedViewModel;
+                currentRestaurant = initiator.DataContext as BaseRestaurantViewModel;
 
                 if (currentRestaurant == null)
                 {
@@ -47,7 +50,15 @@ namespace YamAndRateApp.Views
         {
             base.OnNavigatedTo(e);
 
-            string pattern = (e.Parameter).ToString();
+            string pattern;
+            if (e.Parameter == null)
+            {
+                pattern = string.Empty;
+            }
+            else
+            {
+                pattern = (e.Parameter).ToString();
+            }
 
             this.DataContext = new ListOFRestaurantsViewModel(pattern);
         }
